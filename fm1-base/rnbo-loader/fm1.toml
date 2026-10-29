@@ -1,0 +1,15 @@
+name = "RNBO-PLAYER"
+id_prefix = "FM-1_94"
+usb_manufacturer = "RNBO FM1 experiment"
+usb_product = "RNBO Player FM-1"
+o2 = ["engine.c", "format.c"]
+ble = false
+usb_audio_in = true
+usb_audio_out = true
+words = "words.tsv"
+vendored = ["modules/"]
+tagline = "Loadable RNBO modules"
+licence = "See LICENSE.md"
+
+# Player-only Arial rasterization using the local macOS fonts.
+gen = ["tools/fonts.py {gen}/felucca_font.h"]

@@ -1,0 +1,6 @@
+{
+  "voices": 4,
+  "fast_phase": true,
+  "shared_fx": true,
+  "pool_bytes": 114688
+}

@@ -1,0 +1,1563 @@
+{
+  "patcher": {
+    "fileversion": 1,
+    "classnamespace": "rnbo",
+    "rect": [
+      50,
+      50,
+      1100,
+      800
+    ],
+    "boxes": [
+      {
+        "box": {
+          "id": "ratio",
+          "maxclass": "newobj",
+          "text": "param ratio 2 @min 0.25 @max 8 @displayorder 1",
+          "patching_rect": [
+            20,
+            25,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "ratio",
+          "rnbo_serial": 0
+        }
+      },
+      {
+        "box": {
+          "id": "attack",
+          "maxclass": "newobj",
+          "text": "param attack 10 @min 1 @max 1000 @displayorder 2",
+          "patching_rect": [
+            280,
+            25,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "attack",
+          "rnbo_serial": 1
+        }
+      },
+      {
+        "box": {
+          "id": "depth",
+          "maxclass": "newobj",
+          "text": "param depth 1.5 @min 0 @max 8 @displayorder 3",
+          "patching_rect": [
+            540,
+            25,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "depth",
+          "rnbo_serial": 2
+        }
+      },
+      {
+        "box": {
+          "id": "release",
+          "maxclass": "newobj",
+          "text": "param release 150 @min 1 @max 2000 @displayorder 4",
+          "patching_rect": [
+            800,
+            25,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "release",
+          "rnbo_serial": 3
+        }
+      },
+      {
+        "box": {
+          "id": "level",
+          "maxclass": "newobj",
+          "text": "param level 0.075 @min 0 @max 0.125 @displayorder 5",
+          "patching_rect": [
+            20,
+            70,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "level",
+          "rnbo_serial": 4
+        }
+      },
+      {
+        "box": {
+          "id": "echo_time",
+          "maxclass": "newobj",
+          "text": "param echo_time 120 @min 40 @max 170 @displayorder 6 @displayname \"Echo Time\"",
+          "patching_rect": [
+            280,
+            70,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "echo_time",
+          "rnbo_serial": 5
+        }
+      },
+      {
+        "box": {
+          "id": "echo_feedback",
+          "maxclass": "newobj",
+          "text": "param echo_feedback 0.45 @min 0 @max 0.98 @displayorder 7 @displayname \"Echo Feedback\"",
+          "patching_rect": [
+            540,
+            70,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "echo_feedback",
+          "rnbo_serial": 6
+        }
+      },
+      {
+        "box": {
+          "id": "echo_mix",
+          "maxclass": "newobj",
+          "text": "param echo_mix 0.28 @min 0 @max 1 @displayorder 8 @displayname \"Echo Mix\"",
+          "patching_rect": [
+            800,
+            70,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "echo_mix",
+          "rnbo_serial": 7
+        }
+      },
+      {
+        "box": {
+          "id": "synth",
+          "maxclass": "newobj",
+          "text": "p synth @polyphony 4 @voicecontrol midi",
+          "patching_rect": [
+            20,
+            180,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "synth",
+          "rnbo_serial": 8,
+          "patcher": {
+            "fileversion": 1,
+            "classnamespace": "rnbo",
+            "rect": [
+              100,
+              100,
+              900,
+              650
+            ],
+            "boxes": [
+              {
+                "box": {
+                  "id": "ratio",
+                  "maxclass": "newobj",
+                  "text": "in 1",
+                  "patching_rect": [
+                    40,
+                    240,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm0",
+                  "rnbo_serial": 30
+                }
+              },
+              {
+                "box": {
+                  "id": "depth",
+                  "maxclass": "newobj",
+                  "text": "in 3",
+                  "patching_rect": [
+                    240,
+                    240,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm1",
+                  "rnbo_serial": 31
+                }
+              },
+              {
+                "box": {
+                  "id": "o10",
+                  "maxclass": "newobj",
+                  "text": "in 2",
+                  "rnbo_uniqueid": "p10",
+                  "rnbo_serial": 10,
+                  "patching_rect": [
+                    220,
+                    295,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o11",
+                  "maxclass": "newobj",
+                  "text": "in 4",
+                  "rnbo_uniqueid": "p11",
+                  "rnbo_serial": 11,
+                  "patching_rect": [
+                    400,
+                    295,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o0",
+                  "maxclass": "newobj",
+                  "text": "notein",
+                  "rnbo_classname": "notein",
+                  "rnbo_uniqueid": "p0",
+                  "rnbo_serial": 0,
+                  "patching_rect": [
+                    40,
+                    40,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o1",
+                  "maxclass": "newobj",
+                  "text": "expr 440. * exp((in1 - 69.) * 0.0577622650466621)",
+                  "rnbo_classname": "expr",
+                  "rnbo_uniqueid": "p1",
+                  "rnbo_serial": 1,
+                  "patching_rect": [
+                    220,
+                    40,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o2",
+                  "maxclass": "newobj",
+                  "text": "cycle~",
+                  "rnbo_classname": "cycle~",
+                  "rnbo_uniqueid": "p2",
+                  "rnbo_serial": 2,
+                  "patching_rect": [
+                    400,
+                    40,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o3",
+                  "maxclass": "newobj",
+                  "text": "/ 127.",
+                  "rnbo_classname": "/",
+                  "rnbo_uniqueid": "p3",
+                  "rnbo_serial": 3,
+                  "patching_rect": [
+                    40,
+                    125,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o4",
+                  "maxclass": "newobj",
+                  "text": "adsr~ 10 20 0.8 150",
+                  "rnbo_classname": "adsr~",
+                  "rnbo_uniqueid": "p4",
+                  "rnbo_serial": 4,
+                  "patching_rect": [
+                    220,
+                    125,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o5",
+                  "maxclass": "newobj",
+                  "text": "*~",
+                  "rnbo_classname": "*~",
+                  "rnbo_uniqueid": "p5",
+                  "rnbo_serial": 5,
+                  "patching_rect": [
+                    400,
+                    125,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o7",
+                  "maxclass": "newobj",
+                  "text": "*~ 0.2",
+                  "rnbo_classname": "*~",
+                  "rnbo_uniqueid": "p7",
+                  "rnbo_serial": 7,
+                  "patching_rect": [
+                    220,
+                    210,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o8",
+                  "maxclass": "newobj",
+                  "text": "out~ 1",
+                  "rnbo_classname": "out~",
+                  "rnbo_uniqueid": "p8",
+                  "rnbo_serial": 8,
+                  "patching_rect": [
+                    400,
+                    210,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "o9",
+                  "maxclass": "newobj",
+                  "text": "out~ 2",
+                  "rnbo_classname": "out~",
+                  "rnbo_uniqueid": "p9",
+                  "rnbo_serial": 9,
+                  "patching_rect": [
+                    40,
+                    295,
+                    160,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "modfreq",
+                  "maxclass": "newobj",
+                  "text": "* @hot 1",
+                  "patching_rect": [
+                    40,
+                    290,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm2",
+                  "rnbo_serial": 32
+                }
+              },
+              {
+                "box": {
+                  "id": "mod",
+                  "maxclass": "newobj",
+                  "text": "cycle~",
+                  "patching_rect": [
+                    40,
+                    335,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm3",
+                  "rnbo_serial": 33
+                }
+              },
+              {
+                "box": {
+                  "id": "dev",
+                  "maxclass": "newobj",
+                  "text": "*~",
+                  "patching_rect": [
+                    230,
+                    335,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm4",
+                  "rnbo_serial": 34
+                }
+              },
+              {
+                "box": {
+                  "id": "index",
+                  "maxclass": "newobj",
+                  "text": "* @hot 1",
+                  "patching_rect": [
+                    230,
+                    290,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm5",
+                  "rnbo_serial": 35
+                }
+              },
+              {
+                "box": {
+                  "id": "carrierfreq",
+                  "maxclass": "newobj",
+                  "text": "+~",
+                  "patching_rect": [
+                    420,
+                    335,
+                    170,
+                    22
+                  ],
+                  "rnbo_uniqueid": "fm6",
+                  "rnbo_serial": 36
+                }
+              },
+              {
+                "box": {
+                  "id": "level",
+                  "maxclass": "newobj",
+                  "text": "in 5",
+                  "patching_rect": [
+                    40,
+                    420,
+                    250,
+                    22
+                  ],
+                  "rnbo_uniqueid": "eight50",
+                  "rnbo_serial": 50
+                }
+              },
+              {
+                "box": {
+                  "id": "voice_sleep",
+                  "maxclass": "newobj",
+                  "text": "voice",
+                  "patching_rect": [
+                    680,
+                    130,
+                    100,
+                    22
+                  ],
+                  "rnbo_uniqueid": "voice_sleep",
+                  "rnbo_serial": 60
+                }
+              }
+            ],
+            "lines": [
+              {
+                "patchline": {
+                  "source": [
+                    "o0",
+                    0
+                  ],
+                  "destination": [
+                    "o1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o0",
+                    1
+                  ],
+                  "destination": [
+                    "o3",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o3",
+                    0
+                  ],
+                  "destination": [
+                    "o4",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o2",
+                    0
+                  ],
+                  "destination": [
+                    "o5",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o4",
+                    0
+                  ],
+                  "destination": [
+                    "o5",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o5",
+                    0
+                  ],
+                  "destination": [
+                    "o7",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o10",
+                    0
+                  ],
+                  "destination": [
+                    "o4",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o11",
+                    0
+                  ],
+                  "destination": [
+                    "o4",
+                    4
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o1",
+                    0
+                  ],
+                  "destination": [
+                    "modfreq",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "ratio",
+                    0
+                  ],
+                  "destination": [
+                    "modfreq",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "modfreq",
+                    0
+                  ],
+                  "destination": [
+                    "mod",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o1",
+                    0
+                  ],
+                  "destination": [
+                    "index",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "depth",
+                    0
+                  ],
+                  "destination": [
+                    "index",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "mod",
+                    0
+                  ],
+                  "destination": [
+                    "dev",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "index",
+                    0
+                  ],
+                  "destination": [
+                    "dev",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "dev",
+                    0
+                  ],
+                  "destination": [
+                    "carrierfreq",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o1",
+                    0
+                  ],
+                  "destination": [
+                    "carrierfreq",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "carrierfreq",
+                    0
+                  ],
+                  "destination": [
+                    "o2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "level",
+                    0
+                  ],
+                  "destination": [
+                    "o7",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o4",
+                    1
+                  ],
+                  "destination": [
+                    "voice_sleep",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o7",
+                    0
+                  ],
+                  "destination": [
+                    "o8",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "o7",
+                    0
+                  ],
+                  "destination": [
+                    "o9",
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "box": {
+          "id": "midi",
+          "maxclass": "newobj",
+          "text": "midiin",
+          "patching_rect": [
+            800,
+            180,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "midi",
+          "rnbo_serial": 9
+        }
+      },
+      {
+        "box": {
+          "id": "time_samples",
+          "maxclass": "newobj",
+          "text": "* 44.1",
+          "patching_rect": [
+            20,
+            270,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "time_samples",
+          "rnbo_serial": 10
+        }
+      },
+      {
+        "box": {
+          "id": "echo_delay",
+          "maxclass": "newobj",
+          "text": "delay~ 8192 5292 @ramp 20",
+          "patching_rect": [
+            300,
+            440,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "echo_delay",
+          "rnbo_serial": 11
+        }
+      },
+      {
+        "box": {
+          "id": "feedback_vec",
+          "maxclass": "newobj",
+          "text": "feedback~",
+          "patching_rect": [
+            600,
+            440,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "feedback_vec",
+          "rnbo_serial": 12
+        }
+      },
+      {
+        "box": {
+          "id": "feedback_gain",
+          "maxclass": "newobj",
+          "text": "*~",
+          "patching_rect": [
+            600,
+            380,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "feedback_gain",
+          "rnbo_serial": 13
+        }
+      },
+      {
+        "box": {
+          "id": "feed_gain",
+          "maxclass": "newobj",
+          "text": "expr 1. - in1",
+          "patching_rect": [
+            20,
+            320,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "feed_gain",
+          "rnbo_serial": 14
+        }
+      },
+      {
+        "box": {
+          "id": "input_gain",
+          "maxclass": "newobj",
+          "text": "*~",
+          "patching_rect": [
+            20,
+            380,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "input_gain",
+          "rnbo_serial": 15
+        }
+      },
+      {
+        "box": {
+          "id": "echo_input",
+          "maxclass": "newobj",
+          "text": "+~",
+          "patching_rect": [
+            300,
+            380,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "echo_input",
+          "rnbo_serial": 16
+        }
+      },
+      {
+        "box": {
+          "id": "stereo_offset",
+          "maxclass": "newobj",
+          "text": "delay~ 256 128 @ramp 0",
+          "patching_rect": [
+            600,
+            500,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "stereo_offset",
+          "rnbo_serial": 17
+        }
+      },
+      {
+        "box": {
+          "id": "dry_amount",
+          "maxclass": "newobj",
+          "text": "expr 1. - in1",
+          "patching_rect": [
+            20,
+            500,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "dry_amount",
+          "rnbo_serial": 18
+        }
+      },
+      {
+        "box": {
+          "id": "dry",
+          "maxclass": "newobj",
+          "text": "*~",
+          "patching_rect": [
+            20,
+            550,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "dry",
+          "rnbo_serial": 19
+        }
+      },
+      {
+        "box": {
+          "id": "wet_l",
+          "maxclass": "newobj",
+          "text": "*~",
+          "patching_rect": [
+            300,
+            550,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "wet_l",
+          "rnbo_serial": 20
+        }
+      },
+      {
+        "box": {
+          "id": "mix_l",
+          "maxclass": "newobj",
+          "text": "+~",
+          "patching_rect": [
+            300,
+            610,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "mix_l",
+          "rnbo_serial": 21
+        }
+      },
+      {
+        "box": {
+          "id": "out_l",
+          "maxclass": "newobj",
+          "text": "out~ 1",
+          "patching_rect": [
+            300,
+            660,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "out_l",
+          "rnbo_serial": 22
+        }
+      },
+      {
+        "box": {
+          "id": "wet_r",
+          "maxclass": "newobj",
+          "text": "*~",
+          "patching_rect": [
+            600,
+            550,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "wet_r",
+          "rnbo_serial": 23
+        }
+      },
+      {
+        "box": {
+          "id": "mix_r",
+          "maxclass": "newobj",
+          "text": "+~",
+          "patching_rect": [
+            600,
+            610,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "mix_r",
+          "rnbo_serial": 24
+        }
+      },
+      {
+        "box": {
+          "id": "out_r",
+          "maxclass": "newobj",
+          "text": "out~ 2",
+          "patching_rect": [
+            600,
+            660,
+            240,
+            22
+          ],
+          "rnbo_uniqueid": "out_r",
+          "rnbo_serial": 25
+        }
+      },
+      {
+        "box": {
+          "id": "panic_cc",
+          "text": "ctlin 120",
+          "maxclass": "newobj",
+          "patching_rect": [
+            800,
+            280,
+            150,
+            22
+          ],
+          "rnbo_uniqueid": "panic_cc",
+          "rnbo_serial": 26
+        }
+      },
+      {
+        "box": {
+          "id": "panic_bang",
+          "text": "t b",
+          "maxclass": "newobj",
+          "patching_rect": [
+            800,
+            330,
+            150,
+            22
+          ],
+          "rnbo_uniqueid": "panic_bang",
+          "rnbo_serial": 27
+        }
+      },
+      {
+        "box": {
+          "id": "clear_echo",
+          "text": "set clear",
+          "maxclass": "newobj",
+          "patching_rect": [
+            800,
+            380,
+            150,
+            22
+          ],
+          "rnbo_uniqueid": "clear_echo",
+          "rnbo_serial": 28
+        }
+      },
+      {
+        "box": {
+          "id": "reset_feedback",
+          "text": "set reset",
+          "maxclass": "newobj",
+          "patching_rect": [
+            800,
+            430,
+            150,
+            22
+          ],
+          "rnbo_uniqueid": "reset_feedback",
+          "rnbo_serial": 29
+        }
+      },
+      {
+        "box": {
+          "id": "mute_all",
+          "text": "message @text 0 1",
+          "maxclass": "newobj",
+          "patching_rect": [
+            800,
+            480,
+            150,
+            22
+          ],
+          "rnbo_uniqueid": "mute_all",
+          "rnbo_serial": 30
+        }
+      },
+      {
+        "box": {
+          "id": "set_mute",
+          "text": "set mute",
+          "maxclass": "newobj",
+          "patching_rect": [
+            800,
+            530,
+            150,
+            22
+          ],
+          "rnbo_uniqueid": "set_mute",
+          "rnbo_serial": 31
+        }
+      }
+    ],
+    "lines": [
+      {
+        "patchline": {
+          "source": [
+            "ratio",
+            0
+          ],
+          "destination": [
+            "synth",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "attack",
+            0
+          ],
+          "destination": [
+            "synth",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "depth",
+            0
+          ],
+          "destination": [
+            "synth",
+            2
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "release",
+            0
+          ],
+          "destination": [
+            "synth",
+            3
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "level",
+            0
+          ],
+          "destination": [
+            "synth",
+            4
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_time",
+            0
+          ],
+          "destination": [
+            "time_samples",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_feedback",
+            0
+          ],
+          "destination": [
+            "feedback_gain",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "feedback_vec",
+            0
+          ],
+          "destination": [
+            "feedback_gain",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_feedback",
+            0
+          ],
+          "destination": [
+            "feed_gain",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "synth",
+            0
+          ],
+          "destination": [
+            "input_gain",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "feed_gain",
+            0
+          ],
+          "destination": [
+            "input_gain",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "input_gain",
+            0
+          ],
+          "destination": [
+            "echo_input",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "feedback_gain",
+            0
+          ],
+          "destination": [
+            "echo_input",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_input",
+            0
+          ],
+          "destination": [
+            "echo_delay",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "time_samples",
+            0
+          ],
+          "destination": [
+            "echo_delay",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_delay",
+            0
+          ],
+          "destination": [
+            "feedback_vec",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_delay",
+            0
+          ],
+          "destination": [
+            "stereo_offset",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_mix",
+            0
+          ],
+          "destination": [
+            "dry_amount",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "synth",
+            0
+          ],
+          "destination": [
+            "dry",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "dry_amount",
+            0
+          ],
+          "destination": [
+            "dry",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_delay",
+            0
+          ],
+          "destination": [
+            "wet_l",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_mix",
+            0
+          ],
+          "destination": [
+            "wet_l",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "dry",
+            0
+          ],
+          "destination": [
+            "mix_l",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "wet_l",
+            0
+          ],
+          "destination": [
+            "mix_l",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "mix_l",
+            0
+          ],
+          "destination": [
+            "out_l",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "stereo_offset",
+            0
+          ],
+          "destination": [
+            "wet_r",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "echo_mix",
+            0
+          ],
+          "destination": [
+            "wet_r",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "dry",
+            0
+          ],
+          "destination": [
+            "mix_r",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "wet_r",
+            0
+          ],
+          "destination": [
+            "mix_r",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "mix_r",
+            0
+          ],
+          "destination": [
+            "out_r",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "midi",
+            0
+          ],
+          "destination": [
+            "synth",
+            5
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "panic_cc",
+            0
+          ],
+          "destination": [
+            "panic_bang",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "panic_bang",
+            0
+          ],
+          "destination": [
+            "clear_echo",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "clear_echo",
+            0
+          ],
+          "destination": [
+            "echo_delay",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "clear_echo",
+            0
+          ],
+          "destination": [
+            "stereo_offset",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "panic_bang",
+            0
+          ],
+          "destination": [
+            "reset_feedback",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "reset_feedback",
+            0
+          ],
+          "destination": [
+            "feedback_vec",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "panic_bang",
+            0
+          ],
+          "destination": [
+            "mute_all",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "mute_all",
+            0
+          ],
+          "destination": [
+            "set_mute",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "set_mute",
+            0
+          ],
+          "destination": [
+            "synth",
+            0
+          ]
+        }
+      }
+    ]
+  }
+}

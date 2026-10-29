@@ -1,0 +1,7 @@
+{
+  "voices": 1,
+  "fast_phase": true,
+  "shared_fx": false,
+  "pool_bytes": 98304,
+  "float32_delays": true
+}

@@ -1,0 +1,96 @@
+wait 100
+master 4096
+patch fm4echo
+wait 100
+expect params 8
+expect raw_midi 1
+expect bank 0
+spin K2 -1
+wait 30
+spin K3 -19
+wait 30
+spin K4 -7
+wait 30
+tap FX
+spin K4 -28
+wait 30
+expect dsp7 0
+tap FX
+key 7 down
+wait 100
+key 11 down
+wait 100
+key 14 down
+wait 100
+key 18 down
+wait 100
+wav four.wav
+wait 400
+wavstop
+shot four.png
+key 19 down
+wait 100
+wav fifth.wav
+wait 400
+wavstop
+key 7 up
+wait 100
+wav survivor.wav
+wait 400
+wavstop
+key 11 up
+key 14 up
+key 18 up
+key 19 up
+wait 100
+expect note -1
+wav silent.wav
+wait 100
+wavstop
+tap FX
+spin K2 200
+wait 30
+spin K2 -45
+wait 30
+expect dsp5 55
+spin K3 200
+wait 30
+spin K3 -34
+wait 30
+expect dsp6 66
+spin K4 200
+wait 30
+spin K4 -67
+wait 30
+expect dsp7 33
+tap SAVE
+wait 100
+expect dirty 0
+reboot
+wait 200
+expect params 8
+expect bank 0
+expect dsp5 55
+expect dsp6 66
+expect dsp7 33
+shot echo.png
+key 7 down
+wait 200
+key 11 down
+wait 200
+key 14 down
+wait 200
+key 18 down
+wait 200
+tap PLAY
+wait 1600
+expect note -1
+expect meter_left 0
+expect meter_right 0
+expect faults 0
+expect drops 0
+patch fm8poly2fast
+wait 100
+expect params 8
+expect raw_midi 1
+expect faults 0

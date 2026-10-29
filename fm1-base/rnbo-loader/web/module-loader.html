@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RNBO FM1 · Build & Upload</title>
+<style>
+*{box-sizing:border-box}[hidden]{display:none!important}body{max-width:850px;margin:4vh auto;padding:24px;background:#404040;color:#fff;font:16px/1.5 Arial,sans-serif}h1{font-size:36px;margin:0}h2{font-size:19px;margin:0 0 12px}p{color:#ccc}section{margin:20px 0;padding:20px;background:#343434;border:1px solid #626262;border-radius:9px}button,select,input{font:inherit;padding:10px;margin:5px 7px 5px 0;background:#262626;color:#fff;border:1px solid #888;border-radius:5px}button{cursor:pointer}button:hover:enabled{background:#505050}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}button:disabled{opacity:.45;cursor:default}.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.slots button{margin:0;min-height:60px;text-align:left}.slots button[aria-pressed=true]{border:2px solid #fff;background:#555}#upload{font-weight:bold;background:#eee;color:#222}progress{width:100%;height:12px;margin-top:16px}pre{padding:16px;background:#252525;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:6px;font:14px/1.5 Arial,sans-serif}#build-log{max-height:270px;overflow:auto;font:12px/1.5 monospace}label{display:block;margin:10px 0 5px}small{color:#ccc}#metrics{font-variant-numeric:tabular-nums}#destination{margin-bottom:0}input[type=file]{max-width:100%}#dropzone{border:1px dashed #999;padding:15px;border-radius:6px}#dropzone p{margin:0 0 8px}a{color:#fff}#service{font-size:14px}summary{cursor:pointer}@media(max-width:600px){body{margin:0;padding:16px}.slots{grid-template-columns:1fr}section{padding:15px}}
+</style></head><body>
+<h1>RNBO FM1</h1><p>Save your RNBO patch. Drop it here. Build & upload.</p>
+<p id="service" role="status">Connecting to the local builder…</p>
+<section aria-labelledby="connection"><h2 id="connection">1. Connect your FM1</h2>
+<button id="ports">Find USB MIDI device</button><select id="device" aria-label="FM1 MIDI device"></select><button id="connect" disabled>Connect</button><button id="status" disabled>Refresh Status</button>
+<p><small>Use Chrome or Edge and allow MIDI access, including SysEx.</small></p>
+<div id="slot-options"><div class="slots" role="group" aria-label="Destination patch slot"><button id="slot1" aria-pressed="true" disabled>Slot 1</button><button id="slot2" aria-pressed="false" disabled>Slot 2</button><button id="slot3" aria-pressed="false" disabled>Slot 3</button></div></div>
+<p id="destination">Connect to see available patch slots.</p></section>
+<section aria-labelledby="patch-heading"><h2 id="patch-heading">2. Choose your patch</h2>
+<div id="dropzone"><p>Drop a <strong>.rnbopat</strong> file here, or choose a file.</p><label for="file">RNBO source or compiled module</label><input id="file" type="file" accept=".rnbopat,.rnbom"></div>
+<div id="voice-options" hidden><label for="voices">Voices</label><select id="voices"><option value="1">Mono</option><option value="2">2 Voices</option><option value="4">4 Voices</option></select><p id="voice-help"></p></div>
+<p id="patch">No patch selected.</p><button id="upload" disabled>Build & Upload</button><button id="build" hidden disabled>Build Only</button><a id="download" hidden>Download Built Module</a>
+<progress id="progress" aria-label="Patch upload progress" max="100" value="0"></progress></section>
+<pre id="log" role="status" aria-live="polite">Connect the FM1, choose a patch, then Build & Upload. Build Only also works without an FM1 connected.</pre>
+<details id="build-details" hidden><summary>Build Log</summary><pre id="build-log"></pre></details><p id="metrics"></p>
+<small>Builds run on your Mac using the installed RNBO package and FM1 toolchain. The current player is supported; a three-slot player adds destination selection. Uploading briefly mutes audio and activates the new patch.</small>
+<script type="module" src="module-loader.js"></script></body></html>

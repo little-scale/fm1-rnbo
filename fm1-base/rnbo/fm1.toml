@@ -1,0 +1,13 @@
+name = "RNBO"
+id_prefix = "FM-1_93"
+usb_manufacturer = "RNBO FM1 experiment"
+usb_product = "RNBO FM-1"
+o2 = ["bridge.cpp"]
+include = ["export/common"]
+words = "words.tsv"
+vendored = ["export/"]
+ble = false
+usb_audio_in = true
+usb_audio_out = true
+tagline = "RNBO minimal export experiment"
+licence = "See LICENSE.md and export licences"

@@ -1,0 +1,69 @@
+wait 100
+patchslot 1 fm4echo
+expect patch_slot 1
+expect patch_slots 1
+spin PRESET 1
+wait 60
+expect patch_slot 1
+patchslot 3 mono
+expect patch_slot 3
+expect patch_slots 5
+spin PRESET 1
+wait 60
+expect patch_slot 1
+spin PRESET -1
+wait 60
+expect patch_slot 3
+patchslot 2 fm8poly2fast
+expect patch_slot 2
+expect patch_slots 7
+spin K1 10
+wait 60
+expect param0 33
+tap SAVE
+wait 60
+expect dirty 0
+spin PRESET 1
+wait 60
+expect patch_slot 3
+spin K1 10
+wait 60
+expect param0 30
+tap SAVE
+wait 60
+spin PRESET -1
+wait 60
+expect patch_slot 2
+expect param0 33
+expect bank 0
+expect drops 0
+expect faults 0
+reboot
+wait 100
+expect patch_slot 3
+expect param0 30
+expect patch_slots 7
+spin PRESET 1
+wait 60
+expect patch_slot 1
+expect params 8
+expect raw_midi 1
+expect store_writes 2
+key 0 down
+wait 100
+expect note 53
+spin PRESET 1
+wait 100
+expect patch_slot 2
+expect note -1
+key 0 up
+wait 100
+expect note -1
+key 0 down
+wait 100
+expect note 53
+key 0 up
+wait 400
+expect faults 0
+expect drops 0
+shot patch-bank.png

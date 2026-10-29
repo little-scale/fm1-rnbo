@@ -1,0 +1,10 @@
+wait 600
+expect rnbo_ok 0
+expect params 0
+expect faults 0
+key 7 down
+wait 100
+key 7 up
+wait 100
+expect faults 0
+shot empty.png

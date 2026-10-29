@@ -7,14 +7,15 @@ already used by the project's original RNBO adapter and loader.
 
 The MIT licence applies to original work whose authors can grant those rights.
 It does not replace licences attached to third-party code or modifications of
-third-party files. This repository currently contains project documentation
-and licensing files; the implementation has not yet been imported.
+third-party files. The implementation and pinned platform source are now included. Build outputs,
+locally installed RNBO files, system fonts and SDK/compiler downloads are excluded.
 
-## Component policy for the implementation
+## Component policy
 
 | Component | Applicable licence |
 | --- | --- |
 | Original integration code, player, uploader, tools, tests and original RNBO patch designs | MIT, except where a file contains third-party material with its own terms |
+| Battery sensor adapter (`fm1-base/rnbo-loader/battery.h`) and its contract test | GPL-3.0-or-later; see [full text](LICENSES/GPL-3.0-or-later.txt) |
 | fm1-base platform and felucca-bsp, including modifications to their covered files | MPL-2.0; preserve upstream copyright, licence texts, notices and source obligations |
 | RNBO runtime | MIT, with any additional notices attached to individual runtime/math files preserved |
 | RNBO-generated C++ and adaptations of that generated C++ | Cycling '74 License for Max-Generated Code for Export **or** GPLv3, under the original dual-licence notice; not relicensed as MIT |
@@ -32,7 +33,7 @@ met. The alternative Cycling '74 export licence has its own conditions.
 Preserve both options in the generated source's original notice rather than
 removing or replacing that notice.
 
-When implementation files are imported, retain component licence texts,
+When redistributing this source, retain component licence texts,
 per-file identifiers, copyright notices and any required attribution or source
 availability information. A root MIT licence alone does not cover an entire
 firmware binary assembled from differently licensed components. Prebuilt
@@ -45,3 +46,22 @@ review before being added to a release.
 - [MPL 2.0 FAQ — Mozilla](https://www.mozilla.org/en-US/MPL/2.0/FAQ/)
 - [fm1-base licensing](https://github.com/charlesvestal/fm1-base/blob/main/LICENSING.md)
 - [felucca-bsp](https://github.com/hugelton/felucca-bsp)
+
+## Combined player and local build outputs
+
+The visual player includes the GPL-3.0-or-later battery adapter. A combined
+firmware containing that adapter is distributed under GPL-3.0-or-later;
+original MIT components remain separately available under MIT. The root MIT
+licence does not override the battery adapter or third-party notices.
+
+The repository vendors the pinned fm1-base and felucca-bsp source with its
+licences and attribution. See [UPSTREAM.md](UPSTREAM.md). Their open font
+assets retain their SIL Open Font License notices. Arial is obtained from the
+builder's local system and rasterized locally; neither Arial font files nor
+compiled firmware containing those raster assets are committed here.
+
+RNBO source designs are included, but generated RNBO code/runtime copies and
+native firmware/module binaries are local build outputs. SDK packaging bytes
+and the compiler are fetched from their official sources by setup scripts and
+are not redistributed in this checkout. Any later binary release needs its
+own corresponding-source and component distribution review.

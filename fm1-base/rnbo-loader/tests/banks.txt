@@ -1,0 +1,126 @@
+wait 100
+patch fm8
+wait 100
+expect params 8
+expect bank 0
+expect dirty 0
+turn K1 200
+wait 30
+turn K1 -89
+wait 30
+expect param0 11
+expect dsp0 11
+turn K2 200
+wait 30
+turn K2 -78
+wait 30
+expect param1 22
+expect dsp1 22
+turn K3 200
+wait 30
+turn K3 -67
+wait 30
+expect param2 33
+expect dsp2 33
+turn K4 200
+wait 30
+turn K4 -56
+wait 30
+expect param3 44
+expect dsp3 44
+tap FX
+wait 30
+expect bank 1
+press FX
+wait 200
+expect bank 0
+wait 200
+expect bank 0
+release FX
+wait 30
+tap FX
+wait 30
+expect bank 1
+turn K1 200
+wait 30
+turn K1 -45
+wait 30
+expect param4 55
+expect dsp4 55
+expect dsp0 11
+turn K2 200
+wait 30
+turn K2 -34
+wait 30
+expect param5 66
+expect dsp5 66
+expect dsp1 22
+turn K3 200
+wait 30
+turn K3 -23
+wait 30
+expect param6 77
+expect dsp6 77
+expect dsp2 33
+turn K4 200
+wait 30
+turn K4 -12
+wait 30
+expect param7 88
+expect dsp7 88
+expect dsp3 44
+shot bank2.png
+tap FX
+wait 30
+expect bank 0
+shot bank1.png
+tap SAVE
+wait 100
+expect dirty 0
+tap FX
+wait 30
+expect bank 1
+expect dirty 0
+reboot
+wait 200
+expect bank 0
+expect params 8
+expect param0 11
+expect dsp0 11
+expect param1 22
+expect dsp1 22
+expect param2 33
+expect dsp2 33
+expect param3 44
+expect dsp3 44
+expect param4 55
+expect dsp4 55
+expect param5 66
+expect dsp5 66
+expect param6 77
+expect dsp6 77
+expect param7 88
+expect dsp7 88
+expect faults 0
+expect drops 0
+patch mono
+wait 50
+expect params 3
+expect bank 0
+tap FX
+wait 30
+expect bank 1
+turn K1 500
+turn K4 500
+wait 30
+expect dirty 0
+tap FX
+wait 30
+expect bank 0
+turn K1 1
+wait 30
+expect param0 21
+expect dsp0 21
+expect drops 0
+expect faults 0
+shot sparse.png
