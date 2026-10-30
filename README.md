@@ -122,6 +122,102 @@ Unsaved control changes are discarded when changing slots.
   objects / 384 wire segments, or too dense to fit, use the parameter list.
   Old modules without metadata also retain the list and percentage popup.
 
+## Supported RNBO objects, operations and structures
+
+This is the **tested support inventory for this FM1 adapter with RNBO 1.4.4**, not a guarantee for every RNBO object, constructor or combination. The exporter delegates to the pinned RNBO compiler and audits the generated DSP; it does not implement a universal object whitelist. An unlisted object is unqualified, rather than necessarily unsupported. A listed name still has to pass the allocation, float32, image/state and native-build checks for the patch that uses it.
+
+Evidence comes from the [RNBO compatibility matrix](fm1-base/rnbo-loader/COMPATIBILITY.md), [Gen expansion report](fm1-base/rnbo-loader/tests/compatibility/gen-results.json), [Gen support notes](fm1-base/rnbo-loader/GEN-SUPPORT.md) and [15 playable test patches](fm1-base/rnbo-loader/hardware-tests/README.md). The full object matrix and Gen expansion are host/portability evidence; selected playable patches also have separately recorded FM1 results. Passing an object fixture is not a native CPU or worst-case timing guarantee.
+
+### RNBO objects and operations
+
+The table includes the tested main objects plus the initialization, routing and voice helpers exercised by those graphs and the playable collection. `~` denotes the signal-rate form; unsuffixed names are event/control forms unless otherwise noted. Some names below have profile or constructor restrictions in the following table.
+
+| Area | Tested objects / operations |
+| --- | --- |
+| Oscillators, noise and envelopes | `cycle~`, `phasor~`, `saw~`, `tri~`, `rect~`, `noise~`, `pink~`, `adsr~` |
+| Signal arithmetic | `+~`, `-~`, `*~`, `/~`, `%~`, `abs~`, `min~`, `max~`, `clip~`, `scale~` |
+| Signal powers, logs and rounding | `exp~`, `log~`, `log2~`, `log10~`, `pow~`, `sqrt~`, `ceil~`, `floor~`, `round~`, `trunc~` |
+| Signal trigonometry | `sin~`, `cos~`, `tan~`, `asin~`, `acos~`, `atan~`, `atan2~`, `sinh~`, `cosh~`, `tanh~` |
+| Signal comparison and logic | `>~`, `>=~`, `<~`, `<=~`, `==~`, `!=~`, `!~`, `&&~`, `\|\|~` |
+| Signal state and smoothing | `delta~`, `change~`, `dcblock~`, `slide~`, `rampsmooth~`, `sah~`, `latch~`, `downsamp~` |
+| Filters and measurements | `onepole~`, `butterworth~`, `lores~`, `svf~`, `biquad~`, `reson~`, `average~`, `average_rms~`, `peakamp~`, `snapshot~`, `zerox~` |
+| Delays and signal feedback | `delay~`, `feedback~`, `comb~`, `allpass~` |
+| Wrapping and folding | `wrap~`, `fold~` |
+| Signal conversions | `mtof~`, `ftom~`, `dbtoa~`, `atodb~`, `mstosamps~`, `sampstoms~` |
+| Event arithmetic and shaping | `+`, `-`, `*`, `/`, `%`, `abs`, `min`, `max`, `clip`, `wrap`, `fold`, `scale`, `fixnan`, `fixdenorm` |
+| Event powers, logs and rounding | `exp`, `log`, `log2`, `log10`, `pow`, `sqrt`, `ceil`, `floor`, `round`, `trunc` |
+| Event trigonometry | `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2`, `sinh`, `cosh`, `tanh` |
+| Event comparison and logic | `>`, `>=`, `<`, `<=`, `==`, `!=`, `!`, `&&`, `\|\|`, `and`, `or`, `xor` |
+| Event conversions | `mtof`, `ftom`, `dbtoa`, `atodb`, `mstosamps`, `sampstoms` |
+| Event storage, selection and lists | `float`, `int`, `change`, `accum`, `counter`, `gate`, `switch`, `select`, `split`, `trigger`, `t`, `route`, `prepend`, `append`, `pack`, `unpack`, `list.len`, `list.sum`, `list.median`, `list.thin`, `list.unique`, `list.rev`, `list.sort`, `list.slice`, `list.reg`, `list.join`, `list.nth`, `list.lookup` |
+| Scheduling, initialization and messages | `metro`, `delay`, `pipe`, `line`, `line~`, `timer`, `loadbang`, `message`, `set` |
+| Internal routing and signal/event ports | `send`, `receive`, `send~`, `receive~`, `sig~`, `in`, `in~`, `out~` |
+| Local data and buffers | `data`, `buffer~`, `poke~`, `peek~` |
+| Parameters and code | `param`, `param~`, `expr`, `codebox`, `codebox~` |
+| MIDI input and voices | `midiin`, `notein`, `ctlin`, `bendin`, `touchin`, `polyin`, `pgmin`, `voice` |
+| Containers | `p`, `gen~` |
+
+### RNBO qualifications and limits
+
+| Object / form | Qualification |
+| --- | --- |
+| `trunc~`, `wrap~`, `fold~`, `peakamp~ 10` | The recorded RNBO matrix passes these with `"fast_phase": false`. Set this in the selected build’s `module.json`; the browser does not automatically retry a conservative profile. Native image fit and CPU cost still need qualification. This restriction concerns these RNBO signal objects, not the separately tested Gen operators with similar names. |
+| `downsamp~ 4` | The historical matrix needed the conservative profile. The later guarded counter adaptation supports a proven fixed positive integral factor, and T11 subsequently passed native build/playback with `fast_phase: true`. Dynamic, fractional or unrecognized forms are not covered by that adaptation and must pass their own audits. |
+| `comb~`, `allpass~` | Use bounded delay rings. Tested examples include 16 ms, parameter bounds up to 32 ms and an explicit `filter_delay_max_ms` cap; sufficiently long/unknown declarations can still exceed the total arena. See [bounded-filter settings](fm1-base/rnbo-loader/BOUNDED-FILTERS.md). |
+| `average~`, `average_rms~` | Positive compiled-constant windows have bounded history; 32-sample and stereo 32/64-sample cases were compared with the references. Dynamic/unknown windows retain their original storage and may not fit. |
+| `list.*`, `pack`, `unpack` | Sixteen values is the inline capacity, not a universal maximum. The suite checks selected 17/32/64-value storage/copy cases. Allocating during audio processing remains forbidden. In particular, repeated `list.nth` reads of a 64-item list allocate temporary copies; T03 uses `list.lookup` instead. |
+| `data`, `buffer~`, `poke~`, `peek~` | Tested as bounded, internally generated local buffers; examples use 256 frames, one channel and none/linear/cubic reads. This does not add external sample-file loading or host-owned buffers. |
+| `expr`, `codebox`, `codebox~` | Tested RNBO expressions plus event/audio codeboxes: arithmetic, functions, conditionals, bounded loops and retained `@state`. This is RNBO’s language, not arbitrary JavaScript, C++ or external code execution. |
+| `message`, `set` | Embedded messages and supported object-attribute updates are used by the tested patches, including delay clear/reset and voice mute. This does not imply arbitrary host messages or every attribute. |
+| `in`, `in~`, `out~` | Subpatch wiring can use internal ports. The module’s top-level contract remains **zero audio inputs and exactly two audio outputs**; mono sound can feed both outputs. |
+| MIDI input | Keyboard/MIDI note, velocity, controller, pitch-bend, pressure and program-change input paths are exercised. Physical outgoing MIDI and external host services are not qualified by these tests. |
+| Parameters | `param` / `param~`; tested min/max, exponent, enum, steps and declared units. `@displayorder` sets exported order and `@displayname` supplies the UI label. The module accepts at most 16 parameters; the current two knob banks expose the first eight. |
+
+### Supported patch structures
+
+| Structure | Supported form / boundary |
+| --- | --- |
+| Standalone source | Self-contained `.rnbopat` files saved from inside RNBO. Editable `.maxpat` wrappers are provided for the examples; the surrounding Max UI is not executed on the FM1. |
+| RNBO subpatches | Embedded `p` graphs, nested and branched subpatches, fan-out/fan-in, event-to-signal control and internal named `send`/`receive` or `send~`/`receive~`. External abstractions/files need additional integration. |
+| Polyphony | Mono, two-voice and four-voice builds; incoming raw MIDI, allocation/stealing, sustain/release, voice sleep and parameter broadcast. Polyphony must match `module.json`; arbitrary voice counts are not supported. |
+| Shared master effects | One embedded polyphonic synth group with an outer shared effect, as in four-voice T14/T15. This avoids duplicating the master delay for each voice. The builder validates this particular topology; it is not unrestricted nested polyphony. |
+| Scheduling | Initialization, metro, delay/pipe, ramps/timers and clocks addressed to nested patchers are exercised. Scheduler timestamps retain their required precision; that does not permit software-double arithmetic in sample loops. |
+| Feedback and state | RNBO feedback cycles broken by `feedback~`/delays; Gen one-sample `History` feedback, initial states and simultaneous state updates. RNBO `feedback~` contributes one 256-sample vector of feedback latency. |
+| Embedded Gen | Visual `gen~` (`dsp.gen`) graphs, nested `gen`, codeboxes inside Gen and embedded GenExpr. The importer preserves editable graphs and compiles a translated copy; supported forms are listed below. |
+| Device / resource contract | Fixed 44.1 kHz, 256-frame blocks, stereo output, bounded initialization-time allocation and no late audio-thread allocation. Native image plus layout metadata must fit 64 KiB; module state must fit 176 KiB. Host arena usage is not total device RAM or a CPU measurement. |
+
+### Gen operations — all 144 exercised catalogue entries
+
+These are the canonical entries recorded by the 165 passing Gen fixtures. Common spellings tested separately include numeric boxes, `f` / `i`, arithmetic/comparison symbols, `accum` for `plusequals`, and reversed `!-`, `!/`, `!%` forms. The installed catalogue resolves aliases; this list does not claim every alias or constructor has been exercised. `codebox` is a supported visual structure and is not one of the 144 catalogue entries below.
+
+| Area | Exercised Gen entries |
+| --- | --- |
+| Constants | `INVPI`, `LN2`, `SAMPLERATE`, `TWOPI`, `VECTORSIZE`, `degtorad`, `e`, `halfpi`, `ln10`, `log10e`, `log2e`, `phi`, `pi`, `radtodeg`, `sqrt1_2`, `sqrt2` |
+| Numeric boxes and casts | `constant`, `float`, `int` |
+| Oscillators and phase | `cycle`, `phasor`, `triangle`, `train`, `rate`, `noise`, `phasewrap` |
+| History, counters and state | `history`, `counter`, `plusequals`, `mulequals`, `delta`, `change`, `elapsed`, `latch`, `sah`, `slide`, `dcblock` |
+| Arithmetic and shaping | `add`, `sub`, `mul`, `div`, `rsub`, `rdiv`, `mod`, `rmod`, `abs`, `absdiff`, `neg`, `sign`, `min`, `max`, `clamp`, `wrap`, `fold`, `scale`, `mix`, `smoothstep`, `step` |
+| Rounding | `floor`, `ceil`, `round`, `trunc`, `fract` |
+| Comparison | `eq`, `neq`, `lt`, `lte`, `gt`, `gte`, `eqp`, `neqp`, `ltp`, `ltep`, `gtp`, `gtep` |
+| Logic | `bool`, `not`, `and`, `or`, `xor` |
+| Trigonometry and hyperbolic maths | `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2`, `sinh`, `cosh`, `tanh`, `asinh`, `acosh`, `atanh` |
+| Powers and logarithms | `exp`, `exp2`, `pow`, `sqrt`, `log`, `log2`, `log10` |
+| Fast approximations | `fastsin`, `fastcos`, `fasttan`, `fastexp`, `fastpow` |
+| Coordinates and units | `hypot`, `cartopol`, `poltocar`, `radians`, `degrees`, `mtof`, `ftom`, `dbtoa`, `atodb`, `mstosamps`, `sampstoms`, `t60`, `t60time` |
+| Numeric hygiene | `fixnan`, `fixdenorm`, `isnan`, `isdenorm` |
+| Ports, parameters and routing | `in`, `out`, `gen`, `param`, `gate`, `selector`, `switch`, `send`, `receive`, `pass` |
+| Local data and interpolation | `data`, `peek`, `poke`, `sample`, `nearest`, `lookup`, `wave`, `splat`, `dim`, `channels`, `interp` |
+| Delay | `delay` |
+
+### Gen structures and remaining restrictions
+
+- **Parameters/state:** numeric constants, Gen `param` with initial value/min/max, `History` and independent per-instance state; exposed/named parameters are exercised in the supported forms. This does not establish arbitrary nested `setparam` routing.
+- **Local memory:** bounded `Data`, multichannel reads/writes and interpolation. Visual Data/Delay declarations share a default **24 KiB conservative estimate per Gen graph**, including its nested Gen; the compiled module still enforces the total arena. A visual `data` defaults to 512 frames and one channel. Codebox/GenExpr allocations rely on compiled-module checks rather than that visual estimate.
+- **Delay:** a visual `delay` with no explicit size defaults to **2,048 samples** (about 46.4 ms). Explicit sizes must fit the configured graph budget. Up to eight taps and the supported `@feedback 1` form are accepted; none/linear/cosine/cubic/spline interpolation have comparison fixtures. `gen_buffer_max_bytes` and `gen_delay_max_samples` configure the visual bounds; they do not enlarge the device’s total memory.
+- **Routing/code:** nested Gen graphs, named internal send/receive, selectors/gates/switches and Gen codeboxes with declared ports are supported. Unconnected inlets use the catalogue’s defaults; ambiguous constructors and unreviewed saved attributes are rejected.
+- **Not integrated:** external Gen files/abstractions, external `buffer`, Gen `expr` boxes, nested `setparam`, Gen `voice` indexing, FFT host context/`fftinfo`/FFT constants, and named-wavetable `cycle` constructors. The supported Gen `cycle` uses its built-in sine table; local Data can instead be read with the listed buffer operators. Catalogue `read`/`write` entries are not standalone operators; Delay read/write methods are handled by the importer.
+- **Qualification:** Gen fixtures compare the importer with RNBO’s GenExpr backend. They are not a direct equivalence test against Max’s native Gen audio engine, and do not certify all parameter combinations or FM1 timing.
+
 ## Included instruments
 
 | Source in `fm1-base/rnbo-loader/patches/` | Instrument |
