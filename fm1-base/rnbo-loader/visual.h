@@ -1,12 +1,14 @@
 /* SPDX-License-Identifier: MIT
  * Optional, CRC-protected metadata trailer; the original module ABI is intact.
  * Header: magic,u16 version,nodes,segments,params,width,height.
- * Nodes: 8 byte fields + NUL-terminated 16-byte label; segments: 4 bytes.
+ * Nodes: x,y,w,h,param,inlets,outlets,flags + NUL-terminated 16-byte label.
+ * Flag bit 0 marks Gen; legacy nodes use zero (RNBO). Segments: 4 bytes.
  * Parameters: NUL-terminated 12-byte unit. All coordinates are precomputed.
  */
 #pragma once
 #define RM_VISUAL_MAGIC 0x31564952u
 #define RM_VISUAL_FOOTER 0x31545652u
+#define RM_VISUAL_NODE_GEN 0x01u
 static uint32_t rm_u16(const uint8_t *p){return p[0]|((uint32_t)p[1]<<8);}
 static int rm_visual_valid(const uint8_t *p,uint32_t n){
     if(n<16 || n>8192 || rm_u32(p)!=RM_VISUAL_MAGIC || rm_u16(p+4)!=1 || rm_u16(p+12)!=240 || rm_u16(p+14)!=166)return 0;

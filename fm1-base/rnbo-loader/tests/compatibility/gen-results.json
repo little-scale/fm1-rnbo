@@ -1,0 +1,2964 @@
+{
+  "date": "2026-10-30",
+  "rnbo_version": "1.4.4",
+  "host": "Apple Silicon / Apple Clang 17",
+  "cases_passed": 165,
+  "catalogue_operators_exercised": 144,
+  "catalogue_operators": [
+    "INVPI",
+    "LN2",
+    "SAMPLERATE",
+    "TWOPI",
+    "VECTORSIZE",
+    "abs",
+    "absdiff",
+    "acos",
+    "acosh",
+    "add",
+    "and",
+    "asin",
+    "asinh",
+    "atan",
+    "atan2",
+    "atanh",
+    "atodb",
+    "bool",
+    "cartopol",
+    "ceil",
+    "change",
+    "channels",
+    "clamp",
+    "constant",
+    "cos",
+    "cosh",
+    "counter",
+    "cycle",
+    "data",
+    "dbtoa",
+    "dcblock",
+    "degrees",
+    "degtorad",
+    "delay",
+    "delta",
+    "dim",
+    "div",
+    "e",
+    "elapsed",
+    "eq",
+    "eqp",
+    "exp",
+    "exp2",
+    "fastcos",
+    "fastexp",
+    "fastpow",
+    "fastsin",
+    "fasttan",
+    "fixdenorm",
+    "fixnan",
+    "float",
+    "floor",
+    "fold",
+    "fract",
+    "ftom",
+    "gate",
+    "gen",
+    "gt",
+    "gte",
+    "gtep",
+    "gtp",
+    "halfpi",
+    "history",
+    "hypot",
+    "in",
+    "int",
+    "interp",
+    "isdenorm",
+    "isnan",
+    "latch",
+    "ln10",
+    "log",
+    "log10",
+    "log10e",
+    "log2",
+    "log2e",
+    "lookup",
+    "lt",
+    "lte",
+    "ltep",
+    "ltp",
+    "max",
+    "min",
+    "mix",
+    "mod",
+    "mstosamps",
+    "mtof",
+    "mul",
+    "mulequals",
+    "nearest",
+    "neg",
+    "neq",
+    "neqp",
+    "noise",
+    "not",
+    "or",
+    "out",
+    "param",
+    "pass",
+    "peek",
+    "phasewrap",
+    "phasor",
+    "phi",
+    "pi",
+    "plusequals",
+    "poke",
+    "poltocar",
+    "pow",
+    "radians",
+    "radtodeg",
+    "rate",
+    "rdiv",
+    "receive",
+    "rmod",
+    "round",
+    "rsub",
+    "sah",
+    "sample",
+    "sampstoms",
+    "scale",
+    "selector",
+    "send",
+    "sign",
+    "sin",
+    "sinh",
+    "slide",
+    "smoothstep",
+    "splat",
+    "sqrt",
+    "sqrt1_2",
+    "sqrt2",
+    "step",
+    "sub",
+    "switch",
+    "t60",
+    "t60time",
+    "tan",
+    "tanh",
+    "train",
+    "triangle",
+    "trunc",
+    "wave",
+    "wrap",
+    "xor"
+  ],
+  "exact_audio_words": 21495808,
+  "noise_comparison": "statistical; independent seeds",
+  "hardware_test": false,
+  "cases": [
+    {
+      "case": "constant_pi",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 318155,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "9e01aedd82624c6d64072265ce9c588b3670ece69a3776d9488898e0b408d2ed",
+        "2dec177221db90857ca7cd25b5db970f9c411124a556c53870e9c08f2a3104d2"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_PI",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 318155,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "3d2f27be4ad54ecea80c5cbe28838080dff8c7f947b8f52ae98bae79e1722fb2",
+        "dbf7365b40f88903e8695e7f73c1464d0082922e987c2f48877f0150133ac7c1"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_twopi",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 361838,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "7e9f1776047a99bd825193f96ab55e053f9d80f7f3743f873f47674cb04115e4",
+        "2c49141d2555c8d8aa039c601dcbac1e382cd0f9e191fb5c33787a9df9775524"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_TWOPI",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 361838,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "a94dc86d043ff10417d26fcfc099f22d594befd73b493dc0aca50da4c915adc0",
+        "b36fbfbb8f446b73e51b7d6d3aab04a06648f0e39a3295221650bf64b420aaaf"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_halfpi",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 256276,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "50703f55362185da08af52f37b2a97fceedddab2fda6f08de656cea4b0feda18",
+        "de4f2df234504d3560889bc630f6a7e5c240dd642dc8351760bc6e89d3be9b37"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_HALFPI",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 256276,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "3b1ada57b50d818cab38cb5faaebe138f0c2c57cb457bdde2cbc6edde06690db",
+        "0ccc78a9b2ac010d630a6baf630953b03c9e86ee514c899a77844b91bf091f0b"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_invpi",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 101271,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "9e7f35d12c8b1f0bf9f5f82beafe2a70093ce37858529178bfd1f08c07a320cb",
+        "aba6c2bf9ded0787c9929d2d7bcb9773932cc8f73490fd154841ed9005b4904a"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_e",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 306625,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "94ff3352f9468683b149f9391af952e8ab510764f1c2a44777c1fdca98a13753",
+        "c76ac2b68557d29049959f70a554e9ac43405c0ab68e2aac2a73d7a260f743d3"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_phi",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 259220,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "9afa5cf75615ba845a75539978c59e697ca4b1b23b3e9fa144c846bf1358f9b9",
+        "7e015806eb74c323302316b767f6d3c758e082331fe6c337a9e299d1cbc460ee"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_sqrt2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 245694,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "c0c4bf16f40ac2be245077318aecedf542d66e7ec88c79c0c9d5393914370734",
+        "42df3b775bad669d93d847b0225f897b7f30fc98efdffea22295ff56abd3975f"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_sqrt1_2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 173732,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "8d366cdfaf52eeb73a866227c3c4a47cad46f81d05c272b0a3d8674849b7541f",
+        "3307e465dc7e4bbaefb1235ed915f332025c9c5d182058381675796920ec831a"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_ln2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 171706,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "3c60e3e633f6cf6504b135d44d97b8ce9c428c0498c81fad3ebd8bd31f490568",
+        "a4f03b91fdc47eea2a8b89dbe1001fd3b591d91500358d96629e0c79631faa5f"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_ln10",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 292427,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "92081e5b083fb97ccdbacf57574f53d33dd815299a51b124e8189d06545a960b",
+        "a3a099fec4ffe7be89837f42eaf9053d5cffc48ff04d1afbf45fd531e54780d5"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_log2e",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 247720,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "572c72a662b811b01a436e8220bb7f50b3433854c966e72d959c32d6d958e024",
+        "4f4cc9c44693a960ad62d73b3e5f5e5707bc1e9a3fd08f66ae3e7047e71c0e9f"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_log10e",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 126999,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "05355400f0a6f4e2598fb4d7609062452eb24bb49993dec4f18f74ca414d0b6d",
+        "4afa06e92f32a8304ef3a239f7fbd3875802ba513b897338d29c52e4785b2fa1"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_degtorad",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 7194,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "60f5329449575f38e89b09cd762845d495cd8d71ba002954a37c1ffc0b4f656c",
+        "2ccaccc26abb5900270ee340872a84f13ca0077bc744e73e6ebc615ddab229c5"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_radtodeg",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 412232,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "84da7e1e0fe8768b82b55932b8075eb876cca880780915af57c7f5742d582e8e",
+        "586725b3200d846725305bf3abb319b1c9ba4778c1d7d1d9d71b47d48f1d4ffd"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_samplerate",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 184967,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "43e3fc88e782e02df7984ba072396a80ba346852bf678cdfec4b0e13e81bde00",
+        "5cbf69af4420cada35d7b795941f55d3ad6747ba7f405c8f7fdaf7ab7aa5d31c"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_SAMPLERATE",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 184967,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "15ee20f62f8856c351e359e99a5c05abcfb77f0ffa8f240dcd0ecf9c685556f6",
+        "d129b3c93c69d1d903f25c3daefbe026eb7290c4b97cd8ed2062882e8aeee61c"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_vectorsize",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 1073,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "0c1d863b9915a7340829cff9734703529284b8029352df5705396e33d316ef87",
+        "f4a74e1f93dc4a66118c1228a73991b628750d2db98885576ea5fa1a3b95c8fc"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "constant_VECTORSIZE",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 1073,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "6fbf796c2bb6c4956fe3aecb814c4f2a49448bb941b31696425e251d34edb582",
+        "feecfc8217771285133003081534174f0364297014c74d92adf488521137f1e6"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "literal_constant_0.25",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 104856,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "db8c6c8b6a1593f35b8dcba72caa5215abc15407eca55093559082627002a556",
+        "c8bb2d25f412fa2021774649ec2429c0d5ecfab44c6c4af3b92a7df40f432b7e"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "literal_0.25",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 104856,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "e1fb1ec5b85abcb228b7dbd910b207e4d541b693f568e6b0f8cea082130b0576",
+        "b4a491f85508b1553e607ea53bf316a66c2f71d9fd7b8b1b36b854dc1ec9480b"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "literal_float_0.25",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 104856,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "636f534dc8fe099066ee97191909a41bbbcb407a880132c4c3687f8461bfa8dd",
+        "d9219f7ea20430462228e6fd3278b3fd7f342824c2a950490ee14f4276836d37"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "literal_f_0.25",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 104856,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "8cce1835a929db22fb2a69c87a3d11049bcae4c4ce5546b25acc4a71ba0d6574",
+        "f3536442d9038b2ea564074e52530ef3e52c59c3365bf9056d702351fbd72765"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "literal_int_2.75",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 838854,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "e2a61b10ab31b1f62a929dce78a7391ef67555a0ce14ddde9283d316046532d2",
+        "8cef3439234685a9a55d966724ead432aaf02fdfbea7dc169d367bb09df4f52b"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "literal_i_-2.75",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 838854,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "d261162c67e4e376597c17fafe33e213d11235921404df8a179b8cf6fca1d767",
+        "3396b7bd8e6c28ef3a3eacedf2e638bcd00df26f6cc399704e2ccdf236b889a5"
+      ],
+      "report": "build/gen-expansion/constants-final-values/report.json"
+    },
+    {
+      "case": "param_gain",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "9c0952ad757982894822b5451994de634012298f0474b8486564299f0d88e14b",
+        "9fb15bb15a8d59bb738892027a405b3124b881ef6499a6d4ed299d26b6795cd3"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "param_bipolar",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 838854,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "790a38998c4edd1391f393fa96e1517da33688ef82357699ed11f521f2f54798",
+        "d02b87289b3637ff4238d24d0e34d231601f6b1272bb500481cb294dbbc0450b"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_cycle",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "3cfc1e7fd51b7ba6c7e7396256cbd88e5cacc78213a7b668ed0f122a8e6f6d4e",
+        "039057d7726936c3641499b8fce8cbac64d9e81a45ec658a579fcb973b207002"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_phasor_137",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419421,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "a294228b85398269e38e290186f265d3c99a58ab96e9de80139ecf0203805577",
+        "f40a3656540e432c2264ce9cde6fdd1efbc0f395074173ddafce8ff8e7f0ebda"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_triangle",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 8388,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "3dbfc7ce5e1811abadd546ea9eac5217c4b73ce849d45e9df782f3b28412e146",
+        "cb473b98b2bc9a90db6053d711a7fbbfdf19ca4d43cb9c5cd0730412d0cb6b5e"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_train_31_0.5",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "63baf49e41b611dfd376af09e778298a0b4559a70dc1929c26c280fdc21239eb",
+        "b8d8f114aad5e29ab6b93cb7455f522bd6d53e09f460f66f7ab82107c68fa1b3"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_rate_2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "15fa15992b9d5951e8ca9992b14025dba04e74c31d1acd41b7628b3e353a22c7",
+        "9b654ef59621e3cd6e11ef05f515cf002c127529df8ae85745565cfb55bb59c6"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_delta",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 81,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "5482981c4a3039a6167ad16b8b6a40bc4639e3def052a4e84ce942eef9760fa7",
+        "7bda42ca940cb08c219142d99da86efd8c25513c0c6f3aba55501d2ab989a157"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_change",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "b8cf9e657efc80ad4200299564397ba2f45488cffd5c2f29a5b0e8aafd961800",
+        "302ffa4c785a2ccd0c3304ddab2f40fe3e24c6c2299a4f396529463a7dd2ece8"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_dcblock",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "0d8203b6722050d9860157935805460966ecccf11719230401945ba2c7710572",
+        "366833170e0b3d7f85b5c17acc01648338560f9614a24975f12fa1be9ac47ea7"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_slide_5_10",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4178,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "0afcdc973b65acdfd5eccd85b642c75518f26000fc83440810b850c3d0f6bdf5",
+        "d1ab84dc464c7ebf151c86e5b25608a5affc6046d681ebbd94346d871723492e"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_sah_0",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "6f176af13f8ee69d0151380936642540fe97ab5a734c594989a9fcb467a4da98",
+        "1238d96460060f56e2a0b111e72f497be6fb2fbdbd29d41a9e4cb40747090ac2"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_latch",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "a0e9a6839f5bb1746392047433b187242fa70c5f5e3550115da880eceae25ab4",
+        "3a26a1f540d5d72b04a30bf7afbf2cae76eee9a3260bc396b1f36ad93cfa31e4"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "operator_accum_@min_0_@max_1",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419397,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "48e6297435624acbc43b47e5c244e6ea12468b8d26c0edc2e82df54f5c5700c8",
+        "b1bc6ac8ce204de8a790e00cd372bfa5602b32773e7696051af6587dbb23b373"
+      ],
+      "report": "build/gen-expansion/operators-verified/report.json"
+    },
+    {
+      "case": "math_abs",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "d88b06546e658f1ae496ee75f093e0dfcd2b03f276f891881fb6b64b3036fc8e",
+        "6971535bb963be26b25202b603c68e57f55729fa115e1721193da11e6a41811d"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_neg",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "9ed77ea553ee2db6008926565f96f92beafa281b61aa802e22e1cb97d64d42ea",
+        "a4163ebbe5c49ff99daf22e7369be6d533750c62aafc11746c7c2c5246a6d07a"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_sign",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "6559b4e45ca93d8f2a8603321c309295fcc2faee3a2ed5460a6311fcecb6374e",
+        "f21c33af57d20dafd4d7d21a111e32e7bf219dc2fff859fbde1a8782b4221570"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_floor",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "32a0b3580a3aca1738c933a1c33715edac029400022c17c16c2d7d301dbfb269",
+        "5e50ffb4e4a0ebb230b7c75c3f516e59e284c0cc85c7bb2a52e8b1cf69010d27"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_ceil",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "1321d5c37107140d5ea72bc10a139a8d104110d65d0ccabacefa49dadf602afc",
+        "8ca41ef4d39fc3a69117242e2b21b1dbb80720d23323fc4c4558012a9fd208db"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fract",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "305c0d13e97852e13aaa1407014bbb454a85e5eb8508e3eefd1476afcc8f7aa6",
+        "35f40beab01926a1a98abb94948af33bcd54a79ee6be2316a13895083d0f6cd0"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_sin",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 204754,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "bc07505bb5e3d1ad21964461d3aa2dbd3de4e29986524f654dd610fe4d311cf2",
+        "2c999d6b0b221d9f8f21507067689add5c43090bee1b4e94585935268b37b37b"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_cos",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 370074,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "2be69fca263c5a88445795a2034967bd8f0e509383d41763c095cfc6cfd9fc92",
+        "81acf7fac28f30bab942915edff70de47e2e1a8a07b36d633c2ccd5ca85c7c99"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_tan",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 234610,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "0b4951611601131a31b0d2d30e81286ac8a3cd1aabdbf0b82a4a26cc6b6275f5",
+        "68ce65c94d7f467533662a43865bdadc612eba323b9fa09c246443776c1dadbd"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_sinh",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 223302,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "27eb9842f11ac301381d793765ccc651f0c28ba23a25f2d28ee2b1e7fdfcb236",
+        "32c97ca248ada7367ca1e3a961e2cbfb1d528afa016403fe2eab1021164465c0"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_cosh",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 475166,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "690078dcacd7716c1f268b7b2be4b8b6f4daee468b7c909a54a7ab5d2454d918",
+        "42a17894c34c15770ea35e5947aad75fb2a7e139bed0ab2abe28cdc5501ef5ca"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_tanh",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 197107,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "8a34b2d72ab6d936fce4cd7961f4bd30f1525ca1a743485b8bd86822677bcc8d",
+        "558ae9d98d34d7c66f2c4810b8934ce77ef2f56c38483f73ef92854d3d808445"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_asin",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 224471,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "3eb9e3bc0953c00780e598dfd275b0a501012d805ea20316497496dce4085488",
+        "7c9524dc8c126569dac02d3085414d11fc4b92db92df9279b6948fdae47916c2"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_acos",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 444050,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "2e77b0f97f89326c5d1c6555ab93a34cfc1944b044e061abfdfedaef110e249c",
+        "c222b0eb223f8f9fd1d48599322e9b57980b541ca3ca285ba63eb6078be42974"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_atan",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 197808,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "5a9dac63d29ee23f66c6e2d579a44b64cb2c6cefca8e493ead5922376058ce9a",
+        "fd59bb8b2bb41679c2bce3d6f40b84c0b51894530b1bb52cb8da0ea87b6d4980"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_asinh",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 205577,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "da80143f96ea4ababaac0a84ebc2be53aa5f87c16c101ec24742311ba0a12d79",
+        "7a10351201a6fa4e58ee1c50aa713f769346ebb46c902d526083c59c77ce6ae2"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_atanh",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 236024,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "008dfaac355e207a65ace82cb2486baacee9c365307b6489a61cd5d95c370f88",
+        "4989cb93cd8eeaf8745e9a617638ddf8521fefa42cd334f37f9168a012b1cf19"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_sqrt",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 299530,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "c7036acabfddac92e8e2f8aa781f9577d1f3d476b300f99e4ccd29da25441e48",
+        "0cbfb10630679eb00475776d121cc074d9062aaeafafc6bd64c5c977a39b0f35"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_exp",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 698468,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "413c124621c0d196e07fed91671d6d370c9938201cb56e9512dfd4ed19f62ce9",
+        "9666513759f33fd6000a6a4c55b06b7f0df616f2e70153e68fb790cdb3a8fe02"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_exp2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 597285,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "4835e11cd8d102991be680045c899fcc06e5557e9ba6bb865655612c17d73ecb",
+        "95da96627c2b3b77cda4c7729fbf76e3f9c676ed470b667cf71ff6bd0e1e72bc"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_log",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 299198,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "1a791951c5f538f03cfd93005dff3f43508f104975f2e55117d87a7775e2aea0",
+        "1aff7ed5eadc73b67b6304b1919ea0cdd78f171f9b5e7e4eff6900d894e1ee88"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_log2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 431652,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "49e22c2e8416a536be5146588791278dd317a35112c6017248416115b2cd75ab",
+        "50a0b8bffc86987bead768e452fe1cac8027c7605fcddd96e4d5306feb99e3cf"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_log10",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 129940,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "166babbb07193f7755db3f9381afc60df46eaf985c843096aea4388c229f4713",
+        "5fcf6e0ce73d4d428771c901556a59411e6a4eed0bb4bbf476c906740ec5bb6e"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_bool",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "2c93b7c28bcacc325586f40a4c9f6ded1a62e49670514f93a137792234769994",
+        "c306a6283cd05c91d305eb54deaa238f1e417eba224f5751674052bc7ded1f77"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_not",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "943c7ce2f1d050f81425c74d753ced753d36a06d6a70bdf55a03f1360b880498",
+        "0d4d42685ab00da7868d8c36562a0d764e34ebb78d20d8b27275226543f824d3"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_pass",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "1a2c792070776386641d9fa0b3365331f1363b1607bb056b0624685bc3e5efb2",
+        "f9961f37c9bd92a0ecd1ca4dad5724f47967aa2d91262c2f80a9cfab0b1fcf7d"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_float",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "46bc7ecf1b134cfa5002ac140bc4702e7a39f5691c0927cf776d2a521b4211f6",
+        "5f96286e85233a0adc4472b19753ca9610eadfe59f5867eac058ce3306cbc739"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fixnan",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "e21c199c6a42d1f7f59526aec4360877bee0c0b6dc41d2778e1228bc43407e68",
+        "3d6eabf8569d2582b585a5f09ed08bf3c1eddf08fb50bc6c0f9442f0ef3e4dd0"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fixdenorm",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "422c5f109b58694b2b0a7e6f6914526f6cea38a627b9e9425962a104b226f376",
+        "e72e263959e58f00f3449ba9d45435f032eaaf6ceaf26f9d25242f6a9a13f0d5"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_isnan",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "0b174e3fd39437be613691807c4397f26d76e48086c7da547a5bff80e42d50a8",
+        "30a4f10824ba9dfd85c8261efaa74365a0416de3d3ebaf325d427c9cc5fe83ea"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_isdenorm",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "198e3fe8c622f711c73084878779cbc8598e5b8e7a3ef2add8ac96e5d039d8b2",
+        "0fba153999595b0717171c38053691e50a078f7007f3d222bbb3b3729bffd32c"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_radians",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 3733,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "b7b9663159d64a027bf13f7342c2548cf73a0066536dee93db84c3a0353cd121",
+        "fd0216909415ee8bd80e0d1085d832e512cafc11499d83948636b0aa927fbb25"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_degrees",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 8388545,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "37e31147b84151db242bc8b254ce436c8e71744ba8620ee698113c1dc054cd33",
+        "9b72e833bfcdf84273253d56be93b5fc3efcb80d16bf502e81b4438e3d0de717"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fastsin",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 204797,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "11820de88497a6d475f50951b0f2f0ee9701d3b2749bf8cb4ea3465cede61900",
+        "fb840b491c1f1eee56ba37b196d229d0e4037010caa76b33df492628ed95271d"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fastcos",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 370172,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "6dc209a7c1a39be3164f48b8f056538d71dbba42bc3455aa995e32a48c6c4c86",
+        "ec21c50a7b509e3ec8bb790f7075adc4ffb9b5284cb952c2606beb48b3370d1a"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fasttan",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 233776,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "150f785a4926659cf108dbfe8cb33fd59a2aa1948e25d5779c4878b3ad6d6de4",
+        "7e059cf2f3046a9a289eaf4076a4d0bc745a4e5cacd74150af9f22c1fddc9cd3"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fastexp",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 703994,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "196e9495fc9526610c96137e9bb0511a648d27a01931f3dd734199410c68ad5b",
+        "a2fd44dc519d33e0103f29f8decc7f85d90ea621fb4a8f4569b5030ed4c1fdc0"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_add",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 6291,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "bd58a588cd8003a51388e603534f36edfd7603fdcc90d2249e79c5263447c74f",
+        "f4e95eda444bb53e1f64951f35e9e9196b951ae4facbfecaca4c3cf3c2524508"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_sub",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 6291,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "c85a87a8d335183c9cc3940844996b0c7a34bcfc815dfe325c51e4a0142acd9c",
+        "40a7adf2ea0f6c9e63e58c80f61d51b5212af7d7c78084135cf7c0b4bf689c00"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_mul",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 20,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "21c67ded4f15dc08af6d2f4f21c52234ad46f0e51a2e08516a30dfb31ad2d08e",
+        "2171c25aa0807e285bc57ae812c62af6cc46f114ed3bf99b510e7b705f98d9fc"
+      ],
+      "report": "build/gen-expansion/math-fixed/report.json"
+    },
+    {
+      "case": "math_div",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 838854,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "e651fabc45b68e5aeca24723f6ae03c2810f0850afdcae3e15fa9c0225cf3251",
+        "4805a2e906f3ba7fd5327d18fb28f6a4272e0ed473a34b4fb107569458c51690"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_min",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "056393b9df91db23140020ce90b0f4c88551b8508b55ce565a3a280f2cdf2664",
+        "9b040b2ef5ccb57bf1d0051db21e5155c0effdde336d3f8136711c763f7d1be8"
+      ],
+      "report": "build/gen-expansion/math-fixed/report.json"
+    },
+    {
+      "case": "math_max",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "04925fbe3e6c3fb9cd857294c081531e78c63415e75c644fccdadf1fd2e21eac",
+        "786ec16143df10d949dd48d7c61d466fc7e8766fe027857c0f19ba477373698c"
+      ],
+      "report": "build/gen-expansion/math-fixed/report.json"
+    },
+    {
+      "case": "math_absdiff",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "73a6d5fd8e511609dd0c5b19a88fe7ca59267661bae0f892aefd8d6077e4a471",
+        "9843ec86bb6fa4654410c560e044137d86fd7af32193069f357f9ca02661599f"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_pow",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 409879,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "326eb416826630780e6810e2d0e0ae185def2c6cf63657ab5b6b11931523d164",
+        "60b744108c61dee58d53660464bce917abee16252c1d85975706762b81aa7552"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fastpow",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 997714,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "34d416a8b6919236581b30366b88b786fc94b6917cf353ae6ac5a4e936e4dbc0",
+        "2bd802f496cb364d187442c7e3cadf0deed934f906f337ae30eae2d80a1db9d3"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_hypot",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4689,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "61a2a7744c9664bb7ecd052517e92e889abad073cc46a190945af097ca8f7f23",
+        "ad63a1140d0d7d9a2141a94cbb87d6f3bf799dc36def3dc65774e7176ec0ab1f"
+      ],
+      "report": "build/gen-expansion/math-hypot/report.json"
+    },
+    {
+      "case": "math_atan2",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 1123203,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "9f965b701123f176547869b0c98e31cd08cbf953afdd2823ccc0578109675a31",
+        "0e7cceecd61de5aded84508f42273354755ce02f8bf9eb4ad56795d9a5a8c94e"
+      ],
+      "report": "build/gen-expansion/math-atan/report.json"
+    },
+    {
+      "case": "math_mod",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "d935a408a6ac9a6225dbef436e9a217fa963c6f4b14f36cbfe6ba325165224ad",
+        "6adb667a40809d522b4d05aa2767f0f541d7d3b7d3fc415996b4d3849ab76538"
+      ],
+      "report": "build/gen-expansion/math-fixed/report.json"
+    },
+    {
+      "case": "math_eq",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "071dc05d3f610f8102bfcd83daaabf67b6ee9ee2f0981089aac36aa84b4f4d08",
+        "abb0803c23556018540145c82687d42682eb120bab94606276e95e1b1656ff68"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_neq",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "f66171e90c7164decdb11845b7af67405ae9c7dc34fee844df56a03c568be95e",
+        "693f3802d84ab71725bb06450ee0f6dcbf70e58ec9427d1e89e4a2c866739cc6"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_lt",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "6bf21a119803219db8ade69b81c75229af44bc505ce87aa07735bcd2d8406648",
+        "b944f29faa0bf4f169c89894b3bd2dd6b3ee39fd6248a03d1e214e09a61b0bd8"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_lte",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "30d924596b4299b315d11be3aead7ad740b177fcf5086e82b6bac8a654cdaf0a",
+        "954867577d4ceee8f7b80a88bd0b570a4e9b0a22535fe8154e2701295e08d327"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_gt",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "02d0fc1e703e1d05eb71b43ec83dd64d662a6b9e6c2b19d287e037b9ffc581b6",
+        "9480112c128d7ab8cdde5b0fca161fe710bed89bb8f54c43c1f448f6034a242d"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_gte",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "49334bc8e34f7b61ddee504daee161178529d257a2cd286d73ec9accdfbeed6c",
+        "3dc5dfaccd7b121c219b098d1d3f279afb12ad611c0313570e6011e435455a24"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_eqp",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "692a28d41ebb411d5c431ab5977dc42a4a3b4d01a119c86fb9e0174f95e9c113",
+        "f6e6484d373daab35c18cb4bd414f4354df89ba33b55591df212851eac3ebe8d"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_neqp",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "94ef817b97a5149dea4724b7f586f6a1be5062503888b6c3d24768812252c27b",
+        "7e41b277ff0493f9f4101824c4259c42515e8475ba75c4bcc52351aeeab3717e"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_ltp",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "2050b0dd6d86a568fb14231d9928ce55356ef474899aee288fdd628573a1c32c",
+        "0c12758b6e0191402d91e2cedfa04b3e2a79ecbf40b81da732fcb742b2373e52"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_ltep",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "9e98f1c2b4f95e76fc2e7851b3448b78b4413fae16568c0f4984f38e80a6b04d",
+        "d3b6ac23958212ee07609ac5f8b682196eecd937c52c0caf938b00a774f083c9"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_gtp",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "c9fcebdb784a653191fae42baf749d5e216b1187e93a2db4bca6c3c99e2de302",
+        "35a0a77821dbb5f52c4874d021f9b85725dcccb677850e2c2af537cf364c40c2"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_gtep",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "179e0fbea1f7c55393caef9aac3384ba994b7118c85669e9923aee59d55d5816",
+        "a538208efb766876dfb821051910d04a1232cd76e83e783415a56f8b8001496b"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_and",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "eb6368baea3023c1ed2f583be051efda4def4f7543a9de81a256142d4aa94f5c",
+        "796f2afe2dda7fd82a6f46674265110b2b118d7bd9ebbcaf97a8550af0871c92"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_or",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "bed7be16f962228e86dea8c8e0881e18553128613b5d4a69db26c050cbf9f780",
+        "32340b044b86366fe129c06301398ae62821b3ac9bc809ce9037a35af984fbce"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_xor",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 0,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "89eed3b4ffdd3f76d51def600cc7299f50f598d5c538800f465e53da9c603cd5",
+        "11b27b7d704b883a5b1b45fcc1b4c3d3b65a0308ba8cd544a09e6ec82a022a48"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_step",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "db00826d5ac30c66db767e2d10458c7f59e3c62ee2b0e8be0d3827c0b7387ad6",
+        "5046e6aae575cea2132268847a178e6cd14006f296d9c8a8a326a2fd9f697741"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_clamp_-0.005_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "1d561a2c278cb1a6f32734bac172a61694bc54fb4974c4121305f6b463d595cc",
+        "174c066c580428e67ccb22a44effe1a57010281580391c9b941096ce17af6211"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_wrap_-0.005_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "1966355047596a92c9c7ec72d7c380af3e5ae0b3cbf46b6a1c352bc43fd2984d",
+        "1e830f19f825d09908f904d2a79a0267a35ae2d80a1a91d47fea29646479460d"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_fold_-0.005_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "7209824fc560943d8029a66c67b6a45bb60b11b58b86aefb53ac96ed27c3dbd0",
+        "33cb5a7a12a2853d319cba500234be8b1247ae28f0de843423b250cccf10705a"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_scale_-0.01_0.01_-1_1",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "0a78eb03a7f7bbfba64cc6519230ec2a9d31df2386ac867d2bfb68e305ad0ccd",
+        "c8fc67e27f314c66aef494adef1db3f6ab7044385886833901eba7f0f9916467"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_mstosamps",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 184967,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "a0cf6ba83a45a513f8e9c6bf2156d776f429af349b9e3a98c89b3a529f22ab65",
+        "e28a37194c38370b1d45f854a8b1c27bfcfecd52f3a3d49b667e663a8295f3ec"
+      ],
+      "report": "build/gen-expansion/math-fixed/report.json"
+    },
+    {
+      "case": "math_sampstoms",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 95,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "e56b65b334dd20a4e564739a98b978a4b338985a3f6ec1ed88dc04df577cbfa7",
+        "0d4234d275666775ff2ee85384eeaa00d750300be329aa0c569592899be8e0ad"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_mtof",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 3431134,
+      "pool_bytes": [
+        65744,
+        65744
+      ],
+      "artifact_sha256": [
+        "e7add98600ff835f563c3d41480f5b9cb5fb1eeabf353f821ae50a2a4d89ce3c",
+        "08f087da5a5f358e242d54f0bc337edf1ac139206caa8aa31beacd7350c2bde9"
+      ],
+      "report": "build/gen-expansion/math-fixed/report.json"
+    },
+    {
+      "case": "math_ftom",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 8388545,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "773db8d586e48cc466e41fab215e52e745e40d665c5360c13b3ef75469e69e49",
+        "20a5a7c77850515df50a90d1cfdde9d01092e933ef1c2d930f7815ea8dfe6ec3"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_dbtoa",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419910,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "42239cdc54c03a9d8b0635608eed9c984f41f3149045fdb7b8041a663b2fd6b3",
+        "ef7ababdc4f11584d9b32aac2cb5715098cb7ebe3c6aa6cb177f77aaf175101e"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_atodb",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2525203,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "ef647821b48de2ca923be69793cdb400479c5ce8c6b4b8839cedfa02f3e03b8a",
+        "7ea072a65e0e659ebf31ea0f354208b30a440e16a807da51b5649cce59b0cbc4"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_t60",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 210356,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "05bc63724a95c3f7c41d5e25eb327495c4274b5f41bbb50a01184a7b564cd81b",
+        "892d046bb96e7d44bd7eaa8ad6a3a34251a84d1a97585ff7b8ba6417cd308c55"
+      ],
+      "report": "build/gen-expansion/math-t60-active/report.json"
+    },
+    {
+      "case": "math_t60time",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4302850,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "f34ccc8ffa2a8b9d46e7db46e2651ba07ea1a91c7149e3f4faab727de287acdc",
+        "de402a847c181e08fd71618b78d731bb2039f4a48b879a4b9bd939b24f3e9f42"
+      ],
+      "report": "build/gen-expansion/math-t60-active/report.json"
+    },
+    {
+      "case": "math_round_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "37dbbd2be516c474238bc8174c6de6de266d274da8d9de6d8e090f5c025df520",
+        "34d012e3b7fc6273108907d73f43c85391be8a67d100bec282510453020299c3"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "math_phasewrap",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "f404ad970eb9588f6cbe3feb42b2eb09fb56163d1f73d7a1fbf1901606eab3b2",
+        "325740c5710e1ad23db68eb936db08be3f4aa8c68bbd9fdf81f5f3a49c524503"
+      ],
+      "report": "build/gen-expansion/math/report.json"
+    },
+    {
+      "case": "routing_selector",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 104856,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "837045f33f9241627f6b87f7fe4c8aa6c4ce814afbf0e92f045985de1a27f930",
+        "cf855f1e5e4a665520570b1d61c7c23f91b053b1daaf1a4c7f6d7032dc2039fc"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "routing_gate",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "5cefeb94bd58bc40d676c8569aebd914060f0696b412b002d26a631466d1e3a4",
+        "06939c9515077fb6e42c63a805c061f3bfd6100e5e87150557410cbd673f316e"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "routing_send_receive",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "d85473cc65214ece7e1353a9898e7ddf02bdf409fa5f0ac96ee877e7166b941f",
+        "c3adbbabe1ff2fdf5912112abcc794d6dc8b6e0d079c397b1231fe991ffcc123"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "state_sah_0",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 81,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "815e147242f593a31392e31f554be15f878dae7a7bd3eeebd47f36b5cea755e0",
+        "c7aba32b8555e97fc0cdbcd7b09ffd32226e098b188f280c231b72e52d2e750d"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "state_latch",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "bb1467dec90ab27065a69a7481895346f461353d8053a3b0196af7d1fc238e03",
+        "1938ece438551e7c33ad785cc3a1f7efb13a0176ca3fa019a28c94852f448d80"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "state_counter_1_17",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 6710836,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "d18e0d338f404cfc76a10ee1c842836eb834b697ad3df017229a4ab1100a543d",
+        "8920ffdfb88f660750fe0f94c9c72b32ea6a34a988a0b53d246c520cfc2acfce"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "state_mulequals_0.99_@init_1",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 3933,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "0a70f93acdd053b3367fe372dce3256d0500cacd62c8292d8ecf64cc0fde488d",
+        "318d61aee84f6f353b739f94cbf8ace8677eff25ad60675289173ada5ab41254"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "state_cycle_@index_phase",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65712,
+        65712
+      ],
+      "artifact_sha256": [
+        "efa5823c947f69f1f2f8396618505266b44b75d0e871a1c4c04a7b19aecd7339",
+        "150ed1bfd198c34f1bcd680b71b3afce510186803e9039c6b84f49f8099622c9"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "delay_none",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "a217158ed6c09492df6cbb0c9cc9db737ec7dd0900687a0a0621849d04532037",
+        "29c0d1d6479e32456841d0703cdfed09330062d4c7970ae63920156f49375165"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "delay_linear",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "749ed58236ba85b22b9fb22c28f8f8629e690668362ee59c66b9f6e17c88cdda",
+        "e4fffc7b246b812eac0f6474362686aafd065c9906b7b44c308681dbdb7b3b13"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "delay_cosine",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "f4270767d29b633a7bc1bd18bc461c80b0ae5ffaaad605f025458574f5184670",
+        "734a72466d7822c180e4d976f81c3a6d8642784b0430b3eabe8899c8728d7216"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "delay_cubic",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "60a62767fbf6081a5c8eb70acea7d4dd8240181efc5e1105556d6525e5e564c9",
+        "4059cf69095f006712ab2276a1c65a629ea84b8db733619a17e11988aef6632a"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "delay_spline",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "89907d3c6f15d4f962f92247b5375eab18e5e6aa836378cc4b81c1e7ab311412",
+        "d70ffc27ee74d410237359515ec77d8ccff30492af7d577fd4355e9c270e9187"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "nested_history_feedback",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 147805,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "f312a9287e75d0b98ddde777dd92f80bf4e2b22464cec0c0766fd6163625abad",
+        "9d6dc58b8072044c0081210470aea9d2f717fb5f21658d1caa75f8744e6e165a"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "codebox_history",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 150821,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "c8e7a9f889f1cc5dcf9d6624875636f93482e76015009ff8fa24ac550473ea18",
+        "909a93ec265ea941e7115dc8d43b5b851df6de4a2b0323e285a979270bde488d"
+      ],
+      "report": "build/gen-expansion/structures/report.json"
+    },
+    {
+      "case": "buffer_peek",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "00fecc69ec43920d94b013f2c4564a7cd815160e384a8f5fe0f17f9044e11a18",
+        "5f5d9a3d92b835a4a8b1eecd2d73a1a09eb97d66fdbdda4b4f43c793f31eea08"
+      ],
+      "report": "build/gen-expansion/buffers/report.json"
+    },
+    {
+      "case": "buffer_sample",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "af69a4610f3630a85e18642633d3478b2656bf6f05797d8b6618ce588fcabcf4",
+        "05a5e8be5d26d51d72681230a586affd9e5eccf96a6e2e27dc29df23bbe6274b"
+      ],
+      "report": "build/gen-expansion/buffers/report.json"
+    },
+    {
+      "case": "buffer_nearest",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "29e4afb4f8fdc8474942e075075679e088ec47d82853708b97e04346a0fcdb5e",
+        "8565ef272517f3686307f5b820c90cfd84b46f017ea13e5369bbd448c2f032bd"
+      ],
+      "report": "build/gen-expansion/buffers/report.json"
+    },
+    {
+      "case": "buffer_lookup",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "200521a4ca7484a3d8393f98accb763d54b29bd5c69d1379c532d508c03232f6",
+        "f01eef5ec75b59fc2f1eeef5b1ac43ad077d979549395fc7310457a4eeb4402b"
+      ],
+      "report": "build/gen-expansion/buffers/report.json"
+    },
+    {
+      "case": "buffer_wave",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        66240,
+        66240
+      ],
+      "artifact_sha256": [
+        "a52549bb66d3973f8ea38922ce0a97798352389789cc52926807fe809812bf5b",
+        "41e2ce41056d68280f063821d45225963cedba4a083ef515c954267a07898019"
+      ],
+      "report": "build/gen-expansion/buffers/report.json"
+    },
+    {
+      "case": "buffer_dimensions",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 838854,
+      "pool_bytes": [
+        608,
+        608
+      ],
+      "artifact_sha256": [
+        "6106223fc294ec89b0f9a78c69c9b026e596445db2f51ba080aa8ace6b8a3d36",
+        "435f4f29ebe1e517962404d480da05a31595e2625a1984a3ad9797ad6b419a5f"
+      ],
+      "report": "build/gen-expansion/buffers/report.json"
+    },
+    {
+      "case": "extra_int",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097136,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "fc95b746400a845010bbcd0f43b5d5de7f64f400d55429fd6d7d904f3faf4f11",
+        "23f51a06af16fd1168329a9bf91cf4738fc5c07fc5edb2abd2a857ddaf0a1871"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "extra_trunc",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097136,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "b60f13f66426ef2d4e353c8fd9290f19f5321adf4a7cfdfec8ad1ecd4268b72e",
+        "253059af0eb152656bd29d86fa48980f14f293a9ccdb33b44ea33b72e92254af"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "extra_noise",
+      "fast_phase": true,
+      "hardware_test": false,
+      "comparison": "noise range, variation and mean; independent random seeds",
+      "status": "pass",
+      "audio_words": null,
+      "peak": 419407,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "773e25cfe80706fe6c1b8ac42d7c54d4d0372908f10e437be90947a380deb8b7",
+        "b1b6cc17289dd3a211e09612598db8af4f2e7a68573e0ff702e40c1641a1d892"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "extra_elapsed",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 8388545,
+      "pool_bytes": [
+        0,
+        0
+      ],
+      "artifact_sha256": [
+        "634feaaff3e69eb893c4d2954ef820864a1ab0b9da854afcf72da916972901ca",
+        "0a07751560416666a1c5a9d0d7d481d2bfe6e52e1da7d37bae9036968622a3b8"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "table_dynamic_none",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65984,
+        65984
+      ],
+      "artifact_sha256": [
+        "d284d066a007e7b32cfc7c919fd003afe1e1e2e7b8f03135fbdcd0877b951f74",
+        "72a989019e65746a491dc09ac3955fc5380889c6329ac69f3725e52bfb2a3070"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "table_dynamic_linear",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65984,
+        65984
+      ],
+      "artifact_sha256": [
+        "e1dca365be37d43b3d1be5eb8acf64545065c31e66bdde85d7c1ee775d68fe09",
+        "a462241e20b7c1866820b338fb947dec8275253fc7f7946c8ec4e67d44981b64"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "table_dynamic_cosine",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65984,
+        65984
+      ],
+      "artifact_sha256": [
+        "56e113365e5db5ddefbf183d9516810e651cb92e7b17063d2311c43dfc2f5c9e",
+        "dd2d00a9a5f591355e7c85a8071e7f1d832d15ac3f377608e387d37086a4d0d1"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "table_dynamic_cubic",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65984,
+        65984
+      ],
+      "artifact_sha256": [
+        "f3cebed33aa73f05c8517e1e46df3900e23ad04e4ae6338eeae665b6a4c51898",
+        "988fdcf1b01d3b05af1575ac986e160b14f79aeb940961b901956c82775c0875"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "table_dynamic_spline",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65984,
+        65984
+      ],
+      "artifact_sha256": [
+        "8eb5da1d7a09ed3fe715817e34424a340f753a2f05110a05077d3a83d324f752",
+        "c08bd1682a9b11a77661e3717371c4f458ef2eca1d2c4bbe4e37add55e36211f"
+      ],
+      "report": "build/gen-expansion/extra-fixed/report.json"
+    },
+    {
+      "case": "remaining_!-_0.25",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 109051,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "3f79a9a15a2d8f1f984eb2cf82bc5a96a635db93c1e54e60eecf2d66b53f5be8",
+        "b63a6840df962cdb56de3a57efc4a1051c6b92c49dcef9c802517bec3777b91a"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_!/_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 8388545,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "bf3ad48427b1430a455d8afe1189f2f2542ab32f3f991023d83f9ae4deeebbf1",
+        "c2f1cee9422d97f8fd7cb0160a9044e2a0fefa1bd1aaa27e7fda10055a82f228"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_!%_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 2097,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "82a9bd52695ef17f39258977e03223d6b5e34b2f041adacddce73fc652010c91",
+        "b496107be3865d2900f500f2f9771a22b6c97b24c1cd13709690933535a30fed"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_mix_-0.5_0.5",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 213907,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "7eeeb570b76415738ec6d4e31218415c5313e3221bb9c1cf07acc2923bdbc9b0",
+        "8a4d6ca4c2dd72b284d267cbae08ea358a32c3d3a406d759af28b856df80d75a"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_smoothstep_-0.005_0.005",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 419427,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "68ff99405e864c568949eea9cf0230b96d8ff1bcd22bde7a158df26de76ca050",
+        "5dea4b5f3b4e46adf4d3494d55888312c8d32ba4f0896ef34293d4bdba993930"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_switch_0.5_-0.5",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 209713,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "65099d0bb06c9e49ad50bfd229942e7cd9d285334f4478baf01fada162456d2a",
+        "9a40aeed7367dbc0a4fc358bfc0b3c674b05f993f47c9993f959741dc297d47a"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_acosh",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 554781,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "15102fe3368a868b51ef40cdb598479560e2f247f0982b5f156172ffd096ff2f",
+        "f5074e37f0b0367f37a88bc3e15d43a5a7c710c908852bc68af8e1a49ae71a1d"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_cartopol",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 209755,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "4a9509dee3f20193c4248609275152cc1e87b97e8a07244edbaa3722e48092fb",
+        "d5a0808585bd76d2bdd0588f6f22c28558109789641409a510a5e73e2fa9b29c"
+      ],
+      "report": "build/gen-expansion/remaining-cart/report.json"
+    },
+    {
+      "case": "remaining_poltocar",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 209713,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "e7ca9b55d752163ef155609744eefa9687550282c1257fc26c5063ccacdc3dae",
+        "3023526dd5e80dcdab2ec50f6477f23518d36e75e907610cc069f45368c3c4e3"
+      ],
+      "report": "build/gen-expansion/remaining-polar/report.json"
+    },
+    {
+      "case": "remaining_interp_none",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 42362,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "f050ccfe6913154ac878dd827876f7171d681ed214f6046c2d2bc8f1eb413cc7",
+        "82c81376bb2b6a08cfb6cddf4545ae2995a3b585aad944465a135d44952d5409"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_interp_linear",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 42362,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "c71c9b5b584f74c2e271b3678dfb40b80a72d7719f36d3ea59adb883bd4df01e",
+        "13095338c2d8b4eaecf9953f739d5c190531d8565ef8039af9b63792216939ac"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_interp_cosine",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 41953,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "c6f7040b59877f9907e18b9aec2924c78aa51c84edb553807e27ab79900510cf",
+        "6ce59746cd70e870629100ef5f5b930256ddcf0c0d2b6aaa836e9a091bcf4cbb"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_interp_cubic",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 84304,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "a0776a9c7003a914bf401ab844b3271b6dc5aa22e83d2ffd90e7a3526a690162",
+        "96fc9b19ee80c4da1c85dbe2d0caa4fc09bb497ee6dfd040cacc1a9e74130167"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_interp_spline",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 84304,
+      "pool_bytes": [
+        65632,
+        65632
+      ],
+      "artifact_sha256": [
+        "9e065173c890af37bf64eb15a57092e9a6bf09b2d1e0a3936124f528c467632b",
+        "61f35840a04bbca647344aa039fa3f17d92959187f65e99f633830a3e7e2c199"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    },
+    {
+      "case": "remaining_splat",
+      "fast_phase": true,
+      "hardware_test": false,
+      "status": "pass",
+      "audio_words": 131072,
+      "peak": 4194,
+      "pool_bytes": [
+        65984,
+        65984
+      ],
+      "artifact_sha256": [
+        "cedd192b232cc6a66c227382cd6197748c1c50facb3aa31ecd37c31d1005258b",
+        "39e4c9ecf719b3b3f52559b608478c4e276ea6395bec0c3a75b416975b4391d2"
+      ],
+      "report": "build/gen-expansion/remaining/report.json"
+    }
+  ]
+}

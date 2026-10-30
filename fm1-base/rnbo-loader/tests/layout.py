@@ -7,7 +7,7 @@ import sys
 import tempfile
 APP=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(APP/'tools'))
-from layout import compile_layout,append_layout
+from layout import compile_layout,append_layout,NODE_GEN
 from package import create,parse,TEXT
 source=APP/'patches/saw_cutoff_delay.rnbopat'
 before=source.read_bytes()
@@ -19,6 +19,7 @@ nodes={n[8]:n for n in report['nodes']}
 assert nodes['saw~'][1]<nodes['lores~'][1]<nodes['delay~'][1]
 assert {n[4] for n in report['nodes'] if n[4]!=255}==set(range(8))
 assert 'MIDI > Hz' in nodes and 'Cutoff' in nodes and '@' not in ''.join(nodes)
+assert all(n[7]==0 for n in report['nodes'])
 assert all(0<=n[0] and n[0]+n[2]<=240 and 0<=n[1] and n[1]+n[3]<=166 for n in report['nodes'])
 for i,a in enumerate(report['nodes']):
     for b in report['nodes'][i+1:]:
@@ -37,6 +38,28 @@ with tempfile.TemporaryDirectory() as directory:
     patch={'patcher':{'boxes':[{'box':{'id':'sub','text':'p inside','patcher':json.loads(before)['patcher'],'patching_rect':[0,0,40,20]}}],'lines':[]}}
     path.write_text(json.dumps(patch));_,nested=compile_layout(path,{'parameters':[]})
     assert len(nested['nodes'])==1 and nested['nodes'][0][8]=='Subpatch'
+    assert nested['nodes'][0][7]==0
     patch['patcher']['boxes']*=97;path.write_text(json.dumps(patch))
     assert compile_layout(path,desc)[0] is None
-print('PASS original coordinates/connections, all eight bindings, compact labels, nested boxes, bounded fallback and package compatibility')
+    # Gen identity must survive serialization, including GenExpr-only boxes.
+    # RNBO codebox and RNBO subpatches stay RNBO even if they contain Gen.
+    patch={'patcher':{'classnamespace':'rnbo','boxes':[
+        {'box':{'id':'g','text':'gen~','patcher':{'classnamespace':'dsp.gen','boxes':[],'lines':[]},'patching_rect':[0,0,40,20]}},
+        {'box':{'id':'expr','rnbo_classname':'gen~','rnbo_extra_attributes':{'expr':'out1=in1;'},'patching_rect':[100,0,40,20]}},
+        {'box':{'id':'code','maxclass':'codebox~','code':'out1=in1;','patcher':None,'patching_rect':[0,100,40,20]}},
+        {'box':{'id':'p','text':'p voice','patcher':{'classnamespace':'rnbo','boxes':[],'lines':[]},'patching_rect':[100,100,40,20]}}
+    ],'lines':[]}}
+    path.write_text(json.dumps(patch));data,coloured=compile_layout(path,{'parameters':[]})
+    assert [n[7] for n in coloured['nodes']]==[NODE_GEN,NODE_GEN,0,0]
+    assert [n[8] for n in coloured['nodes']]==['gen~','gen~','codebox~','Subpatch']
+    assert [data[16+24*i+7] for i in range(4)]==[NODE_GEN,NODE_GEN,0,0]
+    assert parse(create(append_layout(bytes(image),data,TEXT+84),98304,123))['image_bytes']==1024+len(data)+16
+    patch['patcher']={'classnamespace':'dsp.gen','boxes':[
+        {'box':{'id':'history','text':'history previous 0','patching_rect':[0,0,40,20]}},
+        {'box':{'id':'code','maxclass':'codebox','code':'out1=in1;','patching_rect':[100,0,40,20]}},
+        {'box':{'id':'nested','text':'gen','patcher':{'classnamespace':'dsp.gen','boxes':[],'lines':[]},'patching_rect':[0,100,40,20]}}
+    ],'lines':[]}
+    path.write_text(json.dumps(patch));data,coloured=compile_layout(path,{'parameters':[]})
+    assert all(n[7]==NODE_GEN for n in coloured['nodes'])
+    assert [n[8] for n in coloured['nodes']]==['history','codebox','gen']
+print('PASS source fidelity, parameter bindings, Gen/RNBO classification, nested boxes, bounded fallback and package compatibility')

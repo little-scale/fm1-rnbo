@@ -1,0 +1,9 @@
+{
+  "voices": 1,
+  "fast_phase": true,
+  "float32_delays": true,
+  "pool_bytes": 98304,
+  "gen_buffer_max_bytes": 24576,
+  "gen_delay_max_samples": 2048,
+  "filter_delay_max_ms": 16
+}

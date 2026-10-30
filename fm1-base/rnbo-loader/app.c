@@ -168,8 +168,8 @@ static void input(void) {
     plat_glow(1);plat_leds(buttons|(dirty?1u<<B_SAVE:0)|(knob_bank?1u<<B_FX:0),keys);
 }
 static void number_text(uint32_t n,char *out){char b[12];uint32_t i=0;do{b[i++]=(char)('0'+n%10);n/=10;}while(n);uint32_t j=0;while(i)out[j++]=b[--i];out[j]=0;}
-/* Player palette: #404040 background, existing label grey, white values. */
-#define PLAYER_BG RGB(64,64,64)
+/* Black background and white status text; visual-ui.h colours patch objects. */
+#define PLAYER_BG C_BLACK
 #include "battery.h"
 /* Twenty segments at 3 dB intervals, -57 to 0 dBFS. No audio-rate logs. */
 static void draw_output_meter(void){
@@ -190,10 +190,10 @@ static void draw_output_meter(void){
         else meter_clip_hold[ch]=meter_clip_hold[ch]>dt?meter_clip_hold[ch]-dt:0;
         int warning=meter_clip_hold[ch]>0;
         int32_t y=18+(int32_t)ch*11;
-        cv_text(8,y-3,&FONT_T,ch?"R":"L",C_GRAY);
+        cv_text(8,y-3,&FONT_T,ch?"R":"L",C_WHITE);
         for(uint32_t seg=0;seg<20;++seg)
-            cv_rect(22+(int32_t)seg*10,y,8,5,meter_q8[ch]>seg*256u?C_WHITE:RGB(80,80,80));
-        cv_rect(225,y,5,5,warning?RGB(255,80,80):RGB(80,80,80));
+            cv_rect(22+(int32_t)seg*10,y,8,5,meter_q8[ch]>seg*256u?C_WHITE:PLAYER_BG);
+        cv_rect(225,y,5,5,warning?C_WHITE:PLAYER_BG);
     }
 }
 #include "visual-ui.h"
@@ -217,7 +217,7 @@ static void draw_list(void){
         }name[j]=0;
         // Keep long patch labels out of the value column.
         while(j && text_w(&FONT_B,name)>158)name[--j]=0;
-        cv_text(12,1,&FONT_B,name,C_GRAY);number_text((uint32_t)(param_value[i]*100+.5f),text);
+        cv_text(12,1,&FONT_B,name,C_WHITE);number_text((uint32_t)(param_value[i]*100+.5f),text);
         cv_text(206-text_w(&FONT_B,text),1,&FONT_B,text,C_WHITE);
         cv_text(213,3,&FONT_XS,"%",C_WHITE);cv_blit(0,32+18*i);
     }
@@ -230,8 +230,8 @@ static void draw(void){
     while(j<24 && source[j]){title[j]=source[j];++j;}title[j]=0;
     while(j && text_w(&FONT_XS,title)>180)title[--j]=0;
     cv_text(5,2,&FONT_XS,title,C_WHITE);battery_draw();
-    cv_text(5,17,&FONT_T,knob_bank?"Knobs 5 - 8":"Knobs 1 - 4",C_GRAY);
-    cv_text(146,17,&FONT_T,"Slot",C_GRAY);number_text(loader_slot_number(),text);cv_text(170,17,&FONT_T,text,C_WHITE);
+    cv_text(5,17,&FONT_T,knob_bank?"Knobs 5 - 8":"Knobs 1 - 4",C_WHITE);
+    cv_text(146,17,&FONT_T,"Slot",C_WHITE);number_text(loader_slot_number(),text);cv_text(170,17,&FONT_T,text,C_WHITE);
     cv_text(184,17,&FONT_T,dirty?"*":"",C_WHITE);cv_blit(0,0);
     if(loader_visual()){
         if(visual_dirty || overlay_parameter>=0){draw_visual();visual_dirty=0;}
@@ -240,8 +240,8 @@ static void draw(void){
         if(overlay_parameter>=0)draw_parameter_overlay(0);
     }
     cv_begin(240,44,PLAYER_BG);
-    cv_text(8,0,&FONT_T,"CPU",C_GRAY);number_text(plat_cpu_pct(),text);cv_text(34,0,&FONT_T,text,C_WHITE);
-    cv_text(64,0,&FONT_T,"%",C_GRAY);cv_text(100,0,&FONT_T,"Play: Panic",C_GRAY);
+    cv_text(8,0,&FONT_T,"CPU",C_WHITE);number_text(plat_cpu_pct(),text);cv_text(34,0,&FONT_T,text,C_WHITE);
+    cv_text(64,0,&FONT_T,"%",C_WHITE);cv_text(100,0,&FONT_T,"Play: Panic",C_WHITE);
     draw_output_meter();cv_blit(0,196);
 }
 void app_ui_init(void){touch_on(1);lcd_fill(0,0,240,240,PLAYER_BG);draw();}

@@ -13,6 +13,7 @@ MAGIC = 0x31564952
 FOOTER = 0x31545652
 WIDTH, HEIGHT = 240, 166
 MAX_NODES, MAX_SEGMENTS = 96, 384
+NODE_GEN = 1  # Node byte 7; zero remains the legacy RNBO/default style.
 
 
 def ascii_text(value, size):
@@ -33,10 +34,15 @@ def compile_layout(source, description):
     for b in boxes:
         text = b.get('text') or b.get('rnbo_classname') or b.get('maxclass', '?')
         words = text.split()
+        gen_context = patch.get('classnamespace') == 'dsp.gen'
+        gen_container = words[0] in ('gen', 'gen~') or (b.get('patcher') or {}).get('classnamespace') == 'dsp.gen'
+        flags = NODE_GEN if gen_context or gen_container else 0
         is_param = words[0] == 'param' and len(words) > 1
         parameter = identities.get(words[1], 255) if is_param else 255
         label = (params[parameter].get('displayName') or words[1]).title() if parameter != 255 else (words[1].title() if is_param else words[0])
-        if b.get('patcher'):
+        if gen_container:
+            label = 'gen' if gen_context else 'gen~'
+        elif b.get('patcher'):
             label = 'Subpatch'
         if words[0] == 'expr' and '440.' in text and '69.' in text:
             label = 'MIDI > Hz'
@@ -45,7 +51,7 @@ def compile_layout(source, description):
         rect = b.get('patching_rect', [0, len(entries)*35, 60, 23])
         if len(rect) != 4 or not all(isinstance(v, (int, float)) and math.isfinite(v) for v in rect):
             raise ValueError('Invalid patching_rect')
-        entries.append((b, label[:15], parameter, rect))
+        entries.append((b, label[:15], parameter, rect, flags))
     # Preserve object anchor positions, but fit compact labels instead of long
     # @attribute declarations. A minimum-size Arial face is used on the device.
     xmin = min(e[3][0] for e in entries)
@@ -55,11 +61,11 @@ def compile_layout(source, description):
     xscale = 142 / max(1, xmax-xmin)
     yscale = (HEIGHT-14) / max(1, ymax-ymin)
     nodes, lookup = [], {}
-    for b, label, parameter, rect in entries:
+    for b, label, parameter, rect, flags in entries:
         x = round(4+(rect[0]-xmin)*xscale)
         y = round(2+(rect[1]-ymin)*yscale)
         w = max(16, min(88, 6+len(label)*4))
-        node = [x, y, w, 12, parameter, min(32, int(b.get('numinlets', 1))), min(32, int(b.get('numoutlets', 1))), 0, label]
+        node = [x, y, w, 12, parameter, min(32, int(b.get('numinlets', 1))), min(32, int(b.get('numoutlets', 1))), flags, label]
         lookup[b['id']] = node
         nodes.append(node)
     # Compression can make neighbouring labels collide. Move a compact box

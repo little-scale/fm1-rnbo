@@ -1,0 +1,2481 @@
+{
+  "host_builds": "15/15 pass",
+  "auditions": "15/15 pass",
+  "slot_groups": "5/5 simulator pass",
+  "history_ab": {
+    "result": "pass",
+    "patches": [
+      "t05_history",
+      "t06_nested"
+    ],
+    "identical_audio_words": 327680,
+    "peak": 675648,
+    "hardware_test": false
+  },
+  "hardware_test": false,
+  "native_build": false,
+  "patches": [
+    {
+      "id": "t01_keys",
+      "title": "Keys And Eight Knobs",
+      "bank": 1,
+      "slot": 1,
+      "build": "pass",
+      "seconds": 3.94,
+      "source_sha256": "15d095ca42311b9e4c7f2a5446c45c6d1b6d97f5dbd2ac4d35ceb68e7173052f",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Shape",
+          "Detune",
+          "Cutoff",
+          "Resonance",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 65632,
+        "pool_capacity": 98304,
+        "peak": 2612571,
+        "peak_dbfs": -10.13,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.079627,
+                "peak": 1391936
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Shape",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047473,
+                "peak": 708687
+              },
+              {
+                "normalized": 1,
+                "rms": 0.020236,
+                "peak": 598940
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Detune",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.038172,
+                "peak": 633179
+              },
+              {
+                "normalized": 1,
+                "rms": 0.038212,
+                "peak": 569321
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Cutoff",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.03387,
+                "peak": 521229
+              },
+              {
+                "normalized": 1,
+                "rms": 0.037945,
+                "peak": 740581
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Resonance",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.038184,
+                "peak": 660696
+              },
+              {
+                "normalized": 1,
+                "rms": 0.03842,
+                "peak": 717313
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.027026,
+                "peak": 668129
+              },
+              {
+                "normalized": 1,
+                "rms": 0.027026,
+                "peak": 668129
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.038104,
+                "peak": 630394
+              },
+              {
+                "normalized": 1,
+                "rms": 0.036308,
+                "peak": 751000
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.038221,
+                "peak": 668129
+              },
+              {
+                "normalized": 1,
+                "rms": 0.038221,
+                "peak": 668129
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t02_clock",
+      "title": "Clock Steps And Glide",
+      "bank": 1,
+      "slot": 2,
+      "build": "pass",
+      "seconds": 4.59,
+      "source_sha256": "d09a8d23ed5ce77ead6516ef82443aefa6867e6ed1cd6df4e96740dce59b167d",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Period",
+          "Interval",
+          "Glide",
+          "Rotate",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 65632,
+        "pool_capacity": 98304,
+        "peak": 1812626,
+        "peak_dbfs": -13.31,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.098024,
+                "peak": 1463089
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Period",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047065,
+                "peak": 702282
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047065,
+                "peak": 702282
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Interval",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047061,
+                "peak": 702282
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047058,
+                "peak": 702282
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Glide",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.04707,
+                "peak": 702579
+              },
+              {
+                "normalized": 1,
+                "rms": 0.046979,
+                "peak": 699067
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Rotate",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047051,
+                "peak": 702282
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047074,
+                "peak": 702610
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.03327,
+                "peak": 702282
+              },
+              {
+                "normalized": 1,
+                "rms": 0.03327,
+                "peak": 702282
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.046906,
+                "peak": 662799
+              },
+              {
+                "normalized": 1,
+                "rms": 0.044707,
+                "peak": 790433
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047051,
+                "peak": 702282
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047051,
+                "peak": 702282
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t03_lists",
+      "title": "Sixty Four Step List",
+      "bank": 1,
+      "slot": 3,
+      "build": "pass",
+      "seconds": 3.66,
+      "source_sha256": "132e46e6bc856cbcf8bafcfed47c939d989b941e39c45c1da38614fe14215e8b",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Step",
+          "First",
+          "Transpose",
+          "Brightness",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 1200,
+        "pool_capacity": 98304,
+        "peak": 2131364,
+        "peak_dbfs": -11.9,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0,
+                "positive_zero_crossings": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.041469,
+                "peak": 1078864,
+                "positive_zero_crossings": 207
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Step",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019905,
+                "peak": 517855,
+                "positive_zero_crossings": 207
+              },
+              {
+                "normalized": 1,
+                "rms": 0.019853,
+                "peak": 522288,
+                "positive_zero_crossings": 184
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "First",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019905,
+                "peak": 517855,
+                "positive_zero_crossings": 207
+              },
+              {
+                "normalized": 1,
+                "rms": 0.019905,
+                "peak": 517855,
+                "positive_zero_crossings": 207
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Transpose",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019573,
+                "peak": 541623,
+                "positive_zero_crossings": 104
+              },
+              {
+                "normalized": 1,
+                "rms": 0.020433,
+                "peak": 478507,
+                "positive_zero_crossings": 413
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Brightness",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.01436,
+                "peak": 266427,
+                "positive_zero_crossings": 207
+              },
+              {
+                "normalized": 1,
+                "rms": 0.020804,
+                "peak": 848180,
+                "positive_zero_crossings": 394
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014075,
+                "peak": 517855,
+                "positive_zero_crossings": 207
+              },
+              {
+                "normalized": 1,
+                "rms": 0.014075,
+                "peak": 517855,
+                "positive_zero_crossings": 0
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019843,
+                "peak": 488271,
+                "positive_zero_crossings": 206
+              },
+              {
+                "normalized": 1,
+                "rms": 0.018907,
+                "peak": 580125,
+                "positive_zero_crossings": 207
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019905,
+                "peak": 517855,
+                "positive_zero_crossings": 207
+              },
+              {
+                "normalized": 1,
+                "rms": 0.019905,
+                "peak": 517855,
+                "positive_zero_crossings": 207
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t04_constants",
+      "title": "Gen Constants Oscillator",
+      "bank": 2,
+      "slot": 1,
+      "build": "pass",
+      "seconds": 2.75,
+      "source_sha256": "b6d21683b60f617df16eb8155d5fa7b33e18c92d9b8311a0c9618acc1b205102",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Ratio",
+          "Phase",
+          "Harmonic",
+          "Blend",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 0,
+        "pool_capacity": 98304,
+        "peak": 1815469,
+        "peak_dbfs": -13.29,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0,
+                "positive_zero_crossings": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.098065,
+                "peak": 1463760,
+                "positive_zero_crossings": 184
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Ratio",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047082,
+                "peak": 701758,
+                "positive_zero_crossings": 46
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047068,
+                "peak": 702721,
+                "positive_zero_crossings": 736
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Phase",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Harmonic",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Blend",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.033284,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              },
+              {
+                "normalized": 1,
+                "rms": 0.033284,
+                "peak": 702605,
+                "positive_zero_crossings": 0
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.046927,
+                "peak": 662667,
+                "positive_zero_crossings": 184
+              },
+              {
+                "normalized": 1,
+                "rms": 0.044716,
+                "peak": 790710,
+                "positive_zero_crossings": 184
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047071,
+                "peak": 702605,
+                "positive_zero_crossings": 184
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t05_history",
+      "title": "Gen History Lowpass",
+      "bank": 2,
+      "slot": 2,
+      "build": "pass",
+      "seconds": 3.9,
+      "source_sha256": "dedfa16e2d9e3b033ee117059785c170b85a2350ed3fbf0378e47152cb36d0d1",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Feedback",
+          "Drive",
+          "Mix",
+          "Cutoff",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 0,
+        "pool_capacity": 98304,
+        "peak": 1991256,
+        "peak_dbfs": -12.49,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.036936,
+                "peak": 653430
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Feedback",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019958,
+                "peak": 670083
+              },
+              {
+                "normalized": 1,
+                "rms": 0.007492,
+                "peak": 167210
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Drive",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.017729,
+                "peak": 313646
+              },
+              {
+                "normalized": 1,
+                "rms": 0.08784,
+                "peak": 989292
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.020611,
+                "peak": 823835
+              },
+              {
+                "normalized": 1,
+                "rms": 0.017729,
+                "peak": 313646
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Cutoff",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014967,
+                "peak": 263998
+              },
+              {
+                "normalized": 1,
+                "rms": 0.017632,
+                "peak": 314071
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.012537,
+                "peak": 313646
+              },
+              {
+                "normalized": 1,
+                "rms": 0.012537,
+                "peak": 313646
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.01768,
+                "peak": 296766
+              },
+              {
+                "normalized": 1,
+                "rms": 0.016829,
+                "peak": 352089
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.017729,
+                "peak": 313646
+              },
+              {
+                "normalized": 1,
+                "rms": 0.017729,
+                "peak": 313646
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t06_nested",
+      "title": "Nested Gen And Codebox",
+      "bank": 2,
+      "slot": 3,
+      "build": "pass",
+      "seconds": 3.62,
+      "source_sha256": "1d6006c20776c211b713423aca79c3e35fd962c5335272f26b2ca72d23f40d95",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Feedback",
+          "Drive",
+          "Mix",
+          "Cutoff",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 0,
+        "pool_capacity": 98304,
+        "peak": 1991256,
+        "peak_dbfs": -12.49,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.038375,
+                "peak": 777399
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Feedback",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019958,
+                "peak": 670083
+              },
+              {
+                "normalized": 1,
+                "rms": 0.007492,
+                "peak": 167210
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Drive",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.01842,
+                "peak": 373151
+              },
+              {
+                "normalized": 1,
+                "rms": 0.088553,
+                "peak": 1006271
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.020611,
+                "peak": 823835
+              },
+              {
+                "normalized": 1,
+                "rms": 0.01842,
+                "peak": 373151
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Cutoff",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.015182,
+                "peak": 269171
+              },
+              {
+                "normalized": 1,
+                "rms": 0.018277,
+                "peak": 360025
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.013025,
+                "peak": 373151
+              },
+              {
+                "normalized": 1,
+                "rms": 0.013025,
+                "peak": 373151
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.018369,
+                "peak": 354899
+              },
+              {
+                "normalized": 1,
+                "rms": 0.017484,
+                "peak": 410949
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.01842,
+                "peak": 373151
+              },
+              {
+                "normalized": 1,
+                "rms": 0.01842,
+                "peak": 373151
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t07_hold",
+      "title": "Gen Sample And Hold",
+      "bank": 3,
+      "slot": 1,
+      "build": "pass",
+      "seconds": 3.73,
+      "source_sha256": "3c4dfbbe6fabeb094a75ba14c9e4c21bad1365784104be21e996e4f941e7276c",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Rate",
+          "Depth",
+          "Steps",
+          "Smooth",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 65632,
+        "pool_capacity": 98304,
+        "peak": 1805867,
+        "peak_dbfs": -13.34,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.09808,
+                "peak": 1461954
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Rate",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047082,
+                "peak": 702724
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047057,
+                "peak": 702782
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Depth",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047068,
+                "peak": 702550
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047096,
+                "peak": 702550
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Steps",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047068,
+                "peak": 702550
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047076,
+                "peak": 702550
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Smooth",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047082,
+                "peak": 701738
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047081,
+                "peak": 701738
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.033282,
+                "peak": 702472
+              },
+              {
+                "normalized": 1,
+                "rms": 0.033279,
+                "peak": 702782
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.046926,
+                "peak": 662922
+              },
+              {
+                "normalized": 1,
+                "rms": 0.044704,
+                "peak": 792370
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047069,
+                "peak": 702472
+              },
+              {
+                "normalized": 1,
+                "rms": 0.047077,
+                "peak": 702550
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t08_table",
+      "title": "Gen Local Stereo Table",
+      "bank": 3,
+      "slot": 2,
+      "build": "pass",
+      "seconds": 3.7,
+      "source_sha256": "66d7f7e536c3dbc6c65ac68ea228e937f4156e62b189d65f2cb50b55851320ca",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Ratio",
+          "Shape",
+          "Offset",
+          "Mix",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 2144,
+        "pool_capacity": 98304,
+        "peak": 1780779,
+        "peak_dbfs": -13.46,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.030516,
+                "peak": 724071
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Ratio",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014642,
+                "peak": 346362
+              },
+              {
+                "normalized": 1,
+                "rms": 0.014648,
+                "peak": 350663
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Shape",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.047158,
+                "peak": 702652
+              },
+              {
+                "normalized": 1,
+                "rms": 0.038272,
+                "peak": 700144
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Offset",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014647,
+                "peak": 347554
+              },
+              {
+                "normalized": 1,
+                "rms": 0.014647,
+                "peak": 347554
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014651,
+                "peak": 350873
+              },
+              {
+                "normalized": 1,
+                "rms": 0.014648,
+                "peak": 347554
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.010357,
+                "peak": 347554
+              },
+              {
+                "normalized": 1,
+                "rms": 0.010358,
+                "peak": 345594
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014603,
+                "peak": 327644
+              },
+              {
+                "normalized": 1,
+                "rms": 0.013915,
+                "peak": 390614
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014648,
+                "peak": 347554
+              },
+              {
+                "normalized": 1,
+                "rms": 0.014648,
+                "peak": 347554
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t09_gendelay",
+      "title": "Gen Dual Tap Delay",
+      "bank": 3,
+      "slot": 3,
+      "build": "pass",
+      "seconds": 3.69,
+      "source_sha256": "7609b300c4fb05b225232e15bc086e73a575409be18590ca093b1e664ed11544",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Time",
+          "Feedback",
+          "Mix",
+          "Spread",
+          "Brightness",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 16480,
+        "pool_capacity": 98304,
+        "peak": 799138,
+        "peak_dbfs": -20.42,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.021148,
+                "peak": 799138
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Time",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.009643,
+                "peak": 359460
+              },
+              {
+                "normalized": 1,
+                "rms": 0.011254,
+                "peak": 383586
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Feedback",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.013123,
+                "peak": 490744
+              },
+              {
+                "normalized": 1,
+                "rms": 0.010213,
+                "peak": 383586
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.020543,
+                "peak": 767173
+              },
+              {
+                "normalized": 1,
+                "rms": 0.011552,
+                "peak": 453640
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Spread",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.012049,
+                "peak": 372167
+              },
+              {
+                "normalized": 1,
+                "rms": 0.010372,
+                "peak": 383586
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Brightness",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.006983,
+                "peak": 186665
+              },
+              {
+                "normalized": 1,
+                "rms": 0.010191,
+                "peak": 445901
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.010123,
+                "peak": 361945
+              },
+              {
+                "normalized": 1,
+                "rms": 0.009594,
+                "peak": 441854
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.010151,
+                "peak": 383586
+              },
+              {
+                "normalized": 1,
+                "rms": 0.010151,
+                "peak": 383586
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t10_comb",
+      "title": "RNBO Comb And Allpass",
+      "bank": 4,
+      "slot": 1,
+      "build": "pass",
+      "seconds": 5.12,
+      "source_sha256": "ae25c2c5792dee32550db50fbdb61b100c868f54b7ec80772c0c3051b7222571",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Time",
+          "Feedback",
+          "Mix",
+          "Diffuse",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 16768,
+        "pool_capacity": 98304,
+        "peak": 509281,
+        "peak_dbfs": -24.33,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.023491,
+                "peak": 509281
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Time",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.009425,
+                "peak": 199793
+              },
+              {
+                "normalized": 1,
+                "rms": 0.009234,
+                "peak": 204106
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Feedback",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.015595,
+                "peak": 308563
+              },
+              {
+                "normalized": 1,
+                "rms": 0.009366,
+                "peak": 173386
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019067,
+                "peak": 349229
+              },
+              {
+                "normalized": 1,
+                "rms": 0.009612,
+                "peak": 195086
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Diffuse",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014584,
+                "peak": 290538
+              },
+              {
+                "normalized": 1,
+                "rms": 0.008681,
+                "peak": 204579
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.007973,
+                "peak": 244455
+              },
+              {
+                "normalized": 1,
+                "rms": 0.007973,
+                "peak": 244455
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.011244,
+                "peak": 238884
+              },
+              {
+                "normalized": 1,
+                "rms": 0.010681,
+                "peak": 285279
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.011276,
+                "peak": 244455
+              },
+              {
+                "normalized": 1,
+                "rms": 0.011276,
+                "peak": 244455
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t11_lofi",
+      "title": "RNBO LoFi And Averages",
+      "bank": 4,
+      "slot": 2,
+      "build": "pass",
+      "seconds": 5.06,
+      "source_sha256": "1a403db6191f10f5c3a16d0aefbb613a3bb9589c680ecec5da2799b4ff59383f",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Crush",
+          "Smooth",
+          "Drive",
+          "Cutoff",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 480,
+        "pool_capacity": 98304,
+        "peak": 1875995,
+        "peak_dbfs": -13.01,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.027741,
+                "peak": 530630
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Crush",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.013473,
+                "peak": 257528
+              },
+              {
+                "normalized": 1,
+                "rms": 0.013461,
+                "peak": 253683
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Smooth",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.01644,
+                "peak": 545131
+              },
+              {
+                "normalized": 1,
+                "rms": 0.012971,
+                "peak": 246186
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Drive",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.013316,
+                "peak": 254702
+              },
+              {
+                "normalized": 1,
+                "rms": 0.060718,
+                "peak": 806731
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Cutoff",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.010944,
+                "peak": 202217
+              },
+              {
+                "normalized": 1,
+                "rms": 0.013227,
+                "peak": 256042
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.009416,
+                "peak": 254702
+              },
+              {
+                "normalized": 1,
+                "rms": 0.009416,
+                "peak": 254702
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.013276,
+                "peak": 239736
+              },
+              {
+                "normalized": 1,
+                "rms": 0.012655,
+                "peak": 289855
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.013316,
+                "peak": 254702
+              },
+              {
+                "normalized": 1,
+                "rms": 0.013316,
+                "peak": 254702
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t12_genmath",
+      "title": "Gen Maths And Routing",
+      "bank": 4,
+      "slot": 3,
+      "build": "pass",
+      "seconds": 5.1,
+      "source_sha256": "5a6eb51117000bf4327c8c8ed688986c1923b7099cf5b4aca5818e4c7eeeda19",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Drive",
+          "Mode",
+          "Symmetry",
+          "Mix",
+          "Pan",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 0,
+        "pool_capacity": 98304,
+        "peak": 2574749,
+        "peak_dbfs": -10.26,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.059589,
+                "peak": 1096979
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Drive",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019068,
+                "peak": 350582
+              },
+              {
+                "normalized": 1,
+                "rms": 0.039455,
+                "peak": 569371
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Mode",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.028603,
+                "peak": 526550
+              },
+              {
+                "normalized": 1,
+                "rms": 0.02752,
+                "peak": 475361
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Symmetry",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.028935,
+                "peak": 558047
+              },
+              {
+                "normalized": 1,
+                "rms": 0.029002,
+                "peak": 554938
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.019067,
+                "peak": 349229
+              },
+              {
+                "normalized": 1,
+                "rms": 0.038139,
+                "peak": 703870
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.020225,
+                "peak": 526550
+              },
+              {
+                "normalized": 1,
+                "rms": 0.020225,
+                "peak": 526550
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.028518,
+                "peak": 497664
+              },
+              {
+                "normalized": 1,
+                "rms": 0.027175,
+                "peak": 592141
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.028603,
+                "peak": 526550
+              },
+              {
+                "normalized": 1,
+                "rms": 0.028603,
+                "peak": 526550
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 5.625034013605442,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t13_fm2",
+      "title": "Two Voice FM Reference",
+      "bank": 5,
+      "slot": 1,
+      "build": "pass",
+      "seconds": 5.13,
+      "source_sha256": "1b7d77780499c41536437dfcf7c4472288f659228b9342fa953f7468e05e4926",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Ratio",
+          "Depth",
+          "Pan",
+          "Decay",
+          "Sustain",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 65872,
+        "pool_capacity": 98304,
+        "peak": 1458778,
+        "peak_dbfs": -15.19,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.074,
+                "peak": 1458778
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Ratio",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.045387,
+                "peak": 584001
+              },
+              {
+                "normalized": 1,
+                "rms": 0.0444,
+                "peak": 583513
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Depth",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0444,
+                "peak": 583640
+              },
+              {
+                "normalized": 1,
+                "rms": 0.039168,
+                "peak": 584060
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Pan",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.02093,
+                "peak": 583511
+              },
+              {
+                "normalized": 1,
+                "rms": 0.02093,
+                "peak": 583511
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Decay",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.029505,
+                "peak": 528412
+              },
+              {
+                "normalized": 1,
+                "rms": 0.034329,
+                "peak": 655962
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Sustain",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.003795,
+                "peak": 530773
+              },
+              {
+                "normalized": 1,
+                "rms": 0.036849,
+                "peak": 660515
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.029568,
+                "peak": 528412
+              },
+              {
+                "normalized": 1,
+                "rms": 0.015053,
+                "peak": 463431
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0296,
+                "peak": 583511
+              },
+              {
+                "normalized": 1,
+                "rms": 0.0296,
+                "peak": 583511
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 6.983401360544217,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t14_fm4echo",
+      "title": "Four Voice Master Echo",
+      "bank": 5,
+      "slot": 2,
+      "build": "pass",
+      "seconds": 5.22,
+      "source_sha256": "e3357eef938f1ae7aff5354168911fa4b068f5943f9ae2908acc449d71a31db8",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Ratio",
+          "Depth",
+          "Echo Time",
+          "Echo Feedback",
+          "Echo Mix",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 100176,
+        "pool_capacity": 114688,
+        "peak": 1086379,
+        "peak_dbfs": -17.75,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.027508,
+                "peak": 525160
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Ratio",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.026793,
+                "peak": 377340
+              },
+              {
+                "normalized": 1,
+                "rms": 0.025148,
+                "peak": 361131
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Depth",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.025179,
+                "peak": 366918
+              },
+              {
+                "normalized": 1,
+                "rms": 0.022297,
+                "peak": 357911
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Echo Time",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.014375,
+                "peak": 315096
+              },
+              {
+                "normalized": 1,
+                "rms": 0.014697,
+                "peak": 315096
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Echo Feedback",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.016081,
+                "peak": 315096
+              },
+              {
+                "normalized": 1,
+                "rms": 0.016034,
+                "peak": 315096
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Echo Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0222,
+                "peak": 437633
+              },
+              {
+                "normalized": 1,
+                "rms": 0.013926,
+                "peak": 275414
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.016493,
+                "peak": 312454
+              },
+              {
+                "normalized": 1,
+                "rms": 0.008245,
+                "peak": 261630
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.016505,
+                "peak": 315096
+              },
+              {
+                "normalized": 1,
+                "rms": 0.016505,
+                "peak": 315096
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 6.983401360544217,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    },
+    {
+      "id": "t15_hybrid",
+      "title": "Four Voice Gen Hybrid",
+      "bank": 5,
+      "slot": 3,
+      "build": "pass",
+      "seconds": 4.95,
+      "source_sha256": "c161fc5464148f8e8ecb566e1ca55486ee77532ee8c33164cac0dffb2af0c1dc",
+      "native_build": false,
+      "hardware_test": false,
+      "audition": "pass",
+      "measurements": {
+        "parameters": [
+          "Level",
+          "Ratio",
+          "Depth",
+          "Echo Time",
+          "Echo Feedback",
+          "Echo Mix",
+          "Attack",
+          "Release"
+        ],
+        "pool_bytes": 99856,
+        "pool_capacity": 114688,
+        "peak": 1288393,
+        "peak_dbfs": -16.27,
+        "default_tail_rms": 0.0,
+        "knob_tests": [
+          {
+            "knob": 1,
+            "name": "Level",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.0,
+                "peak": 0
+              },
+              {
+                "normalized": 1,
+                "rms": 0.052223,
+                "peak": 654809
+              }
+            ]
+          },
+          {
+            "knob": 2,
+            "name": "Ratio",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.023578,
+                "peak": 339790
+              },
+              {
+                "normalized": 1,
+                "rms": 0.025146,
+                "peak": 361112
+              }
+            ]
+          },
+          {
+            "knob": 3,
+            "name": "Depth",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.025175,
+                "peak": 366856
+              },
+              {
+                "normalized": 1,
+                "rms": 0.027366,
+                "peak": 362129
+              }
+            ]
+          },
+          {
+            "knob": 4,
+            "name": "Echo Time",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.027867,
+                "peak": 395674
+              },
+              {
+                "normalized": 1,
+                "rms": 0.02784,
+                "peak": 389224
+              }
+            ]
+          },
+          {
+            "knob": 5,
+            "name": "Echo Feedback",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.030612,
+                "peak": 423852
+              },
+              {
+                "normalized": 1,
+                "rms": 0.030043,
+                "peak": 315459
+              }
+            ]
+          },
+          {
+            "knob": 6,
+            "name": "Echo Mix",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.041534,
+                "peak": 438137
+              },
+              {
+                "normalized": 1,
+                "rms": 0.029023,
+                "peak": 384098
+              }
+            ]
+          },
+          {
+            "knob": 7,
+            "name": "Attack",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.031318,
+                "peak": 392868
+              },
+              {
+                "normalized": 1,
+                "rms": 0.015574,
+                "peak": 316196
+              }
+            ]
+          },
+          {
+            "knob": 8,
+            "name": "Release",
+            "extrema": [
+              {
+                "normalized": 0,
+                "rms": 0.031334,
+                "peak": 392885
+              },
+              {
+                "normalized": 1,
+                "rms": 0.031334,
+                "peak": 392885
+              }
+            ]
+          }
+        ],
+        "preview_seconds": 6.983401360544217,
+        "preview": "audition.wav",
+        "hardware_test": false
+      }
+    }
+  ]
+}

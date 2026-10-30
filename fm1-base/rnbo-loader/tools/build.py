@@ -67,6 +67,15 @@ def build_module(name,host=False,source=None,module_dir=None):
     if not isinstance(pool_bytes,int) or pool_bytes<98304 or pool_bytes>131072 or pool_bytes%16:raise SystemExit('Patch arena must be 96..128 KiB and aligned to 16 bytes')
     topology_flags=['--shared-fx'] if config.get('shared_fx',False) else []
     delay_flags=['--float32-delays'] if config.get('float32_delays',False) else []
+    cap=config.get('filter_delay_max_ms')
+    if cap is not None:
+        if type(cap) not in (int,float) or not 0<cap<=1000:raise SystemExit('filter_delay_max_ms must be > 0 and <= 1000')
+        delay_flags=['--float32-delays','--filter-delay-max-ms',str(cap)]
+    for key,low,high in [('gen_buffer_max_bytes',16,131072),('gen_delay_max_samples',1,44100)]:
+        if key in config:
+            value=config[key]
+            if type(value) is not int or not low<=value<=high:raise ValueError(f'{key} must be an integer in {low}..{high}')
+            delay_flags.extend(['--'+key.replace('_','-'),str(value)])
     print('FM1_STAGE exporting',flush=True)
     subprocess.run(['node',str(BASE/'rnbo/tools/export.cjs'),str(source or APP/'patches'/(name+'.rnbopat')),'--out',str(export),'--voices',str(voices),*phase_flags,*topology_flags,*delay_flags],check=True)
     visual=write_layout(source or APP/'patches'/(name+'.rnbopat'),json.loads((export/'description.json').read_text()),export)

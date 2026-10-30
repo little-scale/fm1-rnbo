@@ -43,7 +43,10 @@ def prepare_request(body):
             if re.search(r'(?:^|\s)@(?:file|url)(?:\s|$)',text) or attrs.get('file') or attrs.get('url'):raise ValueError('External files are not supported yet. Embed subpatchers and generate buffer contents inside the patch.')
             classname=b.get('rnbo_classname') or text.split(' ',1)[0]
             if classname=='rnbo~':raise ValueError('Save from inside the RNBO editor, rather than the surrounding Max patch.')
-            if classname in ('p','gen~') and not isinstance(b.get('patcher'),dict):raise ValueError('Embed subpatchers before building; external abstractions and Gen files are not supported yet.')
+            if classname in ('p','gen~') and not isinstance(b.get('patcher'),dict):
+                attrs=b.get('rnbo_extra_attributes',{})
+                embedded_expr=classname=='gen~' and isinstance(attrs,dict) and isinstance(attrs.get('expr'),str) and attrs['expr'].strip() and all(type(attrs.get(k)) is int and low<=attrs[k]<=16 for k,low in [('geninlets',0),('genoutlets',1)])
+                if not embedded_expr:raise ValueError('Embed subpatchers or GenExpr before building; external abstractions and Gen files are not supported yet.')
             match=re.search(r'(?:^|\s)@polyphony\s+(\d+)(?=\s|$)',text)
             count=int(match[1]) if match else attrs.get('polyphony',1)
             if classname=='p' and isinstance(count,(int,float)) and count>1:

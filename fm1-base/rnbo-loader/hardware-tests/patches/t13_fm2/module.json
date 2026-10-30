@@ -1,0 +1,5 @@
+{
+  "voices": 2,
+  "fast_phase": true,
+  "float32_delays": true
+}

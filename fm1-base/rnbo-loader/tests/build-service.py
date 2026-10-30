@@ -28,6 +28,17 @@ external=json.loads(source);external['patcher']['boxes'][0]['box']['text']+=' @f
 try:prepare_request(request|{'source':json.dumps(external)});raise AssertionError('external file accepted')
 except ValueError:pass
 
+# Code-only GenExpr is self-contained; absent expressions and invalid port
+# metadata remain rejected before starting a compiler job.
+gen=json.loads((APP/'tests/compatibility/patches/gen_expr.rnbopat').read_text())
+assert prepare_request({'name':'gen.rnbopat','source':json.dumps(gen),'voices':1})[0]=='gen'
+genbox=next(v['box'] for v in gen['patcher']['boxes'] if v['box']['text']=='gen~')
+for bad in [{'expr':''},{'geninlets':True},{'genoutlets':0}]:
+    previous=dict(genbox['rnbo_extra_attributes']);genbox['rnbo_extra_attributes'].update(bad)
+    try:prepare_request({'name':'gen.rnbopat','source':json.dumps(gen),'voices':1});raise AssertionError(bad)
+    except ValueError:pass
+    genbox['rnbo_extra_attributes']=previous
+
 entered=threading.Event();release=threading.Event();fail=[False];stale=[False]
 def compiler(job):
     entered.set();release.wait(5)

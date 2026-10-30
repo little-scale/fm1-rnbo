@@ -7,6 +7,7 @@
 #endif
 #include RNBO_FM1_PATCH_CONFIG
 #include "RNBO_Common.h"
+#include "int64.h"
 #if defined(RNBO_FM1_FAST_PHASE) && RNBO_FM1_FAST_PHASE
 #include "RNBO_AudioSignal.h"
 #include "phase.h"

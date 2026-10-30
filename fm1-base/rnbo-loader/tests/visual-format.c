@@ -16,6 +16,7 @@ int main(void){
     unsigned char v[40]={0};rm_put32(v,RM_VISUAL_MAGIC);v[4]=1;v[6]=1;v[12]=240;v[14]=166;
     v[16]=4;v[17]=4;v[18]=20;v[19]=12;v[20]=255;memcpy(v+24,"saw~",5);
     assert(rm_visual_valid(v,sizeof v));
+    v[23]=RM_VISUAL_NODE_GEN;assert(rm_visual_valid(v,sizeof v));
     memcpy(image+968,v,40);rm_put32(image+1008,RM_VISUAL_FOOTER);rm_put32(image+1012,40);rm_put32(image+1016,rm_crc(v,40));rm_put32(image+1020,RM_TEXT+84);crc();
     assert(rm_image_valid(head,image));
     for(unsigned n=0;n<40;++n)assert(!rm_visual_valid(v,n));
@@ -29,5 +30,5 @@ int main(void){
         random=random*1664525u+1013904223u;unsigned at=random%40;v[at]^=(uint8_t)(random>>24);
         (void)rm_visual_valid(v,k%41);
     }
-    puts("PASS legacy module, visual CRC/pointer/size/coordinate/parameter bounds and 20000 sanitizer mutations");
+    puts("PASS legacy module, Gen node flag, visual CRC/pointer/size/coordinate/parameter bounds and 20000 sanitizer mutations");
 }

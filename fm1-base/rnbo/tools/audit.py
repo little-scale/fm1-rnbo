@@ -39,13 +39,22 @@ if fast_phase and wide_dsp_functions:violations.append({"reason":"64-bit float-t
 loops_checked = 0
 callees_checked = set()
 
+def unknown_double_call(body):
+    # Internal getters may return stored float64 data without doing arithmetic.
+    # Their bodies are audited recursively; external/indirect calls stay unsafe.
+    for line in body.splitlines():
+        if re.search(r'\bcall\s+double\b',line):
+            target=call.search(line)
+            if target is None or target[1] not in functions:return True
+    return False
+
 def visit(name, seen):
     if name in seen or name not in functions:
         return
     seen.add(name);callees_checked.add(name)
     body = functions[name]
     if double.search(body):violations.append({"function":name,"reason":"double arithmetic in a DSP-loop callee"})
-    if re.search(r'\bcall\s+double\s+@',body):violations.append({"function":name,"reason":"double-returning math call in a DSP-loop callee"})
+    if unknown_double_call(body):violations.append({"function":name,"reason":"double-returning math call in a DSP-loop callee"})
     for other in call.findall(body):visit(other,seen)
 
 for name, body in functions.items():
@@ -66,7 +75,7 @@ for name, body in functions.items():
         if not any(reaches(n,block,set()) for n in edges[block]):continue
         loops_checked+=1;text="\n".join(lines)
         if double.search(text):violations.append({"function":name,"block":block,"reason":"double arithmetic inside DSP loop"})
-        if re.search(r'\bcall\s+double\s+@',text):violations.append({"function":name,"block":block,"reason":"double-returning math call inside DSP loop"})
+        if unknown_double_call(text):violations.append({"function":name,"block":block,"reason":"double-returning math call inside DSP loop"})
         for other in call.findall(text):visit(other,set())
 
 initializers=[]

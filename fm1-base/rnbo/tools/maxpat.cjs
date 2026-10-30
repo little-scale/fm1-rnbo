@@ -14,12 +14,19 @@ function prepareMaxPatch(document, xam, version) {
         const spec = xam.parseBoxText(b.text);
         const info = b.rnboinfo;
         if (!spec || !info) throw Error(`Missing RNBO description for ${b.text}`);
+        xam.parseExtraAttributes(spec.xamclass,b.rnbo_extra_attributes,spec.attributes);
         b.rnbo_classname = info.classname;
         b.numinlets = info.inputs.length;
         b.numoutlets = info.outputs.length;
         b.outlettype = info.outputs.map(o => o.type === 'signal' ? 'signal' : '');
         const {defaultArgs, classname, objects, ...attributes} = spec.attributes;
         b.rnbo_extra_attributes = attributes;
+        // Preserve code-only Gen expressions, but let Max regenerate visual
+        // graph code after edits instead of retaining our compiler cache.
+        if(b.patcher?.classnamespace==='dsp.gen'){
+          delete b.rnbo_extra_attributes.expr;
+          delete b.rnbo_extra_attributes.gencode;
+        }
         if (info.classname === 'message') {
           // RNBO's compiler representation uses "message @text ..."; Max
           // saves the same object as a message UI box containing just the list.
@@ -27,7 +34,7 @@ function prepareMaxPatch(document, xam, version) {
           b.text = [].concat(attributes.text || []).join(' ');
           b.rnbo_extra_attributes = {text: '', storeempty: 0};
         }
-        if (b.patcher) canvas(b.patcher, true);
+        if (b.patcher && b.patcher.classnamespace!=='dsp.gen') canvas(b.patcher, true);
       } else if (b.patcher && b.text.startsWith('rnbo~')) {
         delete b.rnbo_classname;
         delete b.rnbo_serial;

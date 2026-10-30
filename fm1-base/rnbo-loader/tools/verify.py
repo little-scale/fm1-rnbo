@@ -9,7 +9,8 @@ APP=Path(__file__).resolve().parents[1];BASE=APP.parent;OUT=APP/'build';LOGS=OUT
 for d in ['panel','empty','banks','meter','poly-player','fast-player','echo-player','patch-bank','visual-panel']:(OUT/d).mkdir(exist_ok=True)
 env=dict(os.environ,PYTHON='python3',RNBO_HOST_MODULES=str(APP/'modules'),RNBO_HOST_PATCH='mono')
 cc=os.environ.get('CC','clang');cpp=os.environ.get('CXX','clang++')
-steps=[('host-and-module-build',[sys.executable,APP/'tools/build.py','--host']),
+steps=[('test-collection-sources',[sys.executable,APP/'hardware-tests/check_sources.py']),
+       ('host-and-module-build',[sys.executable,APP/'tools/build.py','--host']),
        ('visual-module-build',[sys.executable,APP/'tools/build.py','--host','--patch','saw_cutoff_delay']),
        ('visual-layout',[sys.executable,APP/'tests/layout.py']),
        ('player-install',[sys.executable,APP/'tests/install.py']),
@@ -45,6 +46,25 @@ steps=[('host-and-module-build',[sys.executable,APP/'tools/build.py','--host']),
        ('echo-player',[OUT/'host/rnbo-player_host',APP/'tests/echo-player.txt',OUT/'echo-player']),
        ('echo-four-audio',[sys.executable,APP/'tests/echo-four.py'])]
 steps.append(('patch-bank',[OUT/'host/rnbo-player_host',APP/'tests/patch-bank.txt',OUT/'patch-bank']))
+steps.extend([
+    ('compatibility-harness',[sys.executable,APP/'tests/compatibility/test_suite.py']),
+    ('compatibility-mtof-audio',[sys.executable,APP/'tests/compatibility/mtof.py']),
+    ('compatibility-mtof-table-guards',['node',APP/'tests/mtof-table.cjs',OUT/'compatibility-mtof-comparison/mtof/export/rnbo_source.h.reference']),
+    ('compatibility-mixed-math',[sys.executable,APP/'tests/compatibility/mixed_math.py','--export',OUT/'compatibility-mtof-comparison/mtof/export']),
+    ('compatibility-list-storage',[sys.executable,APP/'tests/compatibility/list_storage.py','--export',OUT/'compatibility-mtof-comparison/mtof/export']),
+    ('compatibility-bounded-filters',[sys.executable,APP/'tests/compatibility/bounded_filters.py','--quick']),
+    ('compatibility-filter-bound-guards',['node',APP/'tests/bounded-filters.cjs',OUT/'bounded-filter-comparison/allpass_sine/module/export/rnbo_source.unbounded.h']),
+    ('compatibility-bounded-averages',[sys.executable,APP/'tests/compatibility/bounded_averages.py']),
+    ('compatibility-average-bound-guards',['node',APP/'tests/bounded-averages.cjs',OUT/'bounded-average-comparison/mean/module/export/rnbo_source.unbounded-average.h',OUT/'bounded-average-comparison/rms/module/export/rnbo_source.unbounded-average.h']),
+    ('compatibility-peak-interval',[sys.executable,APP/'tests/compatibility/peak_interval.py']),
+    ('compatibility-peak-interval-guards',['node',APP/'tests/peak-interval.cjs',OUT/'peak-interval-comparison/module/export/rnbo_source.sample-interval.h']),
+    ('compatibility-gen-graph-guards',['node',APP/'tests/gen-graph.cjs']),
+    ('compatibility-gen-max-roundtrip',['node',APP/'tests/gen-roundtrip.cjs']),
+    ('portable-int64-build',[cpp,'-std=c++11','-O2','-fsanitize=undefined','-fno-sanitize-recover=all',APP/'tests/int64.cpp','-o',OUT/'int64-test']),
+    ('portable-int64',[OUT/'int64-test']),
+    ('compatibility-gen-feedback',[sys.executable,APP/'tests/compatibility/gen_feedback.py']),
+    ('compatibility-profile-clocks',[sys.executable,APP/'tests/compatibility/compatibility_clocks.py']),
+])
 report={'stages':{},'pi32v2_build_verified':False,'target_RAM_execution_verified':False,'hardware_upload_verified':False,'web_midi_UI_verified':False}
 for name,command in steps:
     useenv=dict(env)

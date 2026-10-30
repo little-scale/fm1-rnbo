@@ -1,0 +1,1306 @@
+{
+  "format": 1,
+  "patches": [
+    {
+      "id": "t01_keys",
+      "title": "Keys And Eight Knobs",
+      "bank": 1,
+      "slot": 1,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "shape",
+          "default": 0.2,
+          "min": 0,
+          "max": 1,
+          "label": "Shape",
+          "unit": ""
+        },
+        {
+          "name": "detune",
+          "default": 0,
+          "min": -12,
+          "max": 12,
+          "label": "Detune",
+          "unit": "semitones"
+        },
+        {
+          "name": "cutoff",
+          "default": 2500,
+          "min": 100,
+          "max": 9000,
+          "label": "Cutoff",
+          "unit": "Hz"
+        },
+        {
+          "name": "resonance",
+          "default": 0.15,
+          "min": 0,
+          "max": 0.8,
+          "label": "Resonance",
+          "unit": ""
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "notein, velocity, mtof expression, ADSR, filters",
+        "All eight knobs and FX banking; pan and patch graphics"
+      ],
+      "listen": "Start with single notes. Shape blends sine/saw; detune affects the saw. Pan must reach each speaker separately.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t01_keys/t01_keys.rnbopat"
+    },
+    {
+      "id": "t02_clock",
+      "title": "Clock Steps And Glide",
+      "bank": 1,
+      "slot": 2,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "period",
+          "default": 180,
+          "min": 60,
+          "max": 700,
+          "label": "Period",
+          "unit": "ms"
+        },
+        {
+          "name": "interval",
+          "default": 2,
+          "min": 0,
+          "max": 12,
+          "label": "Interval",
+          "unit": "semitones"
+        },
+        {
+          "name": "glide",
+          "default": 25,
+          "min": 0,
+          "max": 120,
+          "label": "Glide",
+          "unit": "ms"
+        },
+        {
+          "name": "rotate",
+          "default": 0,
+          "min": 0,
+          "max": 7,
+          "label": "Rotate",
+          "unit": "steps"
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "RNBO metro, event counter, hot arithmetic and scheduled line~",
+        "Clock stop/start and changing period without stuck notes"
+      ],
+      "listen": "Hold one key for an eight-step staircase. Release stops the clock; another key resumes the step position. Glide should smooth the jumps.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t02_clock/t02_clock.rnbopat"
+    },
+    {
+      "id": "t03_lists",
+      "title": "Sixty Four Step List",
+      "bank": 1,
+      "slot": 3,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "step",
+          "default": 0,
+          "min": 0,
+          "max": 63,
+          "label": "Step",
+          "unit": "index"
+        },
+        {
+          "name": "first",
+          "default": 0,
+          "min": -12,
+          "max": 12,
+          "label": "First",
+          "unit": "semitones"
+        },
+        {
+          "name": "transpose",
+          "default": 0,
+          "min": -12,
+          "max": 12,
+          "label": "Transpose",
+          "unit": "semitones"
+        },
+        {
+          "name": "brightness",
+          "default": 2000,
+          "min": 100,
+          "max": 8000,
+          "label": "Brightness",
+          "unit": "Hz"
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "64-item pack, list.reg copy, list.rev and read-only list.lookup",
+        "Repeated list updates after initialization without allocation growth"
+      ],
+      "listen": "Hold a note and scan Step through the stored melody. First changes the last step after reversal. Transpose shifts the whole melody.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t03_lists/t03_lists.rnbopat"
+    },
+    {
+      "id": "t04_constants",
+      "title": "Gen Constants Oscillator",
+      "bank": 2,
+      "slot": 1,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "ratio",
+          "default": 1,
+          "min": 0.25,
+          "max": 4,
+          "label": "Ratio",
+          "unit": ""
+        },
+        {
+          "name": "phase",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "label": "Phase",
+          "unit": "cycles"
+        },
+        {
+          "name": "harmonic",
+          "default": 1,
+          "min": 1,
+          "max": 8,
+          "label": "Harmonic",
+          "unit": ""
+        },
+        {
+          "name": "blend",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "label": "Blend",
+          "unit": ""
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Visual Gen numeric/named constants, phasor, samplerate, twopi, pi, sin",
+        "RNBO controls sent to named Gen Param attributes, frequency ratios and phase wrapping"
+      ],
+      "listen": "A sine oscillator with a second harmonic blend. Ratio 1 follows the keyboard. A sharp discontinuity while moving Phase is expected.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t04_constants/t04_constants.rnbopat"
+    },
+    {
+      "id": "t05_history",
+      "title": "Gen History Lowpass",
+      "bank": 2,
+      "slot": 2,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "feedback",
+          "default": 0.8,
+          "min": 0,
+          "max": 0.98,
+          "label": "Feedback",
+          "unit": ""
+        },
+        {
+          "name": "drive",
+          "default": 1,
+          "min": 1,
+          "max": 8,
+          "label": "Drive",
+          "unit": ""
+        },
+        {
+          "name": "mix",
+          "default": 1,
+          "min": 0,
+          "max": 1,
+          "label": "Mix",
+          "unit": ""
+        },
+        {
+          "name": "cutoff",
+          "default": 6500,
+          "min": 300,
+          "max": 9000,
+          "label": "Cutoff",
+          "unit": "Hz"
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "One-sample History feedback, old-state reads, stability at 0.98",
+        "DC blocking, nonlinear drive and live smoothing coefficient"
+      ],
+      "listen": "Feedback darkens the sound smoothly. At 0.98 it should remain stable. Mix 0 is the dry reference; Mix 1 is fully filtered.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t05_history/t05_history.rnbopat"
+    },
+    {
+      "id": "t06_nested",
+      "title": "Nested Gen And Codebox",
+      "bank": 2,
+      "slot": 3,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "feedback",
+          "default": 0.7,
+          "min": 0,
+          "max": 0.98,
+          "label": "Feedback",
+          "unit": ""
+        },
+        {
+          "name": "drive",
+          "default": 1,
+          "min": 1,
+          "max": 8,
+          "label": "Drive",
+          "unit": ""
+        },
+        {
+          "name": "mix",
+          "default": 1,
+          "min": 0,
+          "max": 1,
+          "label": "Mix",
+          "unit": ""
+        },
+        {
+          "name": "cutoff",
+          "default": 6500,
+          "min": 300,
+          "max": 9000,
+          "label": "Cutoff",
+          "unit": "Hz"
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Nested visual Gen boundaries, scoped History, codebox state",
+        "Cross-check behavior against History Lowpass with matched settings"
+      ],
+      "listen": "This uses the same filter equation through nested Gen and codebox. Match controls with History Lowpass for an A/B check.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t06_nested/t06_nested.rnbopat"
+    },
+    {
+      "id": "t07_hold",
+      "title": "Gen Sample And Hold",
+      "bank": 3,
+      "slot": 1,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "rate",
+          "default": 5,
+          "min": 0.5,
+          "max": 25,
+          "label": "Rate",
+          "unit": "Hz"
+        },
+        {
+          "name": "depth",
+          "default": 0.6,
+          "min": 0,
+          "max": 1,
+          "label": "Depth",
+          "unit": ""
+        },
+        {
+          "name": "steps",
+          "default": 4,
+          "min": 1,
+          "max": 12,
+          "label": "Steps",
+          "unit": ""
+        },
+        {
+          "name": "smooth",
+          "default": 20,
+          "min": 1,
+          "max": 500,
+          "label": "Smooth",
+          "unit": "samples"
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Gen noise, sah, phasor, comparisons, int, slide and cycle",
+        "Sample-rate state with predictable step-rate control"
+      ],
+      "listen": "Hold a note for random stepped pitch. Rate sets the steps per second; Smooth softens transitions. Depth 0 returns to a steady pitch.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t07_hold/t07_hold.rnbopat"
+    },
+    {
+      "id": "t08_table",
+      "title": "Gen Local Stereo Table",
+      "bank": 3,
+      "slot": 2,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "ratio",
+          "default": 1,
+          "min": 0.25,
+          "max": 4,
+          "label": "Ratio",
+          "unit": ""
+        },
+        {
+          "name": "shape",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Shape",
+          "unit": ""
+        },
+        {
+          "name": "offset",
+          "default": 0.25,
+          "min": 0,
+          "max": 1,
+          "label": "Offset",
+          "unit": "cycles"
+        },
+        {
+          "name": "mix",
+          "default": 1,
+          "min": 0,
+          "max": 1,
+          "label": "Mix",
+          "unit": ""
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Local Data 256x2, counter, poke, sample, nearest, dim, channels",
+        "Table rewrites, phase indexing and stereo channel addressing"
+      ],
+      "listen": "A locally generated wavetable. Shape blends sine and saw; Offset changes the right-channel phase. Mix compares nearest and linear reads.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t08_table/t08_table.rnbopat"
+    },
+    {
+      "id": "t09_gendelay",
+      "title": "Gen Dual Tap Delay",
+      "bank": 3,
+      "slot": 3,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "time",
+          "default": 16,
+          "min": 1,
+          "max": 40,
+          "label": "Time",
+          "unit": "ms"
+        },
+        {
+          "name": "feedback",
+          "default": 0.45,
+          "min": 0,
+          "max": 0.98,
+          "label": "Feedback",
+          "unit": ""
+        },
+        {
+          "name": "mix",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Mix",
+          "unit": ""
+        },
+        {
+          "name": "spread",
+          "default": 1.3,
+          "min": 0.5,
+          "max": 1.8,
+          "label": "Spread",
+          "unit": ""
+        },
+        {
+          "name": "brightness",
+          "default": 5000,
+          "min": 300,
+          "max": 9000,
+          "label": "Brightness",
+          "unit": "Hz"
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Bounded 2048-sample Gen delay, two fractional taps and feedback",
+        "Dry/wet endpoints and stable high feedback"
+      ],
+      "listen": "Short stereo echoes become comb/flange tones on held notes. Play short notes to hear the tail. Mix 1 must remove the immediate dry sound.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t09_gendelay/t09_gendelay.rnbopat"
+    },
+    {
+      "id": "t10_comb",
+      "title": "RNBO Comb And Allpass",
+      "bank": 4,
+      "slot": 1,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "time",
+          "default": 8,
+          "min": 1,
+          "max": 16,
+          "label": "Time",
+          "unit": "ms"
+        },
+        {
+          "name": "feedback",
+          "default": 0.45,
+          "min": 0,
+          "max": 0.9,
+          "label": "Feedback",
+          "unit": ""
+        },
+        {
+          "name": "mix",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Mix",
+          "unit": ""
+        },
+        {
+          "name": "diffuse",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Diffuse",
+          "unit": ""
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Bounded comb~/allpass~ rings and signal-rate audio through both",
+        "Declared duration cap and phase coloration at small memory cost"
+      ],
+      "listen": "Time changes a metallic resonance. Diffuse blends the comb with its allpass stage. Feedback 0 gives a useful short-delay reference.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048,
+        "filter_delay_max_ms": 16
+      },
+      "source": "patches/t10_comb/t10_comb.rnbopat"
+    },
+    {
+      "id": "t11_lofi",
+      "title": "RNBO LoFi And Averages",
+      "bank": 4,
+      "slot": 2,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "crush",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Crush",
+          "unit": ""
+        },
+        {
+          "name": "smooth",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Smooth",
+          "unit": ""
+        },
+        {
+          "name": "drive",
+          "default": 1,
+          "min": 1,
+          "max": 6,
+          "label": "Drive",
+          "unit": ""
+        },
+        {
+          "name": "cutoff",
+          "default": 5000,
+          "min": 100,
+          "max": 9000,
+          "label": "Cutoff",
+          "unit": "Hz"
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Fixed downsamp~ 4, average~ 32 and average_rms~ 32",
+        "Bounded averaging history and float32 audio path"
+      ],
+      "listen": "Crush blends sample holding; Smooth blends a 32-sample moving average. Drive adds saturation. Listen for clean parameter changes and no lasting DC.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t11_lofi/t11_lofi.rnbopat"
+    },
+    {
+      "id": "t12_genmath",
+      "title": "Gen Maths And Routing",
+      "bank": 4,
+      "slot": 3,
+      "kind": "mono",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.12,
+          "min": 0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "drive",
+          "default": 2,
+          "min": 1,
+          "max": 8,
+          "label": "Drive",
+          "unit": ""
+        },
+        {
+          "name": "mode",
+          "default": 1,
+          "min": 1,
+          "max": 3,
+          "label": "Mode",
+          "unit": ""
+        },
+        {
+          "name": "symmetry",
+          "default": 0,
+          "min": -0.5,
+          "max": 0.5,
+          "label": "Symmetry",
+          "unit": ""
+        },
+        {
+          "name": "mix",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Mix",
+          "unit": ""
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0,
+          "max": 1,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 8,
+          "min": 1,
+          "max": 250,
+          "label": "Attack",
+          "unit": "ms"
+        },
+        {
+          "name": "release",
+          "default": 180,
+          "min": 10,
+          "max": 1500,
+          "label": "Release",
+          "unit": "ms"
+        }
+      ],
+      "tests": [
+        "Gen wrap, fold, tanh, selector, named send/receive, dcblock",
+        "Reverse operators, variable selector and bounded nonlinear paths"
+      ],
+      "listen": "Mode selects fold, wrap or tanh shaping. Mix 0 is the dry reference. Symmetry shifts the shape; the DC blocker should prevent a persistent offset.",
+      "config": {
+        "voices": 1,
+        "fast_phase": true,
+        "float32_delays": true,
+        "pool_bytes": 98304,
+        "gen_buffer_max_bytes": 24576,
+        "gen_delay_max_samples": 2048
+      },
+      "source": "patches/t12_genmath/t12_genmath.rnbopat"
+    },
+    {
+      "id": "t13_fm2",
+      "title": "Two Voice FM Reference",
+      "bank": 5,
+      "slot": 1,
+      "kind": "poly",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.1,
+          "min": 0.0,
+          "max": 0.25,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "ratio",
+          "default": 2.0,
+          "min": 0.25,
+          "max": 8.0,
+          "label": "Ratio",
+          "unit": ""
+        },
+        {
+          "name": "depth",
+          "default": 1.5,
+          "min": 0.0,
+          "max": 8.0,
+          "label": "Depth",
+          "unit": ""
+        },
+        {
+          "name": "pan",
+          "default": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "label": "Pan",
+          "unit": ""
+        },
+        {
+          "name": "decay",
+          "default": 20.0,
+          "min": 1.0,
+          "max": 1000.0,
+          "label": "Decay",
+          "unit": ""
+        },
+        {
+          "name": "sustain",
+          "default": 0.8,
+          "min": 0.0,
+          "max": 1.0,
+          "label": "Sustain",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 10.0,
+          "min": 1.0,
+          "max": 1000.0,
+          "label": "Attack",
+          "unit": ""
+        },
+        {
+          "name": "release",
+          "default": 150.0,
+          "min": 1.0,
+          "max": 2000.0,
+          "label": "Release",
+          "unit": ""
+        }
+      ],
+      "tests": [
+        "RNBO voice allocation, stealing, voice sleep, MIDI release and parameter broadcast"
+      ],
+      "listen": "Play a chord, then add another note to force stealing. Old note-offs must not kill a newer voice. Release all keys and observe idle CPU.",
+      "config": {
+        "voices": 2,
+        "fast_phase": true,
+        "float32_delays": true
+      },
+      "source": "patches/t13_fm2/t13_fm2.rnbopat"
+    },
+    {
+      "id": "t14_fm4echo",
+      "title": "Four Voice Master Echo",
+      "bank": 5,
+      "slot": 2,
+      "kind": "poly",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.075,
+          "min": 0.0,
+          "max": 0.125,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "ratio",
+          "default": 2.0,
+          "min": 0.25,
+          "max": 8.0,
+          "label": "Ratio",
+          "unit": ""
+        },
+        {
+          "name": "depth",
+          "default": 1.5,
+          "min": 0.0,
+          "max": 8.0,
+          "label": "Depth",
+          "unit": ""
+        },
+        {
+          "name": "echo_time",
+          "default": 120.0,
+          "min": 40.0,
+          "max": 170.0,
+          "label": "Echo Time",
+          "unit": ""
+        },
+        {
+          "name": "echo_feedback",
+          "default": 0.45,
+          "min": 0.0,
+          "max": 0.98,
+          "label": "Echo Feedback",
+          "unit": ""
+        },
+        {
+          "name": "echo_mix",
+          "default": 0.28,
+          "min": 0.0,
+          "max": 1.0,
+          "label": "Echo Mix",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 10.0,
+          "min": 1.0,
+          "max": 1000.0,
+          "label": "Attack",
+          "unit": ""
+        },
+        {
+          "name": "release",
+          "default": 150.0,
+          "min": 1.0,
+          "max": 2000.0,
+          "label": "Release",
+          "unit": ""
+        }
+      ],
+      "tests": [
+        "RNBO voice allocation, stealing, voice sleep, MIDI release and parameter broadcast",
+        "One shared master echo, feedback 0.98, fully wet mix, panic and effect reset"
+      ],
+      "listen": "Play a chord, then add another note to force stealing. Old note-offs must not kill a newer voice. Release all keys and observe idle CPU. Echo tails must continue after releasing the chord.",
+      "config": {
+        "voices": 4,
+        "fast_phase": true,
+        "shared_fx": true,
+        "pool_bytes": 114688,
+        "float32_delays": true
+      },
+      "source": "patches/t14_fm4echo/t14_fm4echo.rnbopat"
+    },
+    {
+      "id": "t15_hybrid",
+      "title": "Four Voice Gen Hybrid",
+      "bank": 5,
+      "slot": 3,
+      "kind": "poly",
+      "parameters": [
+        {
+          "name": "level",
+          "default": 0.075,
+          "min": 0.0,
+          "max": 0.125,
+          "label": "Level",
+          "unit": ""
+        },
+        {
+          "name": "ratio",
+          "default": 2.0,
+          "min": 0.25,
+          "max": 8.0,
+          "label": "Ratio",
+          "unit": ""
+        },
+        {
+          "name": "depth",
+          "default": 1.5,
+          "min": 0.0,
+          "max": 8.0,
+          "label": "Depth",
+          "unit": ""
+        },
+        {
+          "name": "echo_time",
+          "default": 120.0,
+          "min": 40.0,
+          "max": 170.0,
+          "label": "Echo Time",
+          "unit": ""
+        },
+        {
+          "name": "echo_feedback",
+          "default": 0.45,
+          "min": 0.0,
+          "max": 0.98,
+          "label": "Echo Feedback",
+          "unit": ""
+        },
+        {
+          "name": "echo_mix",
+          "default": 0.28,
+          "min": 0.0,
+          "max": 1.0,
+          "label": "Echo Mix",
+          "unit": ""
+        },
+        {
+          "name": "attack",
+          "default": 10.0,
+          "min": 1.0,
+          "max": 1000.0,
+          "label": "Attack",
+          "unit": ""
+        },
+        {
+          "name": "release",
+          "default": 150.0,
+          "min": 1.0,
+          "max": 2000.0,
+          "label": "Release",
+          "unit": ""
+        }
+      ],
+      "tests": [
+        "RNBO voice allocation, stealing, voice sleep, MIDI release and parameter broadcast",
+        "One shared master echo, feedback 0.98, fully wet mix, panic and effect reset",
+        "Embedded visual Gen inside four RNBO voices; constants and separate oscillator state"
+      ],
+      "listen": "Play a chord, then add another note to force stealing. Old note-offs must not kill a newer voice. Release all keys and observe idle CPU. Echo tails must continue after releasing the chord. Compare against Four Voice Master Echo for tuning, allocation and CPU; oscillator starting phase can differ.",
+      "config": {
+        "voices": 4,
+        "fast_phase": true,
+        "shared_fx": true,
+        "pool_bytes": 114688,
+        "float32_delays": true
+      },
+      "source": "patches/t15_hybrid/t15_hybrid.rnbopat"
+    }
+  ]
+}

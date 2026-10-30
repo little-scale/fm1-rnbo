@@ -112,8 +112,9 @@ Unsaved control changes are discarded when changing slots.
 - Mono, two-voice and four-voice builds are supported. FM4Echo demonstrates
   voice stealing with one shared master effect, rather than duplicating the
   delay for each voice. The browser recognizes this embedded voice group.
-- Self-contained patches are supported. External abstractions, sample files
-  and Gen dependencies require additional integration.
+- Self-contained patches are supported. Embedded Gen graphs and GenExpr are supported within the documented
+  [Gen limits](fm1-base/rnbo-loader/GEN-SUPPORT.md). External abstractions,
+  sample files and external Gen dependencies require additional integration.
 - Native code, data and optional layout metadata share a **64 KiB image**
   budget; module state has **176 KiB**. Builds reject exceeded limits.
 - Layouts retain object arrangement and cords, shorten labels and separate
@@ -138,7 +139,45 @@ Max. Build from the `.rnbopat` source after making edits. `fm1-base/rnbo/`
 contains the shared adapter/exporter and the original standalone prototype;
 `fm1-base/rnbo-loader/` is the current permanent player.
 
+## Playable test collection
+
+The [15-patch test guide](fm1-base/rnbo-loader/hardware-tests/README.md)
+includes standalone RNBO sources, editable Max wrappers, eight mapped controls,
+listening checks and a hardware results sheet. Load one group into the three
+slots at a time; the FM1 runs one selected patch.
+
+| Group | Slot 1 | Slot 2 | Slot 3 |
+| --- | --- | --- | --- |
+| 1 — RNBO fundamentals | Keyboard synth | Clock/glide sequencer | 64-step list |
+| 2 — Gen synthesis | Constants oscillator | History feedback filter | Nested Gen/codebox |
+| 3 — Gen memory | Sample-and-hold | Stereo data table | Dual-tap delay |
+| 4 — Effects | Comb/allpass | Lo-fi/averages | Gen maths/routing |
+| 5 — Polyphony | Two-voice FM | Four-voice FM/echo | Four-voice Gen hybrid |
+
+From the repository root, build and then upload a group (replace `1` with `1`–`5`):
+
+```sh
+bash fm1-base/rnbo-loader/Build-Test-Group-1.command
+bash fm1-base/rnbo-loader/Upload-Test-Group-1.command --check
+bash fm1-base/rnbo-loader/Upload-Test-Group-1.command
+```
+
+Builds do not install firmware or upload patches. Uploads verify source hashes,
+settings and native package reviews before replacing slots 1–3. The guide records
+hardware observations separately from the archived host results, including
+T08’s subtle Mix control and T14’s intentionally attenuated high-feedback echo.
+The deferred echo gain revision is not included.
+
 ## Validation
+
+Check all 15 source/configuration pairs, editable Max graph topology, archived
+host hashes and five upload-bank mappings without RNBO or hardware:
+
+```sh
+python3 fm1-base/rnbo-loader/hardware-tests/check_sources.py
+```
+
+Run the complete compiler-dependent suite on the supported Mac environment:
 
 ```sh
 source setup/env.sh
