@@ -10,6 +10,7 @@ function boundedFilters(source,maximumMs=null,inferredMaximum=false){
     const literal=name.startsWith('allpass')?body.match(/this->mstosamps\((\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)[fF]?\)/):body.match(/number __delayTime = (\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)[fF]?;/);
     const fixed=body.includes('RNBO_UNUSED(delayTime);')&&literal?Number(literal[1]):null;
     if(fixed===null && maximumMs===null)continue;
+    if(fixed!==null && fixed>1000 && (maximumMs===null||inferredMaximum))continue;
     const constant=fixed!==null&&(maximumMs===null||inferredMaximum||fixed<=maximumMs);
     const maxMs=constant?Math.min(1000,Math.max(fixed,1/44.1)):maximumMs;
     // Keep the original read delay for a fixed source; a couple of samples
@@ -38,12 +39,12 @@ function boundedFilters(source,maximumMs=null,inferredMaximum=false){
       const read=new RegExp('number '+prefix+'_read\\([^)]*\\)\\s*\\{[\\s\\S]*?^\\}','m');
       code=code.replace(read,b=>b.replace(/Int index1 = \(Int\)\(rnbo_floor\(r\)\);/g,'Int index1 = (Int)(int)(rnbo_floor(r));'));
     }
-    changes.push({object:name,mode:constant?'inferred constant':inferredMaximum?'declared parameter range':'explicit maximum',maximum_ms:maxMs,maximum_samples:samples,frames_per_buffer:frames,buffer_count:2,buffer_data_bytes:frames*4*2});
+    changes.push({object:name,mode:constant?'inferred constant':inferredMaximum?'declared input bound':'explicit maximum',maximum_ms:maxMs,maximum_samples:samples,frames_per_buffer:frames,buffer_count:2,buffer_data_bytes:frames*4*2});
   }
   return {code,changes};
 }
-// Only direct, unwired-at-input host parameters have a proven range here.
-// Arithmetic, signal modulation and subpatch inputs require an explicit cap.
+// Direct bounded parameters or literal clips with unwired limits prove a range.
+// Other arithmetic, signal modulation and subpatch inputs require an explicit cap.
 function parameterMaximum(patcher,xam){
   let maximum=0,seen=false,unknown=false;
   function visit(p){
@@ -62,16 +63,29 @@ function parameterMaximum(patcher,xam){
       }
       if(wires.length!==1||wires[0].source[1]!==0){unknown=true;continue;}
       const source=boxes.get(wires[0].source[0]);
+      // A literal clip~ immediately before the delay inlet proves an upper
+      // bound even when its signal input is modulated. Decline wired limits,
+      // saved attribute overrides or unfamiliar constructor forms.
+      const literal='([-+]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[eE][-+]?\\d+)?)';
+      const clipped=source&&new RegExp('^clip~\\s+'+literal+'\\s+'+literal+'\\s*$').exec(source.text||'');
+      if(clipped && (!source.rnbo_classname||source.rnbo_classname==='clip~') &&
+         !Object.keys(source.rnbo_extra_attributes||{}).length &&
+         !inputs(source.id).some(w=>w.destination[1]!==0)){
+        const low=Number(clipped[1]),high=Number(clipped[2]);
+        if(Number.isFinite(low)&&Number.isFinite(high)&&low>=0&&high>0&&high>=low&&high<=1000){
+          maximum=Math.max(maximum,high);seen=true;continue;
+        }
+      }
       if(!source||!/^param~?(?:\s|$)/.test(source.text||'')||inputs(source.id).length){unknown=true;continue;}
       const spec=xam.parseBoxText(source.text);xam.parseExtraAttributes(spec.xamclass,source.rnbo_extra_attributes,spec.attributes);
       const a=spec.attributes;
       // Enum finalization replaces numeric min/max with the label index range.
       if(a.enum!==undefined){unknown=true;continue;}
-      if(typeof a.min!=='number'||typeof a.max!=='number'||!Number.isFinite(a.min)||!Number.isFinite(a.max)||a.max<a.min){unknown=true;continue;}
+      if(typeof a.min!=='number'||typeof a.max!=='number'||!Number.isFinite(a.min)||!Number.isFinite(a.max)||a.min<0||a.max<a.min||a.max>1000){unknown=true;continue;}
       maximum=Math.max(maximum,a.max);seen=true;
     }
   }
   visit(patcher);
-  return seen&&!unknown&&Number.isFinite(maximum)?Math.min(1000,Math.max(maximum,1/44.1)):null;
+  return seen&&!unknown&&Number.isFinite(maximum)&&maximum<=1000?Math.max(maximum,1/44.1):null;
 }
 module.exports={boundedFilters,parameterMaximum};

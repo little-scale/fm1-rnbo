@@ -164,11 +164,14 @@ def _builder_start():
     global _BUILDER
     if _BUILDER:
         return _BUILDER
-    name = "jieli-" + hashlib.sha1(str(ROOT).encode()).hexdigest()[:10]
+    offline = os.environ.get("FM1_OFFLINE") == "1"
+    identity = str(ROOT) + ((":offline:" + DOCKER_IMAGE) if offline else "")
+    name = "jieli-" + hashlib.sha1(identity.encode()).hexdigest()[:10]
     st = subprocess.run(["docker", "inspect", "-f", "{{.State.Running}}", name], capture_output=True, text=True)
     if st.stdout.strip() != "true":
         subprocess.run(["docker", "rm", "-f", name], capture_output=True)
         r = subprocess.run(["docker", "run", "-d", "--rm", "--name", name, "--platform", "linux/amd64",
+                            *(["--pull=never", "--network=none"] if offline else []),
                             "-v", f"{ROOT}:/work", "-v", f"{toolchain()}:/opt/jieli:ro", "-w", "/work",
                             DOCKER_IMAGE, "sh", "-c", "sleep 3600"], capture_output=True, text=True)
         if r.returncode:

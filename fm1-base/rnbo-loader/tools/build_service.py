@@ -2,6 +2,7 @@
 """Local, isolated RNBO build jobs. Device uploads remain in the browser."""
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -18,7 +19,7 @@ MAX_SOURCE=4*1024*1024
 
 
 def prepare_request(body):
-    if not isinstance(body,dict) or set(body)-{'name','source','voices'}:raise ValueError('Choose a .rnbopat file and a voice count.')
+    if not isinstance(body,dict) or set(body)-{'name','source','voices','filter_delay_max_ms'}:raise ValueError('Choose a .rnbopat file, voice count and optional filter delay maximum.')
     name=body.get('name');voices=body.get('voices');source=body.get('source')
     if not isinstance(name,str) or len(name)>200 or '/' in name or '\\' in name or not name.lower().endswith('.rnbopat'):raise ValueError('Choose a standalone .rnbopat file saved from inside the RNBO editor.')
     if type(voices) is not int or voices not in (1,2,4):raise ValueError('Choose Mono, 2 voices or 4 voices.')
@@ -65,11 +66,18 @@ def prepare_request(body):
     stem=re.sub('[^A-Za-z0-9_-]','_',name[:-8])[:24]
     if not stem or not stem[0].isalpha():stem=('patch_'+stem)[:24]
     config={'voices':voices,'fast_phase':True,'shared_fx':bool(groups),'float32_delays':True,'pool_bytes':114688}
+    if 'filter_delay_max_ms' in body:
+        maximum=body['filter_delay_max_ms']
+        if type(maximum) not in (int,float) or not 0<maximum<=1000 or not math.isfinite(maximum):
+            raise ValueError('Comb/allpass maximum delay must be greater than 0 and at most 1000 ms.')
+        config['filter_delay_max_ms']=maximum
     return stem,json.dumps(document,ensure_ascii=False,allow_nan=False),config
 
 
 def friendly_error(log):
     lower=log.lower()
+    if 'mstosamps' in lower and 'double arithmetic' in lower:
+        return 'The patch uses double-precision time conversion in DSP. For modulated comb~/allpass~, set their maximum delay in Build Settings and rebuild. See the audit log for other conversions.'
     if 'operation not permitted' in lower or 'permission denied' in lower:
         return 'The local tools could not be accessed. Open Open-Build-Uploader.command from your normal Terminal and retry. Details are in the build log.'
     if 'docker' in lower and any(x in lower for x in ('cannot','failed','connect','not found')):
@@ -123,6 +131,7 @@ class BuildService:
             if not status.get('success') or status.get('host') or not status.get('stages',{}).get(job['name'],{}).get('passed'):raise RuntimeError('The FM1 target build did not complete successfully.')
             expected=hashlib.sha256(job['source'].read_bytes()).hexdigest()
             if provenance.get('input_sha256')!=expected or any(provenance.get(k)!=job['config'][k] for k in ('voices','fast_phase','shared_fx')):raise RuntimeError('The build does not match the selected RNBO source and voice settings.')
+            if provenance.get('filter_delay_max_ms')!=job['config'].get('filter_delay_max_ms'):raise RuntimeError('The build does not match the selected filter delay maximum; rebuild the patch.')
             if meta['title']!=job['name'].upper():raise RuntimeError('The built patch has an unexpected title.')
             if review.get('sha256')!=hashlib.sha256(data).hexdigest() or any(review.get(k)!=v for k,v in meta.items()):raise RuntimeError('The compiled module did not match its reviewed package.')
             if review.get('undefined_symbols')!=[] or not review.get('constructors') or not review.get('fast_phase') or not review.get('float_to_int64_helpers_rejected'):raise RuntimeError('The module did not pass its native build review.')

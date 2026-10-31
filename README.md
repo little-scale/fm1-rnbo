@@ -25,10 +25,72 @@ actual value for 1.5 seconds, then returns to the overview.
 The battery icon uses three coarse voltage-based bars. A plug indicates USB
 host power; it does not indicate charging or estimate remaining runtime.
 
+## FM1 RNBO Studio
+
+Studio combines firmware installation, a 15-instrument library, three-slot
+uploads and the local RNBO converter in one browser window. Use Chrome or
+Edge and allow MIDI access including SysEx. Firmware installation replaces
+the device firmware; choosing a library patch only selects it for review.
+The **Upload Patch** button writes the selected slot.
+
+For a local/offline release with its own converter and cached compiler, start
+with the [quickstart](QUICKSTART.md). From a configured Mac project, cache the
+pinned Linux amd64 Docker image once, then run:
+
+```sh
+bash fm1-base/rnbo-loader/Build-Local-Studio.command
+```
+
+This creates `build/studio-local/` inside `rnbo-loader`, plus a ZIP. The release
+folder has one `Open-Studio.command`, a `Check-Setup.command` and the quickstart.
+It includes source conversion, player firmware and all 15 instruments; it
+does not depend on the original development folder. Installed RNBO 1.4.4,
+Python, Node, Apple's command-line tools, Docker Desktop and Chrome/Edge remain
+prerequisites. A **Max 9 license** and a **separate RNBO license** are required;
+authorize both before offline use. Neither license is bundled.
+Using this local kit needs no Git, virtual environment, `pip`
+or SDK download. Compiler containers disable pulls and networking. Test one
+new patch with the internet disconnected before treating a kit as validated
+on the receiving Mac.
+
+The smaller static upload-only release remains available:
+
+From an already configured source checkout:
+
+```sh
+bash fm1-base/rnbo-loader/Build-Studio-Release.command
+bash fm1-base/rnbo-loader/Open-Studio.command
+```
+
+A plain configured project folder also works; Git is needed for publishing
+source changes, not for building or using Studio.
+
+The first command builds the player with the bundled open Barlow font, builds
+and auditions all 15 native modules, checks their source/configuration and
+package reviews, then creates `fm1-base/rnbo-loader/build/studio-release.zip`.
+It does not install or upload anything. The second command starts a background
+localhost service and opens Studio; its Terminal window can close. Use **Stop
+Local Service** in Studio when finished. Existing uploader launchers remain
+available.
+
+The portable release bundle needs only Python 3 to serve it locally. Its
+`web/` folder can also be hosted over HTTPS: firmware and the 15 precompiled
+instruments upload without RNBO, Node or Docker. Conversion of a new
+`.rnbopat` still needs the source checkout's local RNBO 1.4.4 and FM1 toolchain;
+the static website does not compile patches. Studio shows program and working
+RAM sizes before upload, and rejects downloads that differ from the release
+checksums. Checksums check integrity; they are not release signatures.
+
+These are release-candidate tools. Native compilation and physical browser
+firmware/patch transfer must be checked on the supported Mac/FM1 setup; the
+automated Studio tests use synthetic build artifacts and mocked MIDI.
+See [the Studio guide](docs/STUDIO.md) for packaging, hosting and testing.
+
 ## Build environment
 
 The tested workflow uses macOS, Apple's command-line development tools, Python
 3.12 or newer, Node.js, Docker Desktop and a local installation of **RNBO 1.4.4**.
+A **Max 9 license** and a **separate RNBO license** are required.
 The RNBO exporter is intentionally pinned to that version's internal APIs.
 Set `RNBO_DIR` if RNBO is outside the usual Max application/package locations.
 Arial is rasterized from the Mac's installed fonts during the local build.
@@ -76,12 +138,12 @@ than saving only its surrounding Max patch. Use a filename starting with a
 letter and containing at most 24 letters, digits, underscores or hyphens.
 
 ```sh
-bash fm1-base/rnbo-loader/Open-Build-Uploader.command
+bash fm1-base/rnbo-loader/Open-Studio.command
 ```
 
 Open the local uploader in Chrome or Edge, connect to the FM1, choose a slot,
 select the `.rnbopat`, choose Mono / 2 voices / 4 voices, then **Build & Upload**.
-Keep the launcher's Terminal window open. The service runs on localhost;
+The launcher manages a background service on localhost;
 compilation uses the local RNBO installation and Docker. Web MIDI handles USB
 transfer. **Build Only** works without a connected FM1. Already compiled
 `.rnbom` files can also be uploaded directly.
@@ -304,3 +366,7 @@ runtime retain their own terms when produced locally.
 See [LICENSING.md](LICENSING.md) and [LICENSE](LICENSE). SDK/compiler downloads,
 the installed RNBO package, generated exports, private device logs, system
 fonts and prebuilt firmware are not bundled in this source repository.
+
+Studio release candidates use the bundled OFL Barlow fonts instead of Arial.
+The release builder includes a source snapshot, generated RNBO exports and
+component notices alongside the binaries; it does not publish them.

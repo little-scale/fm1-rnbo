@@ -12,11 +12,15 @@ const fs=require('fs'),path=require('path'),assert=require('assert');
  const echo=fs.readFileSync(path.join(__dirname,'../patches/fm4echo.rnbopat'),'utf8');
  assert.equal(w.inspectSource(echo).embeddedVoices,4);assert.equal(w.inspectSource(mono).embeddedVoices,0);
  assert.throws(()=>w.inspectSource('{}'));assert.throws(()=>w.inspectSource('{broken'));
+ assert.deepEqual(w.filterDelayOptions(''),{});assert.deepEqual(w.filterDelayOptions('40'),{filter_delay_max_ms:40});
+ for(const value of ['0','-1','1001','Infinity','NaN'])assert.throws(()=>w.filterDelayOptions(value));
+ assert.deepEqual(w.readSlotNames('{broken'),{});
+ assert.deepEqual(w.readSlotNames(JSON.stringify({1:{id:123,title:'TEST'},2:{id:-1,title:'bad'},3:{id:1,title:'\n'}})),{1:{id:123,title:'TEST'}});
  const elements=new Map();
  function el(id){if(!elements.has(id))elements.set(id,{disabled:false,hidden:false,textContent:'',value:'',options:[],files:[],attributes:{},setAttribute(k,v){this.attributes[k]=v;},removeAttribute(k){delete this.attributes[k];},replaceChildren(){this.options=[];this.value='';},add(o){this.options.push(o);if(!this.value)this.value=o.value;}});return elements.get(id);}
  const sent=[],requests=[],remembered=new Map();let buildMode='success',pendingJob;
  const input={id:'in',name:'FM1',state:'connected',async open(){}};
- const output={name:'FM1',state:'connected',async open(){},send(b){sent.push(Uint8Array.from(b));}};
+ const output={id:'out',name:'FM1',state:'connected',async open(){},send(b){sent.push(Uint8Array.from(b));}};
  const access={inputs:new Map([[input.id,input]]),outputs:new Map([['out',output]])};
  const oldNav=Object.getOwnPropertyDescriptor(globalThis,'navigator'),oldFetch=globalThis.fetch,oldSet=globalThis.setTimeout,oldClear=globalThis.clearTimeout;
  const timers=new Map();let serial=0;
@@ -27,40 +31,67 @@ const fs=require('fs'),path=require('path'),assert=require('assert');
   Object.defineProperty(globalThis,'navigator',{configurable:true,value:{async requestMIDIAccess(o){assert(o.sysex);return access;}}});
   globalThis.setTimeout=(fn,ms)=>{timers.set(++serial,{fn,ms});return serial;};globalThis.clearTimeout=id=>timers.delete(id);
   globalThis.fetch=async(url,options={})=>{
-   requests.push([url,options]);if(url==='/api/session')return response({version:2,token:'test-token',builder:true});
+   requests.push([url,options]);if(url==='/api/session')return response({version:2,token:'test-token',builder:true,build_options:['filter_delay_max_ms']});
    assert.equal(options.headers['X-FM1-Token'],'test-token');
    if(url==='/api/build')return response({id:'testjob'});
    if(url.endsWith('/module'))return {ok:true,async arrayBuffer(){const bytes=data.slice();if(buildMode==='corrupt')bytes[100]^=1;return bytes.buffer;}};
    if(buildMode==='wait')await new Promise(resolve=>pendingJob=resolve);
-   return response(buildMode==='fail'?{state:'failed',error:'Patch exceeds memory',stage:'checking',log:'Too large'}:{state:'succeeded',stage:'validating',log:'All checks passed'});
+   return response(buildMode==='fail'?{state:'failed',error:'Patch exceeds memory',stage:'checking',log:'Too large'}:{state:'succeeded',stage:'validating',log:'All checks passed\nFM1_LAYOUT {"available":false,"reason":"More than 96 objects"}\n'});
   };
   await import(code+'#flow');await Promise.resolve();await Promise.resolve();
   assert(el('upload').disabled && el('slot1').disabled);
-  async function connect(bank=true){
+  async function connect(bank=true,active=1,mask=1,patch=123){
    input.state='connected';await el('ports').onclick();await el('connect').onclick();
    const identity=[...new TextEncoder().encode('FM-1_9400')];input.onmidimessage({data:w.frame(0x11,[...identity,...Array(27-identity.length).fill(0)])});
-   input.onmidimessage({data:status(0x69)});
-   if(bank)input.onmidimessage({data:bankFrame(1,1)});
+   input.onmidimessage({data:status(0x69,patch)});
+   if(bank)input.onmidimessage({data:bankFrame(active,mask)});
    else {const t=[...timers.values()].find(t=>t.ms===1200);assert(t);t.fn();}
   }
-  const status=cmd=>w.frame(cmd,[...w.put32(0),...w.put32(123),...w.put32(10),...w.put32(0),...w.put32(2),...w.put32(600),...w.put32(1234)]);
+  const status=(cmd,patch=123,result=0)=>w.frame(cmd,[...w.put32(result),...w.put32(patch),...w.put32(10),...w.put32(0),...w.put32(2),...w.put32(600),...w.put32(1234)]);
   const bankFrame=(active,mask)=>w.frame(0x6d,[...w.put32(1),...w.put32(3),...w.put32(active),...w.put32(mask)]);
   async function choose(name,bytes){el('file').files=[{name,size:bytes.length,async arrayBuffer(){return Uint8Array.from(bytes).buffer;}}];await el('file').onchange();}
   const decode=b=>w.unpack(b.subarray(1,-1));
   await connect();assert(!el('slot3').disabled);await choose('test.rnbom',data);el('slot3').onclick();el('upload').onclick();
+  assert(el('patch').textContent.includes('Screen: parameter list'));
+  assert(!el('slot3').textContent.includes('TEST')); // Selection is not a confirmed upload.
   assert.equal(decode(sent.at(-1))[2],0x6e);assert.equal(w.u32(decode(sent.at(-1)),14),3);assert(el('file').disabled);
   input.onmidimessage({data:w.frame(0x30,[0,...w.put32(0),0,2,0])});assert.deepEqual(decode(sent.at(-1)).subarray(14,-1),data.subarray(0,512));
   input.onmidimessage({data:status(0x6b)});assert.equal(decode(sent.at(-1))[2],0x6c);input.onmidimessage({data:bankFrame(3,5)});assert(el('log').textContent.includes('active in slot 3'));
+  assert(el('slot3').textContent.includes('TEST'));assert(!el('slot3').textContent.includes('Last known'));
+  assert(el('destination').textContent.includes('replaces TEST'));
+  await connect(true,3,5);assert(el('slot3').textContent.includes('TEST'));assert(el('slot3').textContent.includes('Last known'));
+  // Another physical MIDI port with the same name must never inherit these names.
+  input.id='other-device';access.inputs=new Map([[input.id,input]]);
+  await connect(true,3,5);assert(!el('slot3').textContent.includes('TEST'));
+  input.id='in';access.inputs=new Map([[input.id,input]]);
+  await connect(true,3,5);assert(el('slot3').textContent.includes('TEST'));
+  // A changed active patch ID invalidates its remembered name.
+  el('status').onclick();input.onmidimessage({data:status(0x69,456)});input.onmidimessage({data:bankFrame(3,5)});assert(!el('slot3').textContent.includes('TEST'));
+  const replacement=data.slice(),replacementImage=replacement.subarray(64);
+  replacementImage.set(w.put32(456),12);replacementImage.fill(0,16,48);replacementImage.set(new TextEncoder().encode('RENAMED'),16);
+  replacement.set(w.put32(456),44);replacement.set(w.put32(w.crc(replacementImage)),40);replacement.set(w.put32(w.crc(replacement.subarray(0,48))),48);
+  await choose('renamed.rnbom',replacement);el('slot3').onclick();el('upload').onclick();input.onmidimessage({data:status(0x6b,456,-1)});
+  assert(!el('slot3').textContent.includes('RENAMED')); // A rejected upload cannot label a slot.
+  el('upload').onclick();input.onmidimessage({data:status(0x6b,456)});input.onmidimessage({data:bankFrame(2,7)});
+  assert(!el('slot3').textContent.includes('RENAMED')); // Nor can an active-slot mismatch.
+  el('slot3').onclick();el('upload').onclick();input.onmidimessage({data:status(0x6b,456)});input.onmidimessage({data:bankFrame(3,5)});
+  assert(el('slot3').textContent.includes('RENAMED'));assert(!el('slot3').textContent.includes('Last known'));
+  el('status').onclick();input.onmidimessage({data:status(0x69)});input.onmidimessage({data:bankFrame(1,1)});
+  assert(el('slot3').textContent.includes('Empty'));assert(!el('slot3').textContent.includes('RENAMED'));
   // Legacy firmware is identified by a valid status reply and no bank reply.
   await connect(false);assert(el('slot-options').hidden);await choose('new_synth.rnbopat',new TextEncoder().encode(mono));
   el('voices').value='2';el('voices').onchange();assert.equal(el('upload').textContent,'Build & Upload');assert(!el('build').disabled);
+  el('filter-cap').value='40';el('filter-cap').onchange();
   await el('upload').onclick();
-  const posted=JSON.parse(requests.find(([url])=>url==='/api/build')[1].body);assert.equal(posted.voices,2);assert.equal(posted.name,'new_synth.rnbopat');
+  const posted=JSON.parse(requests.find(([url])=>url==='/api/build')[1].body);assert.equal(posted.voices,2);assert.equal(posted.name,'new_synth.rnbopat');assert.equal(posted.filter_delay_max_ms,40);
   assert.equal(decode(sent.at(-1))[2],0x6a);input.onmidimessage({data:status(0x6b)});assert(el('log').textContent.includes('Ready to play'));
   assert(!el('download').hidden);assert.equal(remembered.get('fm1-voices:new_synth.rnbopat'),'2');
+  assert(el('patch').textContent.includes('Screen: parameter list — More than 96 objects'));
   // Build-only needs no MIDI connection, remembers voices, and does not upload.
-  input.state='disconnected';access.onstatechange();await choose('new_synth.rnbopat',new TextEncoder().encode(mono));assert.equal(el('voices').value,'2');
+  input.state='disconnected';access.onstatechange();await choose('new_synth.rnbopat',new TextEncoder().encode(mono));assert.equal(el('voices').value,'2');assert.equal(el('filter-cap').value,'40');
   let count=sent.length;await el('build').onclick();assert.equal(sent.length,count);assert(el('log').textContent.includes('Build passed'));assert(el('upload').disabled);
+  el('filter-cap').value='0';el('filter-cap').onchange();const requestCount=requests.length;
+  await el('build').onclick();assert.equal(requests.length,requestCount);assert(el('log').textContent.includes('greater than 0'));
   // Embedded polyphony is respected and cannot accidentally multiply the master effect.
   await choose('fm4echo.rnbopat',new TextEncoder().encode(echo));assert.equal(el('voices').value,'4');assert(el('voices').disabled);
   buildMode='fail';count=sent.length;await el('build').onclick();assert.equal(sent.length,count);assert(el('log').textContent.includes('exceeds memory'));assert(el('download').hidden);

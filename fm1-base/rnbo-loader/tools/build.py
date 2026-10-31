@@ -52,7 +52,7 @@ def build_player(host=False):
         import fm1_install as installer
         p=APP/'build/rnbo-player.fwsc';identity,image,digest=installer.load_package(p,False)
         assert identity=='FM-1_9400'
-        (APP/'build/player-review.json').write_text(json.dumps({'identity':identity,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'reserved_image_bytes':IMAGE_MAX,'reserved_state_bytes':STATE_MAX,'module_pc_guard_extension':True,'raw_midi_abi2':True,'patch_slots':3,'presets_patch_selection':True,'visual_overview':True,'battery_indicator':True,'parameter_overlay_ms':1500,'installed':False,'RAM_module_execution_verified':False},indent=2)+'\n')
+        (APP/'build/player-review.json').write_text(json.dumps({'font_family':os.environ.get('RNBO_PLAYER_FONT','arial'),'identity':identity,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'reserved_image_bytes':IMAGE_MAX,'reserved_state_bytes':STATE_MAX,'module_pc_guard_extension':True,'raw_midi_abi2':True,'patch_slots':3,'presets_patch_selection':True,'visual_overview':True,'battery_indicator':True,'parameter_overlay_ms':1500,'installed':False,'RAM_module_execution_verified':False},indent=2)+'\n')
 
 def build_module(name,host=False,source=None,module_dir=None):
     module_dir=Path(module_dir).resolve() if module_dir else APP/'modules'/name
@@ -125,6 +125,7 @@ def build_module(name,host=False,source=None,module_dir=None):
     package=out/(name+'.rnbom');package.write_bytes(data)
     report={**parse(data),'sha256':hashlib.sha256(data).hexdigest(),'constructors':[hex(p) for p in constructors],'undefined_symbols':e['undefined'],'fast_phase':bool(phase_flags),'float_to_int64_helpers_rejected':bool(phase_flags),'visual_overview':visual['available'],'visual_bytes':visual.get('bytes',0),'target_timing_verified':False,'RAM_execution_verified':False}
     (out/'review.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+    print('FM1_LAYOUT '+json.dumps({k:v for k,v in visual.items() if k not in ('nodes','segments','parameters')}),flush=True)
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--host',action='store_true');ap.add_argument('--player-only',action='store_true');ap.add_argument('--patch',help='bundled name or self-contained .rnbopat path');ap.add_argument('--module-dir',type=Path,help='isolated module output directory inside fm1-base');ap.add_argument('--poly2',action='store_true',help='build the player and two-voice FM8 module only');a=ap.parse_args()

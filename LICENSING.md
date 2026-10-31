@@ -10,6 +10,10 @@ It does not replace licences attached to third-party code or modifications of
 third-party files. The implementation and pinned platform source are now included. Build outputs,
 locally installed RNBO files, system fonts and SDK/compiler downloads are excluded.
 
+Using the local converter requires a **Max 9 license** and a **separate RNBO
+license**. Install and authorize Max 9 and RNBO 1.4.4 before offline use. Neither
+license nor the installed RNBO package is supplied with Studio.
+
 ## Component policy
 
 | Component | Applicable licence |
@@ -65,3 +69,17 @@ native firmware/module binaries are local build outputs. SDK packaging bytes
 and the compiler are fetched from their official sources by setup scripts and
 are not redistributed in this checkout. Any later binary release needs its
 own corresponding-source and component distribution review.
+
+The Studio release builder uses the vendored OFL Barlow fonts instead of Arial.
+It collects Git-indexed working sources (or known public source paths from the
+shipped inventory for plain folders), the named Studio integration files, generated RNBO exports with their
+notices, native review metadata, the OFL notice and this licensing information
+alongside each local release candidate. The static upload-only bundle excludes
+SDK/compiler binaries; the pinned setup scripts identify their source.
+The local/offline variant additionally copies the original pinned compiler
+archive and a saved compiler container image from the builder's cache, recording
+their identities and hashes. It retains the archive/image contents and their
+component notices; it does not include the installed RNBO package or SDK
+packaging bytes. The builder does not publish a binary release or change any
+component's licence. These local cache copies are distinct from the source
+checkout, which continues to exclude dependency binaries.

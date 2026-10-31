@@ -27,7 +27,11 @@ patch's arena use is larger than the filter storage alone.
 
 A fixed nonnegative comb~/allpass~ delay is inferred from the generated constant.
 A directly connected, unwired-at-input numeric host parameter can also provide
-a bound. For example, connect this parameter to the filter's delay-time inlet:
+a bound. A literal `clip~ LOW HIGH` immediately before the delay-time inlet
+also provides a bound when its limit inlets are unwired and it has no saved
+attribute overrides. This supports LFO modulation through, for example,
+`clip~ 10 30` and `clip~ 12 40` without an explicit browser cap. Unrecognized
+forms retain the explicit-cap requirement. For a parameter bound, connect:
 
 ```text
 param Time 16 @min 0 @max 32
@@ -63,11 +67,22 @@ samples. Values inside the cap still modulate normally. Shorter proven constants
 retain their smaller allocation. The cap is positive, finite and at most
 1,000 ms; combined memory limits still determine whether a patch fits.
 
-The explicit setting is currently a CLI module option. In the browser, use
-fixed delays or direct bounded numeric parameters for automatic inference.
+In Studio, select the `.rnbopat`, expand **Build Settings** and enter a
+**Comb/allpass maximum delay (ms)** for signal-modulated filter delays. Leave
+it blank for automatic inference from constants or direct bounded parameters.
+For example, two LFO-modulated combs spanning 10–30 ms and 12–40 ms can use a
+40 ms cap. The cap clamps all comb/allpass delay inputs in that module; it is
+not a general increase in available memory. The browser remembers the setting
+for that filename and invalidates an earlier compiled result when it changes.
+
 Cap settings apply to comb~/allpass~; ordinary delay~ keeps its own source-defined
 maximum. Parameter display ranges follow the source patch, so choose matching
 source ranges when a knob should stop at the effective maximum.
+
+An unbounded signal-modulated comb can first fail the DSP audit in
+`mstosamps(MillisecondTime)`. The bounded-filter adaptation replaces that
+conversion with float32 arithmetic while also allocating the declared buffers.
+The audit remains enabled; unrelated double-precision DSP still fails.
 
 ## Averaging histories
 

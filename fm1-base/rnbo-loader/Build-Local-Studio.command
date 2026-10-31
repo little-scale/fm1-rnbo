@@ -1,0 +1,8 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# Build one local/offline release. Never installs firmware or uploads patches.
+set -euo pipefail
+rnbo_task_dir="$(cd "$(dirname "$0")" && pwd -P)"
+cd "$rnbo_task_dir/../.."
+source setup/env.sh
+exec python3 "$rnbo_task_dir/tools/release.py" --local "$@"

@@ -17,6 +17,11 @@ from package import create,parse,TEXT
 source=(APP/'patches/fm4echo.rnbopat').read_text()
 request={'name':'fm4echo.rnbopat','source':source,'voices':4}
 name,normalized,config=prepare_request(request);assert name=='fm4echo' and config['shared_fx'] and config['voices']==4
+assert 'filter_delay_max_ms' not in config
+assert prepare_request(request|{'filter_delay_max_ms':40})[2]['filter_delay_max_ms']==40
+for maximum in (0,-1,1001,True,'40',None,float('nan'),float('inf'),1<<2000):
+    try:prepare_request(request|{'filter_delay_max_ms':maximum});raise AssertionError(maximum)
+    except ValueError:pass
 for change in [{'name':'../oops.rnbopat'},{'name':'x.maxpat'},{'voices':True},{'voices':3},{'voices':2},{'source':'[]'},{'source':'{"patcher":{}}'}]:
     try:prepare_request(request|change);raise AssertionError(change)
     except ValueError:pass
@@ -39,7 +44,7 @@ for bad in [{'expr':''},{'geninlets':True},{'genoutlets':0}]:
     except ValueError:pass
     genbox['rnbo_extra_attributes']=previous
 
-entered=threading.Event();release=threading.Event();fail=[False];stale=[False]
+entered=threading.Event();release=threading.Event();fail=[False];stale=[False];wrong_cap=[False]
 def compiler(job):
     entered.set();release.wait(5)
     (job['folder']/'build.log').write_text('FM1_STAGE exporting\nFM1_STAGE target\n')
@@ -51,7 +56,7 @@ def compiler(job):
     review={**parse(data),'sha256':hashlib.sha256(data).hexdigest(),'constructors':[hex(TEXT+84)],'undefined_symbols':[],'fast_phase':True,'float_to_int64_helpers_rejected':True}
     (out/'review.json').write_text(json.dumps(review))
     (out/'device-build-status.json').write_text(json.dumps({'success':True,'host':False,'stages':{'fm4echo':{'passed':True}}}))
-    (export/'provenance.json').write_text(json.dumps({'input_sha256':'stale' if stale[0] else hashlib.sha256(job['source'].read_bytes()).hexdigest(),**{k:job['config'][k] for k in ('voices','fast_phase','shared_fx')}}))
+    (export/'provenance.json').write_text(json.dumps({'input_sha256':'stale' if stale[0] else hashlib.sha256(job['source'].read_bytes()).hexdigest(),'filter_delay_max_ms':999 if wrong_cap[0] else job['config'].get('filter_delay_max_ms'),**{k:job['config'][k] for k in ('voices','fast_phase','shared_fx')}}))
     return True
 
 with tempfile.TemporaryDirectory(prefix='fm1-builder-test-') as tmp:
@@ -74,7 +79,8 @@ with tempfile.TemporaryDirectory(prefix='fm1-builder-test-') as tmp:
     assert call('/../../setup/env.sh')[0]==404
     assert call('/api/jobs/missing')[0]==404
     assert call('/api/build',request|{'voices':8})[0]==400
-    code,raw=call('/api/build',request);assert code==202;ident=json.loads(raw)['id'];assert entered.wait(2)
+    code,raw=call('/api/build',request|{'filter_delay_max_ms':40});assert code==202;ident=json.loads(raw)['id'];assert entered.wait(2)
+    assert json.loads((service.jobs[ident]['module']/'module.json').read_text())['filter_delay_max_ms']==40
     assert call('/api/build',request)[0]==409
     assert call('/api/jobs/'+ident+'/module')[0]==404
     release.set()
@@ -92,5 +98,34 @@ with tempfile.TemporaryDirectory(prefix='fm1-builder-test-') as tmp:
     assert call('/api/jobs/'+failed['id']+'/module')[0]==404
     fail[0]=False;stale[0]=True;code,raw=call('/api/build',request);bad=completed(json.loads(raw)['id']);assert bad['state']=='failed' and 'selected RNBO source' in bad['error']
     assert call('/api/jobs/'+bad['id']+'/module')[0]==404
+    stale[0]=False;wrong_cap[0]=True
+    code,raw=call('/api/build',request|{'filter_delay_max_ms':40});badcap=completed(json.loads(raw)['id'])
+    assert badcap['state']=='failed' and 'filter delay maximum' in badcap['error']
+    assert call('/api/jobs/'+badcap['id']+'/module')[0]==404
     server.shutdown();server.server_close();thread.join()
 print('PASS build service: request validation, Max source, origin/host/token boundaries, isolated jobs, single build, progress, reviewed downloads, failure and stale artifact refusal')
+
+# A source converter must serve its current UI over an older release's web
+# assets, while keeping that release's firmware/library files available.
+from launch import compatible
+with tempfile.TemporaryDirectory(prefix='fm1-old-release-test-') as tmp:
+    root=Path(tmp);(root/'web').mkdir()
+    for filename in ('module-loader.html','module-loader.js','studio.js'):
+        (root/'web'/filename).write_text('old release UI')
+    (root/'web/release.json').write_text('{"format":1}')
+    service=BuildService(root/'jobs',runner=compiler)
+    server=make_server(0,service,web_root=root/'web')
+    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+    origin=f'http://127.0.0.1:{server.server_port}'
+    try:
+        with urlopen(origin+'/module-loader.html') as r:assert b'filter-cap' in r.read()
+        with urlopen(origin+'/module-loader.js') as r:assert b'filterDelayOptions' in r.read()
+        with urlopen(origin+'/release.json') as r:assert json.load(r)=={'format':1}
+        with urlopen(origin+'/api/session') as r:info=json.load(r)
+        assert compatible(info,server.root_id,True)
+        old=info|{'build_options':[]}
+        assert not compatible(old,server.root_id,True)
+        assert compatible(old,server.root_id,False)
+    finally:
+        server.shutdown();server.server_close();thread.join()
+print('PASS builder capability detection and current converter UI over older release assets')

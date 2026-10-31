@@ -33,7 +33,7 @@ def compile_layout(source, description):
     entries = []
     for b in boxes:
         text = b.get('text') or b.get('rnbo_classname') or b.get('maxclass', '?')
-        words = text.split()
+        words = text.split() or [b.get('rnbo_classname') or b.get('maxclass') or '?']
         gen_context = patch.get('classnamespace') == 'dsp.gen'
         gen_container = words[0] in ('gen', 'gen~') or (b.get('patcher') or {}).get('classnamespace') == 'dsp.gen'
         flags = NODE_GEN if gen_context or gen_container else 0
@@ -71,21 +71,42 @@ def compile_layout(source, description):
     # Compression can make neighbouring labels collide. Move a compact box
     # the shortest available distance, then attach its cords to the new ports.
     # Keep this deterministic; do not silently accept unreadable overlaps.
-    placed = []
-    for node in sorted(nodes, key=lambda n: (n[1], n[0])):
-        original = node[:2]
-        candidates = {(node[0], node[1])}
-        for other in placed:
-            for x in (node[0], other[0]+other[2]+2):
-                for y in (node[1], other[1]+other[3]+2):
-                    candidates.add((x, y))
-        def clear(x, y):
-            return all(x+node[2]+1<=b[0] or b[0]+b[2]+1<=x or y+node[3]+1<=b[1] or b[1]+b[3]+1<=y for b in placed)
-        positions = [(x,y) for x,y in candidates if x+node[2]<=WIDTH and y+node[3]<=HEIGHT and clear(x,y)]
-        if not positions:
+    anchors = [n[:2] for n in nodes]
+    def place(expanded=False):
+        placed = []
+        for node in sorted(nodes, key=lambda n: (n[1], n[0])):
+            original = node[:2]
+            candidates = {(node[0], node[1])}
+            if expanded:
+                # The old pass only moved right/down, leaving usable space
+                # above and left of a crowded row inaccessible. Try nearby
+                # rectangle edges on both axes before giving up the overview.
+                xs = {node[0], 0, WIDTH-node[2]}
+                ys = {node[1], 0, HEIGHT-node[3]}
+                for other in placed:
+                    xs.update((other[0]-node[2]-2, other[0]+other[2]+2))
+                    ys.update((other[1]-node[3]-2, other[1]+other[3]+2))
+                candidates.update((x,y) for x in xs for y in ys)
+            else:
+                for other in placed:
+                    for x in (node[0], other[0]+other[2]+2):
+                        for y in (node[1], other[1]+other[3]+2):
+                            candidates.add((x, y))
+            def clear(x, y):
+                return all(x+node[2]+1<=b[0] or b[0]+b[2]+1<=x or y+node[3]+1<=b[1] or b[1]+b[3]+1<=y for b in placed)
+            positions = [(x,y) for x,y in candidates if 0<=x and 0<=y and x+node[2]<=WIDTH and y+node[3]<=HEIGHT and clear(x,y)]
+            if not positions:
+                return False
+            node[0],node[1] = min(positions,key=lambda p:(abs(p[0]-original[0])+abs(p[1]-original[1]),p[1],p[0]))
+            placed.append(node)
+        return True
+    placement = 'source anchors'
+    if not place():
+        for node, anchor in zip(nodes, anchors):
+            node[:2] = anchor
+        if not place(expanded=True):
             return None, {'available': False, 'reason': 'Object labels cannot fit legibly'}
-        node[0],node[1] = min(positions,key=lambda p:(abs(p[0]-original[0])+abs(p[1]-original[1]),p[1],p[0]))
-        placed.append(node)
+        placement = 'expanded placement'
     segments = []
     for entry in patch.get('lines', []):
         line = entry['patchline']
@@ -106,7 +127,7 @@ def compile_layout(source, description):
     data += b''.join(struct.pack('<8B16s', *n[:8], ascii_text(n[8], 16)) for n in nodes)
     data += b''.join(bytes(s) for s in segments)
     data += b''.join(ascii_text(p.get('unit', ''), 12) for p in params)
-    return data, dict(available=True, nodes=nodes, segments=segments, parameters=[p.get('name') for p in params], bytes=len(data))
+    return data, dict(available=True, placement=placement, nodes=nodes, segments=segments, parameters=[p.get('name') for p in params], bytes=len(data))
 
 
 def write_layout(source, description, out):
